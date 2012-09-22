@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from universities.modls import University
+from universities.models import University
 # Create your models here.
 class Profile(models.Model):
     user = models.ForeignKey(User)

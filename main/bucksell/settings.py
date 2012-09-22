@@ -118,7 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ads',
-    'registrations',
+    'registration',
     'categories',
     'feedbacks',
     'messages',

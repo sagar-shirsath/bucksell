@@ -1,0 +1,18 @@
+.register-form {
+    margin: 0px 10px 0px 10px;
+}
+
+.home-listing{
+    background-color: #ebebeb;
+    padding-bottom: 30px;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.item-listing{
+    padding: 0 5% 0 5%;
+    text-align: center;
+}
+
+.item-img{
+    margin: 0 20px 0 20px;
+}

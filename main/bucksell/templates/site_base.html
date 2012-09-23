@@ -7,17 +7,24 @@
 	<meta name="description" content="Buy and sell university items items">
     <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css">
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css">
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css">-->
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.css" type="text/css">
-    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.min.css" type="text/css">
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.min.css" type="text/css">-->
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.8.1.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-dropdown.js"></script>
         <script type="text/javascript" src="{{STATIC_URL}}js/jquery1.8.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-tab.js"></script>
+
 
     {%include 'header.html'%}
  {% endblock %}
- 
- 
+ <body>
+    <div class="container">
  {% block content%}
  {% endblock %}
+        </div>
+ </body>
  {% block footer%}
         {%include 'footer.html'%}
  {% endblock %}

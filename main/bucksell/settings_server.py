@@ -173,3 +173,6 @@ LOGGING = {
             },
         }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 30
+REGISTRATION_OPEN = True

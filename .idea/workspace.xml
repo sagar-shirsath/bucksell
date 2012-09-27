@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fff099e-58b0-4bc1-9a0b-22345a625555" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/img/glyphicons-halflings-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/img/glyphicons-halflings.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/css/bootstrap-responsive.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/css/bootstrap-responsive.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/css/custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/js/bootstrap-dropdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/js/jquery-1.8.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/registration.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/registration.html" afterPath="$PROJECT_DIR$/html/registration.html" />
     </list>
     <ignored path="bucksell.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +27,7 @@
       <file leaf-file-name="registration.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/registration.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="36" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.23452158">
+            <state line="47" column="75" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.26641652">
               <folding />
             </state>
           </provider>
@@ -312,7 +301,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/registration.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="36" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.23452158">
+        <state line="47" column="75" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.26641652">
           <folding />
         </state>
       </provider>

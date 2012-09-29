@@ -9,8 +9,29 @@
     <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+    </script>
+    <script type="text/javascript">
+        function loadMap() {
+            var latlng = new google.maps.LatLng(18.5236, 73.8478);
+            var myOptions = {
+                zoom: 3,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_div"),myOptions);
+
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title:"my hometown, Malim Nawar!"
+            });
+
+        }
+    </script>
 </head>
-<body>
+<body onload="loadMap()">
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">

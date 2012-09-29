@@ -57,9 +57,22 @@
 }
 
 .description{
+    font-size: 12px;
     text-align: justify;
 }
 
 .item-info{
     padding: 0px 10px 10px 20px;
+}
+
+.item-info1{
+    padding: 10px 10px 10px 10px;
+}
+
+.item-info1 > button {
+    margin-top: 10px;
+}
+
+.item-info1 > span{
+    margin-top: 20px;
 }

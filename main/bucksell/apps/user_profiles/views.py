@@ -18,5 +18,11 @@ from registration.backends import get_backend
 
 def home(request):
     return render_to_response("user_profiles/home.html" ,{} ,context_instance = RequestContext(request))
+def edit_profile(request):
+    return render_to_response("user_profiles/edit_profile.html" ,{} ,context_instance = RequestContext(request))
+def edit_contacts(request):
+    return render_to_response("user_profiles/edit_contacts.html" ,{} ,context_instance = RequestContext(request))
+def edit_security(request):
+    return render_to_response("user_profiles/edit_security.html" ,{} ,context_instance = RequestContext(request))
 
 

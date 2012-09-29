@@ -20,10 +20,12 @@
 
 
 
-
         {%include 'header.html'%}
  {% endblock %}
- <body>
+{% block javascripts%}
+{% endblock %}
+
+    <body>
     <div class="container main">
  {% block content%}
  {% endblock %}

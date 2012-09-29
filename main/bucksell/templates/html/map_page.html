@@ -2,8 +2,131 @@
 <html>
 <head>
     <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#map_div_big').css('width', screen.width - 600).css('height', screen.height - 250);
+//            loadMap();
+        });
+
+        function loadMap() {
+            var latlng = new google.maps.LatLng(18.5236, 73.8478);
+            var myOptions = {
+                zoom:3,
+                center:latlng,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_div_big"), myOptions);
+
+            var marker = new google.maps.Marker({
+                position:latlng,
+                map:map,
+                title:"my hometown, Malim Nawar!"
+            });
+
+        }
+    </script>
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="#">Bucksell</a>
+            <ul class="nav">
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Post</a></li>
+            </ul>
+            <ul class="nav pull-right">
+                <li>
+                    <form class="navbar-search pull-left">
+                        <input type="text" class="search-query" placeholder="search for..">
+                    </form>
+                </li>
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                    <button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span> Username <b
+                            class="caret"></b></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profile Edit</a></li>
+                        <li><a href="#">Your Posts</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid main">
+    <div class="row">
+        <ul class="breadcrumb span11">
+            <li><a href="#">PA</a> <span class="divider"> > </span></li>
+            <li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>
+            <li class="active">Bucknell U</li>
+        </ul>
+        <div class="btn-group span2" data-toggle="buttons-radio">
+            <button type="button" class="btn btn-primary active">Map</button>
+            <button type="button" class="btn btn-primary">List</button>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+            <form>
+                <label>Refine Location</label>
+                <input type="text" placeholder="City or university">
+                <label>Categories</label>
+                <label class="checkbox">
+                    <input type="checkbox"> All
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"> Books
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"> Electronics
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"> Music
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"> Movie
+                </label>
+            </form>
+            <div class="btn-group span2" data-toggle="buttons-radio">
+                <button type="button" class="btn btn-primary active">For sell</button>
+                <button type="button" class="btn btn-primary">Wanted</button>
+            </div>
+        </div>
+        <div id="map_div_big" class="span1 big_map">
+        </div>
+        <div class="span2 item-info">
+            <div class="row">
+                <img src="img/100x100.png">
+            </div>
+            <div class="row">
+                Item Name<br>
+                Seller : <img src="img/user_32.png">
+            </div>
+            <div class="row">
+                <label>Description</label>
 
+                <div class="description">
+                    Demo description
+                    Demo description Demo description Demo description Demo description
+                    Demo description Demo description Demo descriptionDemo description
+                </div>
+                <button type="button" class="btn btn-primary">View Detail</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

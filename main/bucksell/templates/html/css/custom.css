@@ -48,3 +48,18 @@
 .item-img{
     margin: 0 20px 0 20px;
 }
+
+.big_map{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777777;
+    padding: 15px 15px 15px 20px;
+}
+
+.description{
+    text-align: justify;
+}
+
+.item-info{
+    padding: 0px 10px 10px 20px;
+}

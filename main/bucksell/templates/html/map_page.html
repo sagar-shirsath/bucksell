@@ -14,14 +14,14 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#map_div_big').css('width', screen.width - 600).css('height', screen.height - 250);
-//            loadMap();
+            $('#map_div_big').css('width', window.innerWidth - 500).css('height', window.innerHeight - 150);
+            loadMap();
         });
 
         function loadMap() {
             var latlng = new google.maps.LatLng(18.5236, 73.8478);
             var myOptions = {
-                zoom:3,
+                zoom:9,
                 center:latlng,
                 mapTypeId:google.maps.MapTypeId.ROADMAP
             };
@@ -34,6 +34,10 @@
             });
 
         }
+        $(document).on('click', '#btn_grp', function () {
+            $('#map_tab_content').toggleClass('active');
+            $('#list_tab_content').toggleClass('active');
+        });
     </script>
 </head>
 <body>
@@ -68,16 +72,17 @@
 </div>
 <div class="container-fluid main">
     <div class="row">
-        <ul class="breadcrumb span11">
+        <ul class="breadcrumb span12">
             <li><a href="#">PA</a> <span class="divider"> > </span></li>
             <li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>
             <li class="active">Bucknell U</li>
         </ul>
-        <div class="btn-group span2" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary active">Map</button>
+        <div class="btn-group span1" data-toggle="buttons-radio" id="btn_grp">
+            <button type="button" class="btn btn-primary active" id="map_tab">Map</button>
             <button type="button" class="btn btn-primary">List</button>
         </div>
     </div>
+
     <div class="row-fluid">
         <div class="span2">
             <form>
@@ -105,17 +110,32 @@
                 <button type="button" class="btn btn-primary">Wanted</button>
             </div>
         </div>
-        <div id="map_div_big" class="span1 big_map">
+        <div class="tab-content span8">
+            <div class="tab-pane active" id="map_tab_content">
+                <div id="map_div_big" class="span1 big_map">
+                </div>
+            </div>
+            <div class="tab-pane" id="list_tab_content">
+                <div class="span2 item-block">
+                    <img src="img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+                <div class="span2 item-block">
+                    <button class="btn">Buy</button>
+                    <button class="btn">Wish</button>
+                </div>
+            </div>
         </div>
         <div class="span2 item-info">
-            <div class="row">
-                <img src="img/100x100.png">
+            <div class="row item-info1">
+                <img src="img/100x100.png" class="img-polaroid offset2">
+                <span class="offset3">Item Name</span>
             </div>
-            <div class="row">
-                Item Name<br>
+            <div class="row item-info1 offset1">
                 Seller : <img src="img/user_32.png">
             </div>
-            <div class="row">
+            <div class="row item-info1">
                 <label>Description</label>
 
                 <div class="description">
@@ -128,5 +148,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

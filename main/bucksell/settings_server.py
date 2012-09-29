@@ -187,3 +187,7 @@ EMAIL_HOST_USER = 'sagar.s@pranavan.com'
 EMAIL_HOST_PASSWORD = 'omkaraomkara1'
 EMAIL_USE_TLS = True
 
+FLASH_IGNORE_MEDIA = True
+FLASH_STORAGE = 'session'
+
+LOGIN_REDIRECT_URL = "/"

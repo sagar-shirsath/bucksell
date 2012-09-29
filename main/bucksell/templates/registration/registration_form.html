@@ -1,7 +1,55 @@
 {%extends "site_base.html"%}
 {% block content%}
-<form action="." method="post">{% csrf_token %}
-{{form.as_p}}
-<input type="submit" value="Submit" />
-</form>
+    <div class="span20 hero-unit offset3">
+        <legend>Join</legend>
+        <form class="form-horizontal" action="." method="post">{% csrf_token %}
+            <div class="control-group">
+                <label class="control-label" for="user_name">Username</label>
+                <div class="controls">
+                    <!--<input type="text" id="user_name" placeholder="Username">-->
+                    {{form.username.errors}}
+                    {{form.username}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="email">.edu Email</label>
+                <div class="controls">
+                    <!--<input type="text" id="email" placeholder=".edu Email">-->
+                    {{form.email.errors}}
+                    {{form.email}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="re_email">Re-enter Email</label>
+                <div class="controls">
+                    <input type="text" id="re_email" placeholder="Re-enter Email">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+                <div class="controls">
+                    <!--<input type="password" id="inputPassword" placeholder="Password">-->
+                    {{form.password1.errors}}
+                    {{form.password1}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="rePassword">Re-enter Password</label>
+                <div class="controls">
+                    <!--<input type="password" id="rePassword" placeholder="Re-enter Password">-->
+                    {{form.password2.errors}}
+                    {{form.password2}}
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox"> I Accept the Bucksell Terms of service
+                    </label>
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
 {% endblock %}

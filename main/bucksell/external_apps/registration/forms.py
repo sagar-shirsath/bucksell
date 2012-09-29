@@ -31,15 +31,15 @@ class RegistrationForm(forms.Form):
     """
     username = forms.RegexField(regex=r'^[\w.@+-]+$',
                                 max_length=30,
-                                widget=forms.TextInput(attrs=attrs_dict),
+                                widget=forms.TextInput(attrs={'class': 'required','placeholder':'Username'}),
                                 label=_("Username"),
                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict({'class': 'required','placeholder':'.edu Email'},
                                                                maxlength=75)),
                              label=_("E-mail"))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'required','placeholder':'Password'}, render_value=False),
                                 label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'required','placeholder':'Re-enter Password'}, render_value=False),
                                 label=_("Password (again)"))
     
     def clean_username(self):

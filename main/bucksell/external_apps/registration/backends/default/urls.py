@@ -36,7 +36,7 @@ urlpatterns = patterns('',
                        # confusing 404.
                        url(r'^activate/(?P<activation_key>\w+)/$',
                            activate,
-                           {'backend': 'registration.backends.default.DefaultBackend'},
+                           {'backend': 'registration.backends.default.DefaultBackend','success_url':'/'},
                            name='registration_activate'),
                        url(r'^register/$',
                            register,

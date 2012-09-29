@@ -26,13 +26,10 @@ consult a specific backend's documentation for details.
 from django.conf.urls.defaults import *
 
 from django.contrib.auth import views as auth_views
-
+from forms import LoginForm
 
 urlpatterns = patterns('',
-                       url(r'^login/$',
-                           auth_views.login,
-                           {'template_name': 'registration/login.html','redirect_field_name':'/'},
-                           name='auth_login'),
+
                        url(r'^logout/$',
                            auth_views.logout,
                            {'template_name': 'registration/logout.html','next_page':'/'},

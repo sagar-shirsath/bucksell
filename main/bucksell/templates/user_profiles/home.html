@@ -1,17 +1,56 @@
 {% extends "site_base.html" %}
 {% block content%}
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#username").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Enter Username"
+        });
+//        jQuery("#accept_terms").validate({
+//            expression: "if (isChecked(accept_terms)) return true; else return false;",
+//            message: "You should accept the therms of Service"
+//        });
+        jQuery("#password1").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter password "
+        });
+
+        jQuery("#email").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the Email Id"
+        });
+
+        jQuery("#email").validate({
+            expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message:"Please enter valid email address."
+        });
+
+        $("#password1").keyup(function() {
+            $("#password2").val($("#password1").val());
+        })
+
+
+
+    });
+
+
+</script>
+
+
+
 <div class="container-fluid">
     <div style="text-align: center; width: 100%">
         <h3>Trade your stuff here</h3>
     </div>
     <div style="text-align: center; width: 100%">
-        <form class="form-inline">
-            <input type="text" class="input-medium register-form" placeholder="Username">
-            <input type="text" class="input-medium register-form" placeholder=".edu address">
-            <input type="password" class="input-medium register-form" placeholder="Password">
+        <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
+            <input type="text" class="input-medium register-form" placeholder="Username" name='username' id="username">
+            <input type="text" class="input-medium register-form" placeholder=".edu address" name='email' id="email">
+            <input type="password" class="input-medium register-form" placeholder="password1" name="password1" id='password1'>
+            <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2" id="password2">
             <button type="submit" class="btn btn-primary">Join</button>
             <p><label class="checkbox" style="margin-top: 20px;">
-                <input type="checkbox"> I accept all Bucksell Terms of Service
+                <input type="checkbox" id="accept_terms"> I accept all Bucksell Terms of Service
             </label></p>
         </form>
     </div>

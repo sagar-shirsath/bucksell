@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^items/', include('items.urls')),
     url(r'^payments/', include('payments.urls')),
     url(r'^universities/', include('universities.urls')),
-    url(r'^', include('registration.urls')),
+    (r'^accounts/', include('registration.backends.default.urls')),
 
 )
 #

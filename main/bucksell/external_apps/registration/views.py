@@ -111,7 +111,7 @@ def register(request, backend, success_url=None, form_class=None,
        optional arguments for this view (below).
 
     2. The form to use for account registration will be obtained by
-       calling the backend's ``get_ form_class()`` method, passing the
+       calling the backend's ``get_form_class()`` method, passing the
        ``HttpRequest``. To override this, see the list of optional
        arguments for this view (below).
 
@@ -189,6 +189,7 @@ def register(request, backend, success_url=None, form_class=None,
                 to, args, kwargs = backend.post_registration_redirect(request, new_user)
                 return redirect(to, *args, **kwargs)
             else:
+                request.flash['message'] = 'You have successfully registered with the site , please check your mails.'
                 return redirect(success_url)
     else:
         form = form_class()

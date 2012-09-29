@@ -97,6 +97,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'djangoflash.middleware.FlashMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
@@ -108,7 +110,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages")
+    "django.contrib.messages.context_processors.messages",
+    'djangoflash.context_processors.flash',
+    )
 
 ROOT_URLCONF = 'bucksell.urls'
 
@@ -176,3 +180,10 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 30
 REGISTRATION_OPEN = True
+DEFAULT_FROM_EMAIL = "sagar.s@pranavan.com"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = 'sagar.s@pranavan.com'
+EMAIL_HOST_PASSWORD = 'omkaraomkara1'
+EMAIL_USE_TLS = True
+

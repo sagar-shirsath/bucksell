@@ -7,10 +7,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Booksell</a>
+            <a class="brand" href="/">Booksell</a>
             <div class="nav-collapse subnav-collapse">
                 <ul class="nav pull-right">
-                    <li><a href="#"><b>Join</b></a></li>
+                    <li><a href="{% url registration_register %}"><b>Join</b></a></li>
                     <li class="divider-vertical"></li>
                     <li>
                         <div class="btn-group">
@@ -28,4 +28,14 @@
             </div><!-- /.nav-collapse -->
         </div>
     </div><!-- /navbar-inner -->
+
 </div>
+       <div >
+
+           {% if flash.message %}
+           <div class="flash_message">
+               <p>{{ flash.message }}</p>
+           </div>
+           {% endif %}
+
+       </div>

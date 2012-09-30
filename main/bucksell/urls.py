@@ -23,6 +23,10 @@ urlpatterns = patterns('',
     url(r'^payments/', include('payments.urls')),
     url(r'^universities/', include('universities.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^user/password_reset/$', 'django.contrib.auth.views.password_reset',{'template_name': 'accounts/password_reset_form.html'}, name='password_reset',),
+    (r'^password_reset/done/$','django.contrib.auth.views.password_reset_done',{'template_name': 'accounts/password_reset_done.html'}),
+    (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$','django.contrib.auth.views.password_reset_confirm',{'template_name': 'accounts/password_reset_confirm.html'}),
+    (r'^reset/done/$','django.contrib.auth.views.password_reset_complete',{'template_name': 'accounts/password_reset_complete.html'}),
 
 )
 #

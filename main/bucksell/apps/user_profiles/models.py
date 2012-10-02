@@ -25,7 +25,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=30,null=True)
     zip_code = models.CharField(max_length=10,null=True)
     phone_number = models.CharField(max_length=12,null=True)
-    university = models.ForeignKey(University,default=None)
+    university = models.ForeignKey(University,blank=True, null=True)
     longitude = models.FloatField(null=True)
     latitude = models.FloatField(null=True)
     average_rating = models.PositiveIntegerField(default=0,max_length=1)
@@ -36,6 +36,11 @@ class Profile(models.Model):
     visibility = models.PositiveSmallIntegerField(default=0)
     year_of_class = models.PositiveIntegerField(default=0)
     degree_pursuing = models.CharField(max_length=200,null=True)
+
+    def create_user_profile(self,user_id):
+        profile =   Profile.objects.create(user_id=user_id)
+        profile.save()
+        return profile
 
 
 

@@ -14,7 +14,7 @@
             <li class=""><a href="#lB" data-toggle="tab">Contact Info</a></li>
             <li class=""><a href="#lC" data-toggle="tab">Security</a></li>
         </ul>
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST" action=".">{% csrf_token %}
         <div class="tab-content">
             <div class="tab-pane active" id="lA">
 
@@ -37,7 +37,7 @@
 
                             </label>
                             <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
                                 <!--Female-->
                             </label>
                         </div>

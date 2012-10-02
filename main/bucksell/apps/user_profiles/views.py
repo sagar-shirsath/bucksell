@@ -26,7 +26,9 @@ def home(request):
 def edit_profile(request):
     form = ProfileForm()
     if request.method == 'POST':
-        print request.POST
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            print form.cleaned_data
     return render_to_response("user_profiles/edit_profile.html", {'form':form}, context_instance=RequestContext(request))
 
 

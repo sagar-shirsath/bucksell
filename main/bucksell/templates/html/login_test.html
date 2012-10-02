@@ -1,69 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/docs.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("a[rel=popover]")
-                    .popover({
-                        offset: 10
-                    })
-                    .click(function(e) {
-                        e.preventDefault()
-                    })
-        });
-//        $('#login').popover('toggle');
-    </script>
-    <style type="text/css">
-        html,
-        body {
+    <meta charset="utf-8" />
+    <meta name="author" content="Martin Bean" />
+    <title>Twitter&rsquo;s Bootstrap with Ryan Fait&rsquo;s Sticky Footer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        html, body {
             height: 100%;
         }
-
-        #wrap {
+        footer {
+            color: #666;
+            background: #222;
+            padding: 17px 0 18px 0;
+            border-top: 1px solid #000;
+        }
+        footer a {
+            color: #999;
+        }
+        footer a:hover {
+            color: #efefef;
+        }
+        .wrapper {
             min-height: 100%;
             height: auto !important;
             height: 100%;
-            margin: 0 auto -60px;
+            margin: 0 auto -63px;
         }
-        #push,
-        #footer {
-            height: 60px;
+        .push {
+            height: 63px;
+        }
+            /* not required for sticky footer; just pushes hero down a bit */
+        .wrapper > .container {
+            padding-top: 60px;
         }
     </style>
-    </head>
-<body style="padding-top: 200px; padding-left: 200px">
-<!--<a href="#" id="login" class="btn btn-large btn-danger" rel="popover"-->
-   <!--data-content="<div><label for='email1'>Email Address</label>-->
-<!--<input type='text' name='email' id='email1'>-->
-<!--<label for='password'>Password</label>-->
-<!--<input type='password' name='email' id='password'></div>"-->
-   <!--data-placement="bottom" data-html="true">Click to toggle popover</a>-->
-
-
-<!--<div class="dropdown">-->
-    <!--&lt;!&ndash; Link or button to toggle dropdown &ndash;&gt;-->
-    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
-        <!--<li><a tabindex="-1" href="#">Action</a></li>-->
-        <!--<li><a tabindex="-1" href="#">Another action</a></li>-->
-        <!--<li><a tabindex="-1" href="#">Something else here</a></li>-->
-        <!--<li class="divider"></li>-->
-        <!--<li><a tabindex="-1" href="#">Separated link</a></li>-->
-    <!--</ul>-->
-<!--</div>-->
-<div id="footer">
+</head>
+<body>
+<div class="wrapper">
     <div class="container">
-        <p>Put together by <a href="http://www.martinbean.co.uk/" rel="author">Martin Bean</a></p>
+        <header class="hero-unit">
+            <h1>Twitter&rsquo;s Bootstrap with Ryan Fait&rsquo;s Sticky Footer</h1>
+            <p>It's really <strong>not</strong> that hard, y&rsquo;know. Check out the source code and <abbr title="Cascading Style Sheets">CSS</abbr> of this web page for how to do it yourself.</p>
+        </header>
     </div>
+    <div class="push"><!--//--></div>
 </div>
-</body>
-
+<footer>
+    <div class="container">
+        <p>Put together in less than five minutes by <a href="http://www.martinbean.co.uk/" rel="author">Martin Bean</a>. Uses <a href="http://twitter.github.com/bootstrap/" rel="external">Twitter Bootstrap</a> and <a href="http://ryanfait.com/sticky-footer/" rel="external">Ryan Fait&rsquo;s Sticky Footer</a>.</p>
+    </div>
+</footer>
 </body>
 </html>

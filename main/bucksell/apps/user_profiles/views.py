@@ -16,13 +16,18 @@ from registration.backends import get_backend
 
 from registration.forms import LoginForm
 
+from user_profiles.forms import ProfileForm
+
 
 def home(request):
     return render_to_response("user_profiles/home.html", {}, context_instance=RequestContext(request))
 
 
 def edit_profile(request):
-    return render_to_response("user_profiles/edit_profile.html", {}, context_instance=RequestContext(request))
+    form = ProfileForm()
+    if request.method == 'POST':
+        print request.POST
+    return render_to_response("user_profiles/edit_profile.html", {'form':form}, context_instance=RequestContext(request))
 
 
 def edit_contacts(request):

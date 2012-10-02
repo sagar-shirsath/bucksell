@@ -1,5 +1,0 @@
-<B>Please click to below link to activate your account on {{site}} </B>
-<a href="{{site}}/accounts/activate/{{activation_key}}">Click To Activate</a>
-
-Thanks for registration on our site.
-

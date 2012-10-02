@@ -53,6 +53,17 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError(_("A user with that username already exists."))
         else:
             return self.cleaned_data['username']
+    def clean_email(self):
+            """
+            Validate that the username is alphanumeric and is not already
+            in use.
+
+            """
+            existing = User.objects.filter(email__iexact=self.cleaned_data['email'])
+            if existing.exists():
+                raise forms.ValidationError(_("A user with that email already exists."))
+            else:
+                return self.cleaned_data['email']
 
     def clean(self):
         """

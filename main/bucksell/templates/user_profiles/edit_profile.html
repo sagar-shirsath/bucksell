@@ -14,99 +14,93 @@
             <li class=""><a href="#lB" data-toggle="tab">Contact Info</a></li>
             <li class=""><a href="#lC" data-toggle="tab">Security</a></li>
         </ul>
+        <form class="form-horizontal">
         <div class="tab-content">
             <div class="tab-pane active" id="lA">
-                <form class="form-horizontal">
+
                     <div class="control-group">
                         <label class="control-label" for="user_name">Brief Description</label>
 
                         <div class="controls">
-                            <input type="text" id="user_name">
+                            <!--<input type="text" id="user_name">-->
+                            {{form.about_me}}
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Gender</label>
-
+                        <!--<label class="control-label">Gender</label>-->
+                        {{form.gender}}
                         <div class="controls">
                             <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
-                                       checked>
-                                Male
+                                <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"-->
+                                       <!--checked>-->
+                                <!--Male-->
+
                             </label>
                             <label class="radio">
                                 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Female
+                                <!--Female-->
                             </label>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label">Major</label>
 
-                        <div class="controls">
-                            <select>
-                                <option>Major</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="control-group">
                         <label class="control-label">Degree Persuing</label>
-
-                        <div class="controls">
-                            <select>
-                                <option>Degree</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
+                        {{form.degree_persuing}}
+                        <!--<div class="controls">-->
+                            <!--<select>-->
+                                <!--<option>Degree</option>-->
+                                <!--<option>2</option>-->
+                                <!--<option>3</option>-->
+                                <!--<option>4</option>-->
+                                <!--<option>5</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
                     </div>
                     <div class="control-group">
                         <label class="control-label">Year of Class</label>
-
-                        <div class="controls">
-                            <select>
-                                <option>Year</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
+                        {{form.year_of_passing}}
+                        <!--<div class="controls">-->
+                            <!--<select>-->
+                                <!--<option>Year</option>-->
+                                <!--<option>2</option>-->
+                                <!--<option>3</option>-->
+                                <!--<option>4</option>-->
+                                <!--<option>5</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="submit" class="btn btn-inverse">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+                    <!--<div class="control-group">-->
+                        <!--<div class="controls">-->
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                            <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
             </div>
             <div class="tab-pane" id="lB">
-                <form class="form-horizontal">
+                <!--<form class="form-horizontal">-->
                     <div class="control-group">
                         <label class="control-label" for="cell_phone">Cell Phone#</label>
 
                         <div class="controls">
-                            <input type="text" id="cell_phone">
+                            <!--<input type="text" id="cell_phone">-->
+                            {{form.cell_phone}}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="address">Address</label>
 
                         <div class="controls">
-                            <textarea rows="3" id="address"></textarea>
+                            <!--<textarea rows="3" id="address"></textarea>-->
+                            {{form.address}}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="zip">Zip</label>
 
                         <div class="controls">
-                            <input type="text" id="zip">
+                            <!--<input type="text" id="zip">-->
+                            {{form.zip}}
                         </div>
                     </div>
 
@@ -114,63 +108,72 @@
                         <label class="control-label" for="zip">Visibility</label>
 
                         <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" value="">Everyone
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" value="">Same city
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" value="">Same School
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" value="">People made a deal with me
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" value="">Nobody
-                            </label>
+                            {{form.visibility}}
+
+                            <!--<label class="checkbox">-->
+                                <!--&lt;!&ndash;<input type="checkbox" value="">Everyone&ndash;&gt;-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                                <!--<input type="checkbox" value="">Same city-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                                <!--<input type="checkbox" value="">Same School-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                                <!--<input type="checkbox" value="">People made a deal with me-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                                <!--<input type="checkbox" value="">Nobody-->
+                            <!--</label>-->
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="submit" class="btn btn-inverse">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+                    <!--<div class="control-group">-->
+                        <!--<div class="controls">-->
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                            <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
             </div>
             <div class="tab-pane" id="lC">
-                <form class="form-horizontal">
+                <!--<form class="form-horizontal">-->
                     <div class="control-group">
                         <label class="control-label" for="currentPassword">Current Password</label>
 
                         <div class="controls">
-                            <input type="password" id="currentPassword">
+                            <!--<input type="password" id="currentPassword">-->
+                            {{form.current_password}}
+
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="newPassword">New Password</label>
 
                         <div class="controls">
-                            <input type="password" id="newPassword">
+                            <!--<input type="password" id="newPassword">-->
+                            {{form.new_password}}
+
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="confirmPassword">Confirm Password</label>
 
                         <div class="controls">
-                            <input type="password" id="confirmPassword">
+                            <!--<input type="password" id="confirmPassword">-->
+                            {{form.confirm_password}}
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="submit" class="btn btn-inverse">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+
+
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-inverse">Cancel</button>
+                </div>
             </div>
         </div>
+        </form>
     </div>
 
 </div>

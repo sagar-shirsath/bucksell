@@ -1,1 +1,1 @@
-Your are registered{{activation_key}}{{expiration_days}}{{site}}
+Your are registered with {{site}}

@@ -9,6 +9,9 @@ from django.db import models
 from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
 
 try:
     from django.utils.timezone import now as datetime_now
@@ -257,9 +260,16 @@ class RegistrationProfile(models.Model):
                                    ctx_dict)
         # Email subject *must not* contain newlines
         subject = ''.join(subject.splitlines())
-        
-        message = render_to_string('registration/activation_email.txt',
-                                   ctx_dict)
-        
-        self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+        htmly = get_template('registration/activation_email.html')
+        message = htmly.render(Context(ctx_dict))
+#        message = render_to_string('registration/activation_email.html',
+#                                   ctx_dict)
+        from_email = "noReply@bucksell.com"
+        msg = EmailMultiAlternatives(subject, '', from_email, [self.user.email])
+        msg.attach_alternative(message, "text/html")
+        msg.send(fail_silently=False)
+
+
+
+#        self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
     

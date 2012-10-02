@@ -57,9 +57,33 @@
 }
 
 .description{
+    font-size: 12px;
     text-align: justify;
 }
 
 .item-info{
     padding: 0px 10px 10px 20px;
+}
+
+.item-info1{
+    padding: 10px 10px 10px 10px;
+}
+
+.item-info1 > button {
+    margin-top: 10px;
+}
+
+.item-info1 > span{
+    margin-top: 20px;
+}
+
+.header{
+    font-weight: normal;
+}
+
+.hr_line{
+    color: #216799;
+    background-color: blue;
+    height: 1px;
+    margin-top: 50px;
 }

@@ -17,7 +17,22 @@
         <form class="form-horizontal" method="POST" action=".">{% csrf_token %}
         <div class="tab-content">
             <div class="tab-pane active" id="lA">
+                <div class="control-group">
+                    <label class="control-label" for="cell_phone">First Name</label>
 
+                    <div class="controls">
+                        <!--<input type="text" id="cell_phone">-->
+                        {{form.first_name}}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="cell_phone">Last Name</label>
+
+                    <div class="controls">
+                        <!--<input type="text" id="cell_phone">-->
+                        {{form.last_name}}
+                    </div>
+                </div>
                     <div class="control-group">
                         <label class="control-label" for="user_name">Brief Description</label>
 
@@ -45,7 +60,7 @@
 
                     <div class="control-group">
                         <label class="control-label">Degree Persuing</label>
-                        {{form.degree_persuing}}
+                        {{form.degree_pursuing}}
                         <!--<div class="controls">-->
                             <!--<select>-->
                                 <!--<option>Degree</option>-->
@@ -58,7 +73,7 @@
                     </div>
                     <div class="control-group">
                         <label class="control-label">Year of Class</label>
-                        {{form.year_of_passing}}
+                        {{form.year_of_class}}
                         <!--<div class="controls">-->
                             <!--<select>-->
                                 <!--<option>Year</option>-->
@@ -84,7 +99,7 @@
 
                         <div class="controls">
                             <!--<input type="text" id="cell_phone">-->
-                            {{form.cell_phone}}
+                            {{form.phone_number}}
                         </div>
                     </div>
                     <div class="control-group">
@@ -100,7 +115,7 @@
 
                         <div class="controls">
                             <!--<input type="text" id="zip">-->
-                            {{form.zip}}
+                            {{form.zip_code}}
                         </div>
                     </div>
 
@@ -161,6 +176,14 @@
                         <div class="controls">
                             <!--<input type="password" id="confirmPassword">-->
                             {{form.confirm_password}}
+                        </div>
+                    </div>
+                   <div class="control-group">
+                        <label class="control-label" for="confirmPassword">Paypal URL</label>
+
+                        <div class="controls">
+                            <!--<input type="password" id="confirmPassword">-->
+                            {{form.paypal_url}}
                         </div>
                     </div>
 

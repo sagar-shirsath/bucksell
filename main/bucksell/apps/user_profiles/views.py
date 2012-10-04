@@ -18,6 +18,8 @@ from registration.forms import LoginForm
 
 from user_profiles.forms import ProfileForm
 
+from user_profiles.models import Profile
+
 
 def home(request):
     return render_to_response("user_profiles/home.html", {}, context_instance=RequestContext(request))
@@ -29,6 +31,33 @@ def edit_profile(request):
         form = ProfileForm(request.POST)
         if form.is_valid():
             print form.cleaned_data
+            user = User.objects.get(id=request.user.id)
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            profile = user.auth_user.all()[0]
+
+            profile.about_me = form.cleaned_data.get('about_me')
+            profile.gender = form.cleaned_data.get('gender') or 0
+            profile.degree_pursuing = form.cleaned_data.get('degree_pursuing')
+            profile.year_of_class = form.cleaned_data.get('year_of_class') or 0
+##            profile.university = form.cleaned_data.get('university')
+            profile.phone_number = form.cleaned_data.get('phone_number')
+            profile.address = form.cleaned_data.get('address')
+            profile.paypal_url = form.cleaned_data.get('paypal_url')
+            profile.zip_code = form.cleaned_data.get('zip_code')
+
+            profile.visibility = int(form.cleaned_data.get('visibility') or 0)
+
+#            if form.cleaned_data.get('current_password') is not "":
+#                password_check = user.check_password(current_password)
+#                if (password_check) and (form.cleaned_data.get('new_password')==form.cleaned_data.get('confirm_password')):
+#                    user.set_password(form.cleaned_data.get('new_password'))
+
+            print profile
+            user.save()
+            profile.save()
+            request.flash['message'] = "Profile updated successfully"
+
     return render_to_response("user_profiles/edit_profile.html", {'form':form}, context_instance=RequestContext(request))
 
 

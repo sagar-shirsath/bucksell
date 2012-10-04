@@ -15,7 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.ForeignKey(User,related_name="auth_userfk")
+    user = models.ForeignKey(User,related_name="auth_user")
     photo=models.ImageField(upload_to='imgaes/profiels',default=None)
     thumbnail = models.ImageField(upload_to="images/profiles/thumbnails",default=None)
     auth_token = models.CharField(max_length=20,null=True)

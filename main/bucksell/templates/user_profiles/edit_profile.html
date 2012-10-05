@@ -1,11 +1,12 @@
 {% extends "site_base.html" %}
 {% block javascripts%}
-
+<script src="{{ STATIC_URL }}js/jquery.iframe-transport.js"></script>
+<script src="{{ STATIC_URL }}js/ajax-upload-widget.js"></script>
 {%endblock%}
 
 
 {% block content%}
-
+<link href="{{ STATIC_URL }}css/ajax-upload-widget.css" rel="stylesheet" type="text/css"/>
 <div class="span6 offset3">
     <legend>Profile Edit</legend>
     <div class="tabbable tabs-left">
@@ -197,6 +198,11 @@
             </div>
         </div>
         </form>
+        <script>
+            $(function() {
+                AjaxUploadWidget.autoDiscover();
+            });
+        </script>
     </div>
 
 </div>

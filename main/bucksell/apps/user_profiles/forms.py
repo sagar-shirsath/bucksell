@@ -1,10 +1,9 @@
 from django import forms
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
-from user_profiles.widgets import AjaxClearableFileInput
 GENDER_SELECT = ((1,'Male'),(2,'Female'),(3,'Other'))
 DEGREE_CHOICES = (("",'---'),('MSC','Msc'),('BSC','Bsc'),('12th','12th'),('10th','10th'))
 YEAR_CHOICES  = ((0,"---"),(1987,1987),(1988,1989),(2000,2000),(2001,2001))
-VISIBILITY_CHOICES = ((1,'Every One'),(2,'Same City'),(3,'Peoples Made deal with me'),(4,'nobody'))
+VISIBILITY_CHOICES = ((1,'Every One'),(2,'Same City'),(3,'People Made deal with me'),(4,'nobody'))
 UNIVERSITY_CHOICES = ('','---',('pune','PUNE'),('mumbai','MUMBAI'))
 class ProfileForm(forms.Form):
     first_name = forms.CharField(max_length=30,required=False)

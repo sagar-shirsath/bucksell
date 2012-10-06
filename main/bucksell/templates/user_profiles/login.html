@@ -1,17 +1,36 @@
 {%extends "site_base.html"%}
 {% block content%}
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#id_email").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Enter email",
+            position: "bottom"
+        });
 
+        jQuery("#id_password").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter password ",
+            position: "bottom"
+        });
+        jQuery("#id_email").validate({
+            expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message:"Please enter valid email address.",
+            position: "bottom"
+        });
+    });
+</script>
 <div class="hero-unit">
 
     <div class="offset2">
         <legend><h2 class="header">Sign In</h2></legend>
 
         <form class="form-inline" method="post" action=".">{% csrf_token %}
-            {{form.email.errors}}
+            <!--{{form.email.errors}}-->
             {{form.email}}
             <!--<input type="text" class="input-medium register-form" placeholder="Username">-->
             <!--<input type="password" class="input-medium register-form" placeholder="Password">-->
-            {{form.password.errors}}
+            <!--{{form.password.errors}}-->
             {{form.password}}
             <button type="submit" class="btn btn-primary">Sign In</button>
         </form>

@@ -10,7 +10,8 @@
             message: "",
             error_class: "ValidationErrors",
             error_field_class: "ErrorField",
-            live: true
+            live: true,
+            position: ""
         }, options);
         var SelfID = jQuery(this).attr("id");
         var unix_time = new Date();
@@ -63,7 +64,12 @@
             var validation_state = eval(expression);
             if (!validation_state) {
                 if (jQuery(id).next('.' + options['error_class']).length == 0) {
-                    jQuery(id).after('<span class="' + options['error_class'] + '">' + options['message'] + '</span>');
+//                    jQuery(id).after('<span class="' + options['error_class'] + '">' + options['message'] + '</span>');
+//                    jQuery(id).after('<a href="#" ></a>');
+                    jQuery(id).attr('rel','tooltip');
+                    jQuery(id).attr('title',options['message']);
+                    jQuery(id).attr('data-placement',options['position']);
+                    jQuery(id).tooltip('show');
                     jQuery(id).addClass(options['error_field_class']);
                 }
                 if (ValidationErrors[FormID].join("|").search(id) == -1) 

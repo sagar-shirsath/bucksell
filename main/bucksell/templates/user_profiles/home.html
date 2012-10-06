@@ -8,33 +8,30 @@
     jQuery(function(){
         jQuery("#username").validate({
             expression: "if (VAL) return true; else return false;",
-            message: "Please Enter Username"
-        });
-//        jQuery("#accept_terms").validate({
-//            expression: "if (isChecked(accept_terms)) return true; else return false;",
-//            message: "You should accept the therms of Service"
-//        });
+            message: "Please Enter Username",
+            position: "bottom"
+        });//
         jQuery("#password1").validate({
             expression: "if (VAL) return true; else return false;",
-            message: "Please enter password "
+            message: "Please enter password ",
+            position: "bottom"
         });
 
         jQuery("#email").validate({
             expression: "if (VAL) return true; else return false;",
-            message: "Please enter the Email Id"
+            message: "Please enter the Email Id",
+            position: "bottom"
         });
-
         jQuery("#email").validate({
             expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
-            message:"Please enter valid email address."
+            message:"Please enter valid email address.",
+            position: "bottom"
         });
-
-        $("#password1").keyup(function() {
-            $("#password2").val($("#password1").val());
-        })
-
-
-
+        jQuery("#accept_terms").validate({
+            expression: "if (isChecked(SelfID)) return true; else return false;",
+            message: "You should accept the therms of Service",
+            position: "bottom"
+        });
     });
 
     $(document).ready(function(){
@@ -78,7 +75,7 @@
             <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2" id="password2">
             <button type="submit" class="btn btn-primary">Join</button>
             <p><label class="checkbox" style="margin-top: 20px;">
-                <input type="checkbox" id="accept_terms"> I accept all Bucksell Terms of Service
+                <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
             </label></p>
         </form>
     </div>

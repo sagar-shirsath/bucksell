@@ -104,6 +104,10 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
+FILE_UPLOAD_HANDLERS = (
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+    )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -197,3 +201,9 @@ FLASH_STORAGE = 'session'
 LOGIN_REDIRECT_URL = "/"
 
 LOGIN_URL='/user/login/'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5
+MAX_FILE_SIZE = 5242880
+IMAGE_SUPPORTED_TYPES = ['image']
+
+PROFILE_IMG_SIZE = (150,200)
+PROFILE_THUMBNAILS_SIZE = (30,30)

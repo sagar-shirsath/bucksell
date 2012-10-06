@@ -1,6 +1,12 @@
 {% extends "site_base.html" %}
 {% block javascripts%}
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#id_photo').change(function(){
+        $('#photo_form').submit();
+    });
+});
+ </script>
 {%endblock%}
 
 
@@ -13,11 +19,38 @@
             <li class=""><a href="#lB" data-toggle="tab">Contact Info</a></li>
             <li class=""><a href="#lC" data-toggle="tab">Security</a></li>
         </ul>
-        <form class="form-horizontal" method="POST" action=".">{% csrf_token %}
-        <div class="tab-content">
-            <div class="tab-pane active" id="lA">
                 <div class="control-group">
-                    <label class="control-label" for="cell_phone">First Name</label>
+                    <div >
+                        {% if profile_photo %}
+                        <img src="{{profile_photo.url}}" width="150px" height="200px"/>
+                        {% else %}
+                        <img src="{{STATIC_URL}}images/default_user_photo.png" />
+                        {% endif %}
+                        </div>
+                    <label class="control-label">
+                    {% if profile_photo %}
+                        Change Photo:
+                    {% else %}
+                        Add Photo:
+
+                    {% endif %}
+                    </label>
+                    <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form">{% csrf_token %}
+                    <div class="controls">
+                        <!--<input type="text" id="cell_phone">-->
+                        {{photo_form.photo}}
+                    </div>
+
+                        </form>
+                </div>
+                <form class="form-horizontal" method="POST" action=".">{% csrf_token %}
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="lA">
+
+
+                        <div class="control-group">
+                    <label class="control-label" for="first_name">First Name</label>
 
                     <div class="controls">
                         <!--<input type="text" id="cell_phone">-->
@@ -25,7 +58,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="cell_phone">Last Name</label>
+                    <label class="control-label" for="last_name">Last Name</label>
 
                     <div class="controls">
                         <!--<input type="text" id="cell_phone">-->

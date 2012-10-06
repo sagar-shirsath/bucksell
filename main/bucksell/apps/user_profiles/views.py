@@ -12,22 +12,33 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from PIL import Image
+import StringIO
+import os
+import django
+import hashlib
+
+from django.conf import settings
+
 from registration.backends import get_backend
 
 from registration.forms import LoginForm
 
-from user_profiles.forms import ProfileForm
+from user_profiles.forms import ProfileForm , ImageUploadForm
 
 from user_profiles.models import Profile
 
-
+def get_user_profile(id):
+    user = User.objects.get(id=id)
+    profile = user.auth_user.all()[0]
+    return (user ,profile )
 def home(request):
     return render_to_response("user_profiles/home.html", {}, context_instance=RequestContext(request))
 
 @login_required
 def edit_profile(request):
-    user = User.objects.get(id=request.user.id)
-    profile = user.auth_user.all()[0]
+    user , profile = get_user_profile(request.user.id)
+    photo_form = ImageUploadForm()
 
     form = ProfileForm(initial={
         'first_name':user.first_name,
@@ -83,16 +94,63 @@ def edit_profile(request):
             if success:
                 request.flash['message'] = "Profile updated successfully"
 
-    return render_to_response("user_profiles/edit_profile.html", {'form':form ,'password_open':password_open}, context_instance=RequestContext(request))
+    return render_to_response("user_profiles/edit_profile.html", {'form':form ,'password_open':password_open , 'photo_form':photo_form , 'profile_photo':profile.photo}, context_instance=RequestContext(request))
 
 
-def edit_contacts(request):
-    return render_to_response("user_profiles/edit_contacts.html", {}, context_instance=RequestContext(request))
+def handle_uploaded_image(image,size=(100,100)):
+    width , height= size
+    # resize image
+    imagefile  = StringIO.StringIO(image.read())
+    imageImage = Image.open(imagefile)
+    size = imageImage.size
+    if size[0] >= width or size[1] >= height :
+        resizedImage = imageImage.resize((width,height))
+    else:
+        resizedImage = imageImage
 
+    filename = hashlib.md5(imagefile.getvalue()).hexdigest()+'.jpg'
 
-def edit_security(request):
-    return render_to_response("user_profiles/edit_security.html", {}, context_instance=RequestContext(request))
+    # #save to disk
+    imagefile = open(os.path.join('/tmp',filename), 'w')
+    resizedImage.save(imagefile,'JPEG')
+    imagefile = open(os.path.join('/tmp',filename), 'r')
+    content = django.core.files.File(imagefile)
 
+    return (filename, content)
+
+def upload_profile_photo(request):
+    if request.method == 'POST':
+        flag = 1;
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            user , profile = get_user_profile(request.user.id)
+            file = form.cleaned_data.get('photo')
+            if file:
+                file_type = file.content_type.split('/')[0]
+#                if len(file.name.split('.')) == 1:
+
+                if file_type in settings.IMAGE_SUPPORTED_TYPES:
+                    if file._size > settings.IMAGE_SUPPORTED_TYPES:
+                        request.flash['message'] = "Sorry Can't Upload the image , Too large size"
+                        flag = 0
+                else:
+                    request.flash['message'] = "Sorry Can't Upload the image , image type is not supported"
+                    flag = 0
+
+                if(flag):
+                    if(profile.photo):
+                        profile.photo.delete()
+                    if(profile.thumbnail):
+                        profile.thumbnail.delete()
+                    user_profile_photo = handle_uploaded_image(file,settings.PROFILE_IMG_SIZE)
+                    profile.photo.save("%d_profile_photo.%s"%(user.id,user_profile_photo[0].split('.')[1]),user_profile_photo[1])
+                    file.seek(0)
+                    thumbnail = handle_uploaded_image(file,settings.PROFILE_THUMBNAILS_SIZE)
+                    profile.thumbnail.save("%d_profile_thumbnail.%s"%(user.id,thumbnail[0].split('.')[1]),thumbnail[1])
+                    request.flash['message'] = "Photo Uploaded Successfully"
+        else:
+            request.flash['message'] = "Sorry Can't Upload the image"
+    return HttpResponseRedirect(reverse("edit_profile"))
 
 def login_me(request):
     if request.user.is_authenticated():

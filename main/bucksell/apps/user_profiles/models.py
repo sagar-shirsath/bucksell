@@ -16,7 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 class Profile(models.Model):
     user = models.ForeignKey(User,related_name="auth_user")
-    photo=models.ImageField(upload_to='imgaes/profiels',default=None)
+    photo=models.ImageField(upload_to='images/profiles',default=None)
     thumbnail = models.ImageField(upload_to="images/profiles/thumbnails",default=None)
     auth_token = models.CharField(max_length=20,null=True)
     fb_url = models.URLField(max_length=30,null=True)

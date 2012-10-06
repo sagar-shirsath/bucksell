@@ -9,5 +9,8 @@ urlpatterns = patterns('',
     url(r'^edit_profile/$',
         views.edit_profile,
         name='edit_profile'),
+    url(r'^profile_photo_upolad/$',
+        views.upload_profile_photo,
+        name='upload_profile_photo'),
 
 )

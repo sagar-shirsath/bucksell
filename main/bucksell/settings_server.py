@@ -13,8 +13,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'bucksell',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'root',                  # Not used with sqlite3.
+        'USER': 'admin',                      # Not used with sqlite3.
+        'PASSWORD': 'admin177',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -99,6 +99,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'djangoflash.middleware.FlashMiddleware',
+
+
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
@@ -111,8 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    'djangoflash.context_processors.flash',
-    )
+    'djangoflash.context_processors.flash',)
 
 ROOT_URLCONF = 'bucksell.urls'
 
@@ -145,6 +146,7 @@ INSTALLED_APPS = (
     'universities',
     'south',
     'django.contrib.admin',
+
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     )
@@ -180,14 +182,18 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 30
 REGISTRATION_OPEN = True
-DEFAULT_FROM_EMAIL = "sagar.s@pranavan.com"
+DEFAULT_FROM_EMAIL = "noReply@pranavan.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = "587"
 EMAIL_HOST_USER = 'sagar.s@pranavan.com'
 EMAIL_HOST_PASSWORD = 'omkaraomkara1'
 EMAIL_USE_TLS = True
 
+
+#flash messages
 FLASH_IGNORE_MEDIA = True
 FLASH_STORAGE = 'session'
 
 LOGIN_REDIRECT_URL = "/"
+
+LOGIN_URL='/user/login/'

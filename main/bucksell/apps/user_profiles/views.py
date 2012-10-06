@@ -33,7 +33,7 @@ def edit_profile(request):
         'first_name':user.first_name,
         'last_name':user.last_name,
         'about_me':profile.about_me,
-         'gender':profile.gender,
+        'gender':profile.gender,
         'degree_pursuing':profile.degree_pursuing,
         'year_of_class':profile.year_of_class,
         'phone_number':profile.phone_number,
@@ -43,7 +43,7 @@ def edit_profile(request):
         'zip_code':profile.zip_code,
         'visibility':profile.visibility,
 
-    })
+        })
 
     password_open = 0
     success = 1
@@ -123,4 +123,3 @@ def login_me(request):
 
 
     return render_to_response("user_profiles/login.html" ,{'form':form} ,context_instance = RequestContext(request))
-

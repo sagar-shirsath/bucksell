@@ -26,4 +26,4 @@ class ProfileForm(forms.Form):
 
 class ImageUploadForm(forms.Form):
     """Image upload form."""
-    image = forms.ImageField()
+    photo = forms.ImageField()

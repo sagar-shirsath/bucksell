@@ -1,12 +1,10 @@
 {% extends "site_base.html" %}
 {% block javascripts%}
-<script src="{{ STATIC_URL }}js/jquery.iframe-transport.js"></script>
-<script src="{{ STATIC_URL }}js/ajax-upload-widget.js"></script>
+
 {%endblock%}
 
 
 {% block content%}
-<link href="{{ STATIC_URL }}css/ajax-upload-widget.css" rel="stylesheet" type="text/css"/>
 <div class="span6 offset3">
     <legend>Profile Edit</legend>
     <div class="tabbable tabs-left">
@@ -119,7 +117,14 @@
                             {{form.zip_code}}
                         </div>
                     </div>
+                <div class="control-group">
+                    <label class="control-label" for="confirmPassword">Paypal URL</label>
 
+                    <div class="controls">
+                        <!--<input type="password" id="confirmPassword">-->
+                        {{form.paypal_url}}
+                    </div>
+                </div>
                     <div class="control-group">
                         <label class="control-label" for="zip">Visibility</label>
 
@@ -179,30 +184,20 @@
                             {{form.confirm_password}}
                         </div>
                     </div>
-                   <div class="control-group">
-                        <label class="control-label" for="confirmPassword">Paypal URL</label>
 
-                        <div class="controls">
-                            <!--<input type="password" id="confirmPassword">-->
-                            {{form.paypal_url}}
-                        </div>
-                    </div>
 
 
             </div>
             <div class="control-group">
                 <div class="controls">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-inverse">Cancel</button>
+                    <a href='{% url home%}' class="btn btn-warning">Cancel</a>
+                    <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
                 </div>
             </div>
         </div>
         </form>
-        <script>
-            $(function() {
-                AjaxUploadWidget.autoDiscover();
-            });
-        </script>
+
     </div>
 
 </div>

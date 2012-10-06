@@ -82,7 +82,7 @@ def activate(request, backend,
             request.flash['message'] = 'Your account has been successfully activated you can login now.'
             return redirect(success_url)
     else:
-        request.flash['message'] = 'Your is already activated!'
+        request.flash['message'] = 'Your account is already activated!'
         return redirect(success_url)
 
     if extra_context is None:

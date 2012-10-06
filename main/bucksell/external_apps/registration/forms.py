@@ -134,8 +134,8 @@ class RegistrationFormNoFreeEmail(RegistrationForm):
         return self.cleaned_data['email']
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(label=_("E-mail"))
-    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict({'class': 'input-medium register-form','placeholder':'.edu Email'})),label=_("E-mail"))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={'class': 'input-medium register-form','placeholder':'Password'}))
 
     error_messages = {
         'invalid_login': _("Please enter a correct email and password. "

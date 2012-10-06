@@ -1,7 +1,27 @@
 {%extends "site_base.html"%}
 {% block content%}
-<form action="." method="post">{% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit" />
-</form>
+
+<div class="hero-unit">
+
+    <div class="offset2">
+        <legend><h2 class="header">Sign In</h2></legend>
+
+        <form class="form-inline" method="post" action=".">{% csrf_token %}
+            {{form.email.errors}}
+            {{form.email}}
+            <!--<input type="text" class="input-medium register-form" placeholder="Username">-->
+            <!--<input type="password" class="input-medium register-form" placeholder="Password">-->
+            {{form.password.errors}}
+            {{form.password}}
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+        <hr class="hr_line" />
+        Dont have Bucksell account? <a href="{% url registration_register %}" style="text-decoration: none;"><span class="label label-info">Join Here</span></a>
+    </div>
+</div>
+
+<!--<form action="." method="post">{% csrf_token %}-->
+    <!--{{form.as_p}}-->
+    <!--<input type="submit" value="Submit" />-->
+<!--</form>-->
 {% endblock %}

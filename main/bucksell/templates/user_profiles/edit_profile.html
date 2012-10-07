@@ -12,16 +12,16 @@
     });
 
     jQuery(function () {
-        jQuery("#id_current_password").validate({
-            expression: "if (VAL) return true; else return false;",
-            message: "Please enter the current password",
-            position: "right"
-        });
-        jQuery("#id_new_password").validate({
-            expression:"if (VAL) return true; else return false;",
-            message:"Please enter the new password",
-            position:"right"
-        });
+//        jQuery("#id_current_password").validate({
+//            expression: "if (VAL) return true; else return false;",
+//            message: "Please enter the current password",
+//            position: "right"
+//        });
+//        jQuery("#id_new_password").validate({
+//            expression:"if (VAL) return true; else return false;",
+//            message:"Please enter the new password",
+//            position:"right"
+//        });
 
         jQuery("#id_confirm_password").validate({
             expression:"if ((VAL == jQuery('#id_new_password').val()) && VAL) return true; else return false;",
@@ -46,7 +46,7 @@
 
 
 {% block content%}
-<div class="span7 offset3">
+<div class="span7 offset2">
 <legend>Profile Edit</legend>
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs">
@@ -60,7 +60,7 @@
 
 <div class="tab-pane active" id="lA">
     <div class="control-group">
-        <div>
+        <div class="offset2" style="margin-bottom: 10px;">
             {% if profile_photo %}
             <img src="{{profile_photo.url}}" width="150px" height="200px"/>
             {% else %}
@@ -79,7 +79,7 @@
         <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form">
             {% csrf_token %}
             <div class="controls">
-                {{photo_form.photo}}
+                {{photo_form.photo}} <button class="btn" type="submit">Upload</button>
             </div>
 
         </form>

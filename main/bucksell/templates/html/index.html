@@ -5,10 +5,10 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!--<link href="css/style.css" rel="stylesheet">-->
     <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <!--<script type="text/javascript" src="js/login.js"></script>-->
     <script type="text/javascript"
             src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
     </script>
@@ -29,6 +29,10 @@
             });
 
         }
+        $(document).on('click','#loginButton',function(){
+            $('#loginBox').toggleClass('login_active');
+//            $('#loginBox').css('display','block');
+        });
     </script>
     <style type="text/css">
 
@@ -60,6 +64,26 @@
         .wrapper > .container {
             padding-top: 60px;
         }
+        .login_active{
+            display: none;
+        }
+        #loginForm{
+            padding-top: 20px;
+            /*border: #000000 solid 1px;*/
+            margin-top: 1px;
+            padding: 20px 20px 20px 20px;
+            width: 230px;
+            /*border-radius: 5px;*/
+            border: 3px solid #D2E0EA;
+            border-radius: 3px 0 3px 3px;
+        }
+        #loginBox{
+            width: 276px;
+            border: 1px solid #899CAA;
+            margin-top: 1px;
+            height: 250px;
+            position: absolute;
+        }
     </style>
 </head>
 <body onload="loadMap()">
@@ -81,28 +105,41 @@
                 <li>
                     <div id="loginContainer">
                         <button id="loginButton" class="btn"><span>Login</span><em></em></button>
-                        <div style="clear:both"></div>
-                        <div id="loginBox" style="display: none; ">
-                            <form id="loginForm">
-                                <fieldset id="body">
-                                    <fieldset>
-                                        <label for="email1">Email Address</label>
-                                        <input type="text" name="email" id="email1">
-                                    </fieldset>
-                                    <fieldset>
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password">
-                                    </fieldset>
-                                    <input type="submit" id="login" value="Sign in">
-                                    <label for="checkbox"><input type="checkbox" id="checkbox">Remember me</label>
-                                </fieldset>
-                                <span><a href="#">Forgot your password?</a></span>
-                            </form>
-                        </div>
                     </div>
                 </li>
             </ul>
         </div>
+
+    </div>
+
+    <div id="loginBox" class="offset10 login_active">
+        <form class="form" id="loginForm">
+            <div class="control-group">
+                <!--<label class="control-label" for="inputEmail">Email</label>-->
+                <div class="controls">
+                    <input type="text" id="email1" placeholder="Email">
+                </div>
+            </div>
+            <div class="control-group">
+                <!--<label class="control-label" for="inputPassword">Password</label>-->
+                <div class="controls">
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" id="checkbox"> Remember me
+                    </label>
+                    <button type="submit" class="btn btn-primary" id="login">Sign in</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <span><a href="#">Forgot your password?</a></span>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <div class="container main">

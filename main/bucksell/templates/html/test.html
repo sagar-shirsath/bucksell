@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <style type="text/css">
+        .login_active{
+            display: none;
+        }
+        #loginForm{
+            padding-top: 20px;
+            /*border: #000000 solid 1px;*/
+            margin-top: 1px;
+            padding: 20px 20px 20px 20px;
+            width: 230px;
+            /*border-radius: 5px;*/
+            border: 3px solid #D2E0EA;
+            border-radius: 3px 0 3px 3px;
+        }
+        #loginBox{
+            width: 276px;
+            border: 1px solid #899CAA;
+            margin-top: 1px;
+            height: 250px;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).on('click','#loginButton',function(){
+            $('#loginBox').toggleClass('login_active');
+//            $('#loginBox').css('display','block');
+        });
+    </script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Bucksell</a>
+
+            <div class="nav-collapse">
+            </div>
+            <ul class="nav pull-right">
+                <li><a href="#">Join</a></li>
+                <li class="divider-vertical"></li>
+                <li>
+                    <div id="loginContainer">
+                        <button id="loginButton" class="btn"><span>Login</span><em></em></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="loginBox" class="offset10 login_active">
+        <form class="form" id="loginForm">
+            <div class="control-group">
+                <!--<label class="control-label" for="inputEmail">Email</label>-->
+                <div class="controls">
+                    <input type="text" id="email1" placeholder="Email">
+                </div>
+            </div>
+            <div class="control-group">
+                <!--<label class="control-label" for="inputPassword">Password</label>-->
+                <div class="controls">
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" id="checkbox"> Remember me
+                    </label>
+                    <button type="submit" class="btn btn-primary" id="login">Sign in</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <span><a href="#">Forgot your password?</a></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--<form class="form-horizontal">-->
+    <!--<div class="control-group">-->
+        <!--&lt;!&ndash;<label class="control-label" for="inputEmail">Email</label>&ndash;&gt;-->
+        <!--<div class="controls">-->
+            <!--<input type="text" id="inputEmail" placeholder="Email">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="control-group">-->
+        <!--&lt;!&ndash;<label class="control-label" for="inputPassword">Password</label>&ndash;&gt;-->
+        <!--<div class="controls">-->
+            <!--<input type="password" id="inputPassword" placeholder="Password">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="control-group">-->
+        <!--<div class="controls">-->
+            <!--<label class="checkbox">-->
+                <!--<input type="checkbox"> Remember me-->
+            <!--</label>-->
+            <!--<button type="submit" class="btn">Sign in</button>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="control-group">-->
+        <!--<div class="controls">-->
+        <!--<span><a href="#">Forgot your password?</a></span>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</form>-->
+</body>
+</html>

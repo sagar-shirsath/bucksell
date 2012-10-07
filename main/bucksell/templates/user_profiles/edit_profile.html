@@ -2,9 +2,9 @@
 {% block javascripts%}
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#id_photo').change(function () {
-            $('#photo_form').submit();
-        });
+//        $('#id_photo').change(function () {
+//            $('#photo_form').submit();
+//        });
         jQuery('li > a[href="#lA"]').click(function(){
 //            jQuery('input').tooltip('show');
 //            alert('hi');
@@ -42,6 +42,14 @@
     });
 
 </script>
+        <script>
+            {% if password_open %}
+                $(document).ready(function () {
+                    $('#lA').removeClass('active');
+                    $('#lC').addClass('active');
+                });
+            {% endif %}
+        </script>
 {%endblock%}
 
 
@@ -148,23 +156,13 @@
         <div class="controls">
         {{form.year_of_class}}
         </div>
-        <!--<div class="controls">-->
-        <!--<select>-->
-        <!--<option>Year</option>-->
-        <!--<option>2</option>-->
-        <!--<option>3</option>-->
-        <!--<option>4</option>-->
-        <!--<option>5</option>-->
-        <!--</select>-->
-        <!--</div>-->
     </div>
-    <!--<div class="control-group">-->
-    <!--<div class="controls">-->
-    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-    <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
+    <div class="control-group">
+        <label class="control-label">University</label>
+        <div class="controls">
+        {{form.university}}
+        </div>
+    </div>
 </div>
 <div class="tab-pane" id="lB">
     <!--<form class="form-horizontal">-->
@@ -206,30 +204,9 @@
         <div class="controls">
             {{form.visibility}}
 
-            <!--<label class="checkbox">-->
-            <!--&lt;!&ndash;<input type="checkbox" value="">Everyone&ndash;&gt;-->
-            <!--</label>-->
-            <!--<label class="checkbox">-->
-            <!--<input type="checkbox" value="">Same city-->
-            <!--</label>-->
-            <!--<label class="checkbox">-->
-            <!--<input type="checkbox" value="">Same School-->
-            <!--</label>-->
-            <!--<label class="checkbox">-->
-            <!--<input type="checkbox" value="">People made a deal with me-->
-            <!--</label>-->
-            <!--<label class="checkbox">-->
-            <!--<input type="checkbox" value="">Nobody-->
-            <!--</label>-->
         </div>
     </div>
-    <!--<div class="control-group">-->
-    <!--<div class="controls">-->
-    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-    <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
+
 </div>
 <div class="tab-pane" id="lC">
     <!--<form class="form-horizontal">-->

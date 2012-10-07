@@ -1,5 +1,6 @@
 from django import forms
-from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
+
+from universities.models import University
 GENDER_SELECT = ((1,'Male'),(2,'Female'),(3,'Other'))
 DEGREE_CHOICES = (("",'---'),('MSC','Msc'),('BSC','Bsc'),('12th','12th'),('10th','10th'))
 YEAR_CHOICES  = ((0,"---"),(1987,1987),(1988,1989),(2000,2000),(2001,2001))
@@ -17,7 +18,7 @@ class ProfileForm(forms.Form):
     confirm_password = forms.CharField(widget=forms.PasswordInput,required=False)
     phone_number = forms.CharField(required=False)
     address = forms.CharField(required=False)
-    university = forms.CharField(required=False,widget=forms.Select(choices=UNIVERSITY_CHOICES))
+    university = forms.ModelChoiceField(queryset=University.objects.filter())
     paypal_url = forms.CharField(required=False)
     zip_code = forms.CharField(required=False)
     visibility = forms.ChoiceField(widget=forms.RadioSelect, choices=VISIBILITY_CHOICES,required=False)

@@ -12,4 +12,6 @@ class University(models.Model):
     phone = models.CharField(max_length=12)
     city = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
+    class Meta:
+        verbose_name = 'University Management'
 

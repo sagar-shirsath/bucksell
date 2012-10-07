@@ -6,7 +6,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#map_div_big').css('width', window.innerWidth - 500).css('height', window.innerHeight - 150);
+        $('#map_div_big').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
         loadMap();
     });
 
@@ -35,7 +35,7 @@
 
 {% block content %}
     <div class="row">
-        <ul class="breadcrumb span12">
+        <ul class="breadcrumb span10">
             <li><a href="#">PA</a> <span class="divider"> > </span></li>
             <li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>
             <li class="active">Bucknell U</li>
@@ -50,7 +50,7 @@
         <div class="span2">
             <form>
                 <label>Refine Location</label>
-                <input type="text" placeholder="City or university">
+                <input type="text" placeholder="City or university" class="span12">
                 <label>Categories</label>
                 <label class="checkbox">
                     <input type="checkbox"> All

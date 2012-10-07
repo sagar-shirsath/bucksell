@@ -7,17 +7,19 @@
         /*border: #000000 solid 1px;*/
         margin-top: 1px;
         padding: 20px 20px 20px 20px;
-        width: 230px;
+        width: 220px;
         /*border-radius: 5px;*/
-        border: 3px solid #D2E0EA;
+        border: 1px solid #272fea;
         border-radius: 3px 0 3px 3px;
     }
     #loginBox{
-        width: 276px;
-        border: 1px solid #899CAA;
-        margin-top: 1px;
-        height: 250px;
-        position: absolute;
+        position:absolute;
+        top:41px;
+        right:5px;
+        /*display:none;*/
+        z-index:29;
+        background:#d2e0ea;
+        height: 215px;
     }
 </style>
 <script type="text/javascript">
@@ -119,9 +121,6 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <label class="checkbox">
-                        <input type="checkbox" id="checkbox"> Remember me
-                    </label>
                     <button type="submit" class="btn btn-primary" id="login">Sign in</button>
                 </div>
             </div>

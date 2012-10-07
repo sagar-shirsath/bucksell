@@ -14,4 +14,6 @@ class University(models.Model):
     zip_code = models.CharField(max_length=10)
     class Meta:
         verbose_name = 'University Management'
+    def __unicode__(self):
+        return self.name
 

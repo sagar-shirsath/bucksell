@@ -1,6 +1,3 @@
 from django.contrib import admin
-
-#admin.site.register(UserProfile)
-
-
-
+from universities.models import University
+admin.site.register(University)

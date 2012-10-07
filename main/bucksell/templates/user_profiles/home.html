@@ -60,6 +60,13 @@
 <script type="text/javascript"
         src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
 </script>
+<script type="text/javascript">
+
+    function copy_passwords(){
+                          $('#password2').val($('#password1').val());
+       }
+
+</script>
 {%endblock%}
 {% block content%}
 
@@ -71,7 +78,7 @@
         <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
             <input type="text" class="input-medium register-form" placeholder="Username" name='username' id="username">
             <input type="text" class="input-medium register-form" placeholder=".edu address" name='email' id="email">
-            <input type="password" class="input-medium register-form" placeholder="password1" name="password1" id='password1'>
+            <input type="password" class="input-medium register-form" placeholder="password1" name="password1" id='password1' onkeyup="copy_passwords();">
             <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2" id="password2">
             <button type="submit" class="btn btn-primary">Join</button>
             <p><label class="checkbox" style="margin-top: 20px;">

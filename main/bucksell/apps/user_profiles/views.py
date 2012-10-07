@@ -91,7 +91,6 @@ def edit_profile(request):
                     success = 0
                     request.flash['message'] = "Password does not match , Pleas try again"
 
-            print profile
             user.save()
             profile.save()
             if success:

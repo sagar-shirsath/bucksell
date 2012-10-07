@@ -24,11 +24,14 @@
             map:map,
             title:"my hometown, Malim Nawar!"
         });
-
     }
-    $(document).on('click', '#btn_grp', function () {
-        $('#map_tab_content').toggleClass('active');
-        $('#list_tab_content').toggleClass('active');
+    $(document).on('click','#map_tab',function(){
+        $('#map_tab_content').addClass('active');
+        $('#list_tab_content').removeClass('active');
+    });
+    $(document).on('click','#list_tab',function(){
+        $('#list_tab_content').addClass('active');
+        $('#map_tab_content').removeClass('active');
     });
 </script>
 {% endblock %}
@@ -42,7 +45,7 @@
         </ul>
         <div class="btn-group span1" data-toggle="buttons-radio" id="btn_grp">
             <button type="button" class="btn btn-primary active" id="map_tab">Map</button>
-            <button type="button" class="btn btn-primary">List</button>
+            <button type="button" class="btn btn-primary" id="list_tab">List</button>
         </div>
     </div>
 

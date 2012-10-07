@@ -78,7 +78,7 @@
         <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
             <input type="text" class="input-medium register-form" placeholder="Username" name='username' id="username">
             <input type="text" class="input-medium register-form" placeholder=".edu address" name='email' id="email">
-            <input type="password" class="input-medium register-form" placeholder="password1" name="password1" id='password1' onkeyup="copy_passwords();">
+            <input type="password" class="input-medium register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
             <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2" id="password2">
             <button type="submit" class="btn btn-primary">Join</button>
             <p><label class="checkbox" style="margin-top: 20px;">
@@ -150,7 +150,8 @@
 <div class="container-fluid home-listing" style="margin-top: 30px;">
     <div style="text-align: center; width: 100%">
         <h3>Interested ?</h3>
-        <button type="submit" class="btn btn-warning btn-large" style="width: 100px;">Join</button>
+        <a href='{% url registration_register%}' class="btn btn-primary">Join</a>
+        <!--<button type="submit" class="btn btn-warning btn-large" style="width: 100px;">Join</button>-->
     </div>
 
 </div>

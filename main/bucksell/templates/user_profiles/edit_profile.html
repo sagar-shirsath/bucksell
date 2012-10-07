@@ -42,18 +42,25 @@
 //    });
 
 </script>
+<script type="text/javascript">
+{% if password_open %}
+$(document).ready(function () {
+    $('#lA').removeClass('active');
+    $('#lC').addClass('active');
+});
+{% endif %}
+</script>
 {%endblock%}
 {% block content%}
 <div class="span7 offset2">
 <legend>Profile Edit</legend>
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#lA" data-toggle="tab">Profile</a></li>
+    <li class="active"><a href="#lA" data-toggle="tab" id="profile_link">Profile</a></li>
     <li class=""><a href="#lB" data-toggle="tab">Contact Info</a></li>
     <li class=""><a href="#lC" data-toggle="tab">Security</a></li>
 </ul>
 
-<form class="form-horizontal" method="POST" action=".">{% csrf_token %}
 <div class="tab-content">
 
 <div class="tab-pane active" id="lA">
@@ -159,6 +166,12 @@
             <!--<option>5</option>-->
             <!--</select>-->
             <!--</div>-->
+        </div>
+        <div class="control-group">
+            <label class="control-label">University</label>
+            <div class="controls">
+                {{form.university}}
+            </div>
         </div>
         <!--<div class="control-group">-->
         <!--<div class="controls">-->

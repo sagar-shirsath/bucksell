@@ -29,12 +29,12 @@
             position:"right"
         });
         jQuery("#id_phone_number").validate({
-            expression: "if (VAL.match(/^[9][0-9]{9}$/)) return true; else return false;",
+            expression: "if (VAL.match(/^[0-9]{10}$/)) return true; else return false;",
             message: "Should be a valid cell Number",
             position:"right"
         });
         jQuery("#id_zip_code").validate({
-            expression: "if (VAL.match(/^([0-9]){5}(([ ]|[-])?([0-9]){4})?$/)) return true; else return false;",
+            expression: "if (VAL.match(/^([0-9]){5}((![ ]|[-])?([0-9]){4})?$/)) return true; else return false;",
             message: "Should be a valid zip",
             position:"right"
         });
@@ -79,12 +79,13 @@
         <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form">
             {% csrf_token %}
             <div class="controls">
-                <!--<input type="text" id="cell_phone">-->
                 {{photo_form.photo}}
             </div>
 
         </form>
     </div>
+    <form class="form-horizontal" method="POST" action=".">{% csrf_token %}
+
     <div class="control-group">
         <label class="control-label" for="first_name">First Name</label>
 
@@ -258,7 +259,6 @@
             {{form.confirm_password}}
         </div>
     </div>
-
 
 </div>
 <div class="control-group">

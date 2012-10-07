@@ -15,7 +15,13 @@
                 </li>
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
-                    <button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span>
+                    <button class="dropdown btn" data-toggle="dropdown">
+                        {%if user.thumbnail%}
+                            <img src="{{user.thumbnail.url}}" alt="" />
+                        {% else%}
+                        <span class="icon-user">
+                        {% endif %}
+                        </span>
                         {{user.username}} <b class="caret"></b></button>
                     <ul class="dropdown-menu">
                         <li><a href="{%url edit_profile%}">Profile Edit</a></li>

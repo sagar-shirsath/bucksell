@@ -30,7 +30,11 @@ from user_profiles.models import Profile
 
 def get_user_profile(id):
     user = User.objects.get(id=id)
-    profile = user.auth_user.all()[0]
+    try:
+        profile = user.auth_user.all()[0]
+    except Exception:
+        profile = Profile.objects.create(user_id = id)
+        profile.save()
     return (user ,profile )
 
 def home(request):
@@ -74,7 +78,7 @@ def edit_profile(request):
             profile.gender = form.cleaned_data.get('gender') or 0
             profile.degree_pursuing = form.cleaned_data.get('degree_pursuing')
             profile.year_of_class = form.cleaned_data.get('year_of_class') or 0
-            ##            profile.university = form.cleaned_data.get('university')
+            profile.university = form.cleaned_data.get('university')
             profile.phone_number = form.cleaned_data.get('phone_number')
             profile.address = form.cleaned_data.get('address')
             profile.paypal_url = form.cleaned_data.get('paypal_url')

@@ -32,7 +32,10 @@ def get_user_profile(id):
     user = User.objects.get(id=id)
     profile = user.auth_user.all()[0]
     return (user ,profile )
+
 def home(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse("item_index"))
     return render_to_response("user_profiles/home.html", {}, context_instance=RequestContext(request))
 
 @login_required
@@ -157,7 +160,7 @@ def login_me(request):
         if request.user.is_superuser:
             return HttpResponseRedirect(reverse("admin:index"))
         else:
-            return HttpResponseRedirect(reverse("home"))
+            return HttpResponseRedirect(reverse("item_index"))
     form = LoginForm()
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -176,7 +179,7 @@ def login_me(request):
                         login(request,u)
                         if u.is_superuser:
                             return HttpResponseRedirect(reverse("admin:index"))
-                        return HttpResponseRedirect(reverse("home"))
+                        return HttpResponseRedirect(reverse("item_index"))
             request.flash['message'] = "Sorry Email and Password Does Not Match"
 
 

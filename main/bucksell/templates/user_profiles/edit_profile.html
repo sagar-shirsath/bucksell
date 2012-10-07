@@ -72,20 +72,18 @@ $(document).ready(function () {
             <img src="{{STATIC_URL}}images/default_user_photo.png"/>
             {% endif %}
         </div>
-        <label class="control-label">
-            {% if profile_photo %}
-            Change Photo:
-            {% else %}
-            Add Photo:
-
-            {% endif %}
-        </label>
-
-        <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form">
+        <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form" class="form-horizontal">
             {% csrf_token %}
-            <div class="controls">
+            <div class="control-group">
+                <label class="control-label">
+                    {% if profile_photo %}
+                    Change Photo:
+                    {% else %}
+                    Add Photo:
+                    {% endif %}
+                </label><div class="controls">
                 {{photo_form.photo}}
-                <button class="btn" type="submit">Upload</button>
+                <button class="btn" type="submit">Upload</button></div>
             </div>
         </form>
     </div>

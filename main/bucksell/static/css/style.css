@@ -164,3 +164,7 @@ fieldset#body {
 input:focus {
     outline:none;
 }
+
+.errorlist{
+    color: red;
+}

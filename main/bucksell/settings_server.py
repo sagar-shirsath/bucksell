@@ -138,6 +138,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
     'ads',
     'registration',
     'categories',
@@ -149,7 +151,8 @@ INSTALLED_APPS = (
     'items',
     'universities',
     'south',
-    'django.contrib.admin',
+    'transactions'
+
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

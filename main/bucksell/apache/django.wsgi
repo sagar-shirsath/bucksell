@@ -1,7 +1,19 @@
 import os
 import sys
 
-path = '/home/ubuntu/bucksell/code/main/bucksell/'
+from os.path import abspath, dirname, join
+from site import addsitedir
+import sys
+# adding external lib folder to the path.
+path = addsitedir(abspath(join(dirname(__file__), '../libs')), set())
+if path: sys.path = list(path) + sys.path
+
+# updating python sys path to include project applications.
+
+sys.path.insert(0, abspath(join(dirname(__file__), 'apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), '../libs')))
+#path = '/home/ubuntu/bucksell/code/main/bucksell/'
 if path not in sys.path:
     sys.path.append(path)
 

@@ -17,14 +17,7 @@ sys.path.insert(0, abspath(join(dirname(__file__), '../libs')))
 if path not in sys.path:
     sys.path.append(path)
 
-try:
-    import settings # Assumed to be in the same directory.
-except ImportError:
-    import sys
-    sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
-    sys.exit(1)
-
-os.environ['DJANGO_SETTINGS_MODULE'] = settings
+os.environ['DJANGO_SETTINGS_MODULE'] = '../settings'
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()

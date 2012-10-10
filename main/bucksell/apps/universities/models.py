@@ -13,7 +13,7 @@ class University(models.Model):
     city = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
     class Meta:
-        verbose_name = 'University Management'
+        verbose_name = 'University'
     def __unicode__(self):
         return self.name
 

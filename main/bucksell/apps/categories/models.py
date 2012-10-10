@@ -6,4 +6,4 @@ class Category(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     class Meta:
-        verbose_name = 'Category Management'
+        verbose_name = 'Category'

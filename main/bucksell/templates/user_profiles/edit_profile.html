@@ -1,0 +1,291 @@
+{% extends "site_base.html" %}
+{% block javascripts%}
+<script type="text/javascript">
+//    $(document).ready(function () {
+//        $('#id_photo').click(function () {
+//            $('#photo_form').submit();
+//        });
+//        jQuery('li > a[href="#lA"]').click(function(){
+////            jQuery('input').tooltip('show');
+////            alert('hi');
+//        });
+//    });
+
+//    jQuery(function () {
+////        jQuery("#id_current_password").validate({
+////            expression: "if (VAL) return true; else return false;",
+////            message: "Please enter the current password",
+////            position: "right"
+////        });
+////        jQuery("#id_new_password").validate({
+////            expression:"if (VAL) return true; else return false;",
+////            message:"Please enter the new password",
+////            position:"right"
+////        });
+//
+//        jQuery("#id_confirm_password").validate({
+//            expression:"if ((VAL == jQuery('#id_new_password').val()) && VAL) return true; else return false;",
+//            message:"Confirm password field doesn't match the password field",
+//            position:"right"
+//        });
+//        jQuery("#id_phone_number").validate({
+//            expression: "if (VAL.match(/^[0-9]{10}$/)) return true; else return false;",
+//            message: "Should be a valid cell Number",
+//            position:"right"
+//        });
+//        jQuery("#id_zip_code").validate({
+//            expression: "if (VAL.match(/^([0-9]){5}((![ ]|[-])?([0-9]){4})?$/)) return true; else return false;",
+//            message: "Should be a valid zip",
+//            position:"right"
+//        });
+//
+//    });
+
+</script>
+<script type="text/javascript">
+{% if password_open %}
+$(document).ready(function () {
+    $('#lA').removeClass('active');
+    $('#lC').addClass('active');
+});
+{% endif %}
+</script>
+{%endblock%}
+{% block content%}
+<div class="span7 offset2">
+<legend>Profile Edit</legend>
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#lA" data-toggle="tab" id="profile_link">Profile</a></li>
+    <li class=""><a href="#lB" data-toggle="tab">Contact Info</a></li>
+    <li class=""><a href="#lC" data-toggle="tab">Security</a></li>
+</ul>
+
+<div class="tab-content">
+
+<div class="tab-pane active" id="lA">
+    <div class="control-group">
+        <div class="offset2" style="margin-bottom: 10px;">
+            {% if profile_photo %}
+            <img src="{{profile_photo.url}}" width="150px" height="200px"/>
+            {% else %}
+            <img src="{{STATIC_URL}}images/default_user_photo.png"/>
+            {% endif %}
+        </div>
+        <form action="{%url upload_profile_photo%}" method="post" enctype="multipart/form-data" id="photo_form" class="form-horizontal">
+            {% csrf_token %}
+            <div class="control-group">
+                <label class="control-label">
+                    {% if profile_photo %}
+                    Change Photo:
+                    {% else %}
+                    Add Photo:
+                    {% endif %}
+                </label><div class="controls">
+                {{photo_form.photo}}
+                <button class="btn" type="submit">Upload</button></div>
+            </div>
+        </form>
+    </div>
+    <form class="form-horizontal" id="profile_form" method="POST" action=".">{% csrf_token %}
+
+        <div class="control-group">
+            <label class="control-label" for="first_name">First Name</label>
+
+            <div class="controls">
+                <!--<input type="text" id="cell_phone">-->
+                {{form.first_name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="last_name">Last Name</label>
+
+            <div class="controls">
+                <!--<input type="text" id="cell_phone">-->
+                {{form.last_name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="user_name">Brief Description</label>
+
+            <div class="controls">
+                <!--<input type="text" id="user_name">-->
+                {{form.about_me}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Gender</label>
+
+            <div class="controls">
+                {{form.gender}}
+                <!--<label class="radio">-->
+                <!--&lt;!&ndash;<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"&ndash;&gt;
+                -->
+                <!--&lt;!&ndash;checked>&ndash;&gt;-->
+                <!--&lt;!&ndash;Male&ndash;&gt;-->
+
+                <!--</label>-->
+                <!--<label class="radio">-->
+                <!--&lt;!&ndash;<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">&ndash;&gt;
+                -->
+                <!--&lt;!&ndash;Female&ndash;&gt;-->
+                <!--</label>-->
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Degree Persuing</label>
+
+            <div class="controls">
+                {{form.degree_pursuing}}
+            </div>
+            <!--<div class="controls">-->
+            <!--<select>-->
+            <!--<option>Degree</option>-->
+            <!--<option>2</option>-->
+            <!--<option>3</option>-->
+            <!--<option>4</option>-->
+            <!--<option>5</option>-->
+            <!--</select>-->
+            <!--</div>-->
+        </div>
+        <div class="control-group">
+            <label class="control-label">Year of Class</label>
+
+            <div class="controls">
+                {{form.year_of_class}}
+            </div>
+            <!--<div class="controls">-->
+            <!--<select>-->
+            <!--<option>Year</option>-->
+            <!--<option>2</option>-->
+            <!--<option>3</option>-->
+            <!--<option>4</option>-->
+            <!--<option>5</option>-->
+            <!--</select>-->
+            <!--</div>-->
+        </div>
+        <div class="control-group">
+            <label class="control-label">University</label>
+            <div class="controls">
+                {{form.university}}
+            </div>
+        </div>
+        <!--<div class="control-group">-->
+        <!--<div class="controls">-->
+        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+        <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</form>-->
+</div>
+<div class="tab-pane" id="lB">
+    <!--<form class="form-horizontal">-->
+    <div class="control-group">
+        <label class="control-label" for="cell_phone">Cell Phone#</label>
+
+        <div class="controls">
+            <!--<input type="text" id="cell_phone">-->
+            {{form.phone_number}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="address">Address</label>
+
+        <div class="controls">
+            <!--<textarea rows="3" id="address"></textarea>-->
+            {{form.address}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="zip">Zip</label>
+
+        <div class="controls">
+            <!--<input type="text" id="zip">-->
+            {{form.zip_code}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="confirmPassword">Paypal URL</label>
+
+        <div class="controls">
+            <!--<input type="password" id="confirmPassword">-->
+            {{form.paypal_url}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="zip">Visibility</label>
+
+        <div class="controls">
+            {{form.visibility}}
+
+            <!--<label class="checkbox">-->
+            <!--&lt;!&ndash;<input type="checkbox" value="">Everyone&ndash;&gt;-->
+            <!--</label>-->
+            <!--<label class="checkbox">-->
+            <!--<input type="checkbox" value="">Same city-->
+            <!--</label>-->
+            <!--<label class="checkbox">-->
+            <!--<input type="checkbox" value="">Same School-->
+            <!--</label>-->
+            <!--<label class="checkbox">-->
+            <!--<input type="checkbox" value="">People made a deal with me-->
+            <!--</label>-->
+            <!--<label class="checkbox">-->
+            <!--<input type="checkbox" value="">Nobody-->
+            <!--</label>-->
+        </div>
+    </div>
+    <!--<div class="control-group">-->
+    <!--<div class="controls">-->
+    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+    <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</form>-->
+</div>
+<div class="tab-pane" id="lC">
+    <!--<form class="form-horizontal">-->
+    <div class="control-group">
+        <label class="control-label" for="currentPassword">Current Password</label>
+
+        <div class="controls">
+            <!--<input type="password" id="currentPassword">-->
+            {{form.current_password}}
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="newPassword">New Password</label>
+
+        <div class="controls">
+            <!--<input type="password" id="newPassword">-->
+            {{form.new_password}}
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="confirmPassword">Confirm Password</label>
+
+        <div class="controls">
+            <!--<input type="password" id="confirmPassword">-->
+            {{form.confirm_password}}
+        </div>
+    </div>
+
+</div>
+<div class="control-group">
+    <div class="controls">
+        <button type="submit" class="btn btn-primary" id="pass_submit">Submit</button>
+        <a href='{% url home%}' class="btn btn-warning">Cancel</a>
+        <!--<button type="submit" class="btn btn-inverse">Cancel</button>-->
+    </div>
+</div>
+</div>
+</form>
+
+</div>
+
+</div>
+
+{%endblock%}

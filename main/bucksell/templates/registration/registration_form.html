@@ -1,7 +1,110 @@
 {%extends "site_base.html"%}
 {% block content%}
-<form action="." method="post">{% csrf_token %}
-{{form.as_p}}
-<input type="submit" value="Submit" />
-</form>
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#username").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Enter Username",
+            position: "bottom"
+        });
+        jQuery("#accept_terms").validate({
+            expression: "if (isChecked(SelfID)) return true; else return false;",
+            message: "You should accept the therms of Service",
+            position: "bottom"
+        });
+        jQuery("#id_username").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter user name",
+            position: "right"
+        });
+
+        jQuery("#id_email").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the Email Id",
+            position: "right"
+        });
+
+        jQuery("#id_email").validate({
+            expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message:"Please enter valid email address.",
+            position: "right"
+        });
+
+        jQuery("#re_email").validate({
+            expression: "if ((VAL == jQuery('#id_email').val()) && VAL) return true; else return false;",
+            message: "Re-enter email field doesn't match the email field",
+            position: "right"
+        });
+
+        jQuery("#id_password1").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the password",
+            position: "right"
+        });
+
+        jQuery("#id_password2").validate({
+            expression: "if ((VAL == jQuery('#id_password1').val()) && VAL) return true; else return false;",
+            message: "Confirm Re-enter password field doesn't match the password field",
+            position: "right"
+        });
+
+//        $("#password1").keyup(function() {
+//            $("#password2").val($("#password1").val());
+//        })
+    });
+    </script>
+    <div class="span20 hero-unit offset3">
+        <legend>Join</legend>
+        <form class="form-horizontal" action="." method="post">{% csrf_token %}
+            <div class="control-group">
+                <label class="control-label" for="id_username">Username <span style="color: red;">*</span> </label>
+                <div class="controls">
+                    <!--<input type="text" id="user_name" placeholder="Username">-->
+                    {{form.username.errors}}
+                    {{form.username}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="id_email">.edu Email <span style="color: red;">*</span></label>
+                <div class="controls">
+                    <!--<input type="text" id="email" placeholder=".edu Email">-->
+                    {{form.email.errors}}
+                    {{form.email}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="re_email">Re-enter Email <span style="color: red;">*</span></label>
+                <div class="controls">
+                    <input type="text" id="re_email" placeholder="Re-enter Email">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">Password <span style="color: red;">*</span></label>
+                <div class="controls">
+                    <!--<input type="password" id="inputPassword" placeholder="Password">-->
+                    <!--{{form.password1.errors}}-->
+                    {{form.password1}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="rePassword">Re-enter Password <span style="color: red;">*</span></label>
+                <div class="controls">
+                    <!--<input type="password" id="rePassword" placeholder="Re-enter Password">-->
+                    <!--{{form.password2.errors}}-->
+                    {{form.password2}}
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <span id="accept_terms">
+                        <input type="checkbox"> I Accept the Bucksell Terms of service
+                        </span>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
 {% endblock %}

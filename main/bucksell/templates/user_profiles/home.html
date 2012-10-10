@@ -1,0 +1,159 @@
+{% extends "site_base.html" %}
+
+{%block javascripts%}
+<script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+</script>
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#username").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Enter Username",
+            position: "bottom"
+        });
+        jQuery("#password1").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter password ",
+            position: "bottom"
+        });
+
+        jQuery("#email").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the Email Id",
+            position: "bottom"
+        });
+        jQuery("#email").validate({
+            expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message:"Please enter valid email address.",
+            position: "bottom"
+        });
+        jQuery("#accept_terms").validate({
+            expression: "if (isChecked(SelfID)) return true; else return false;",
+            message: "You should accept the therms of Service",
+            position: "bottom"
+        });
+    });
+
+    $(document).ready(function(){
+        loadMap();
+    })
+
+    function loadMap() {
+        var latlng = new google.maps.LatLng(18.5236, 73.8478);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_div"),myOptions);
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title:"my hometown, Malim Nawar!"
+        });
+
+    }
+
+</script>
+
+<script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+</script>
+<script type="text/javascript">
+
+    function copy_passwords(){
+                          $('#password2').val($('#password1').val());
+       }
+
+</script>
+{%endblock%}
+{% block content%}
+
+<div class="container-fluid">
+    <div style="text-align: center; width: 100%">
+        <h3>Trade your stuff here</h3>
+    </div>
+    <div style="text-align: center; width: 100%">
+        <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
+            <input type="text" class="input-medium register-form" placeholder="Username" name='username' id="username">
+            <input type="text" class="input-medium register-form" placeholder=".edu address" name='email' id="email">
+            <input type="password" class="input-medium register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
+            <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2" id="password2">
+            <button type="submit" class="btn btn-primary">Join</button>
+            <p><label class="checkbox" style="margin-top: 20px;">
+                <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
+            </label></p>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div style="text-align: center; width: 100%">
+        <h3>Like People Around You</h3>
+    </div>
+    <div class="row offset1">
+        <div id="map_div" class="span4">
+
+        </div>
+        <div class="container span5">
+            <div class="row">
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+                <div class="span1 item-block">
+                    <img src="{{STATIC_URL}}img/64x64.png">
+                    Item Name<br>
+                    <span>$99</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid home-listing" style="margin-top: 30px;">
+    <div style="text-align: center; width: 100%">
+        <h3>Who we are</h3>
+    </div>
+
+</div>
+<div class="container-fluid home-listing" style="margin-top: 30px;">
+    <div style="text-align: center; width: 100%">
+        <h3>What we do</h3>
+
+    </div>
+
+</div>
+<div class="container-fluid home-listing" style="margin-top: 30px;">
+    <div style="text-align: center; width: 100%">
+        <h3>Interested ?</h3>
+        <a href='{% url registration_register%}' class="btn btn-primary">Join</a>
+        <!--<button type="submit" class="btn btn-warning btn-large" style="width: 100px;">Join</button>-->
+    </div>
+
+</div>
+
+{% endblock %}

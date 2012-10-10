@@ -1,0 +1,89 @@
+.main{
+    margin-top: 60px;
+}
+
+.item-block {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777777;
+    padding: 15px 15px 15px 20px;
+}
+
+.item-block > span {
+    padding-left: 15px;
+}
+.item-block > img {
+    margin-bottom: 10px
+}
+
+.row .item-block{
+    margin-top: 25px;
+}
+
+#map_div{
+    width: 350px;
+    height: 285px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777777;
+    padding: 15px 15px 15px 20px;
+    margin-top: 25px;
+}
+
+.register-form {
+    margin: 0px 10px 0px 10px;
+}
+
+.home-listing{
+    background-color: #ebebeb;
+    padding-bottom: 30px;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.item-listing{
+    padding: 0 5% 0 5%;
+    text-align: center;
+}
+
+.item-img{
+    margin: 0 20px 0 20px;
+}
+
+.big_map{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777777;
+    padding: 15px 15px 15px 20px;
+}
+
+.description{
+    font-size: 12px;
+    text-align: justify;
+}
+
+.item-info{
+    padding: 0px 10px 10px 20px;
+}
+
+.item-info1{
+    padding: 10px 10px 10px 10px;
+}
+
+.item-info1 > button {
+    margin-top: 10px;
+}
+
+.item-info1 > span{
+    margin-top: 20px;
+}
+
+.header{
+    font-weight: normal;
+}
+
+.hr_line{
+    color: #216799;
+    background-color: blue;
+    height: 1px;
+    margin-top: 50px;
+}

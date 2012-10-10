@@ -1,21 +1,34 @@
 # Django settings for bucksell project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+from os.path import abspath, dirname, join
+from site import addsitedir
+import sys
+# adding external lib folder to the path.
+path = addsitedir(abspath(join(dirname(__file__), '../libs')), set())
+if path: sys.path = list(path) + sys.path
+
+# updating python sys path to include project applications.
+
+sys.path.insert(0, abspath(join(dirname(__file__), 'apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), '../libs')))
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+# ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'bucksell',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'bucksell177',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -45,37 +58,41 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_DIR+"/../../../",'media')
+#MEDIA_ROOT = os.path.join(PROJECT_DIR,'static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(PROJECT_DIR,'static')
+#
+## URL prefix for static files.
+## Example: "http://media.lawrence.com/static/"
+
+
+
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR,'static'),
+    )
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+
 
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    )
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a^rr!q4x9=s_7l&amp;7(ej=z54400+(q1jbob*k@ik-a*3b-k%5$h'
@@ -84,8 +101,8 @@ SECRET_KEY = 'a^rr!q4x9=s_7l&amp;7(ej=z54400+(q1jbob*k@ik-a*3b-k%5$h'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+    #     'django.template.loaders.eggs.Loader',
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -93,20 +110,39 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'djangoflash.middleware.FlashMiddleware',
+
+
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    )
+FILE_UPLOAD_HANDLERS = (
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+    )
 
-ROOT_URLCONF = 'bucksell.urls'
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'djangoflash.context_processors.flash',)
+
+ROOT_URLCONF = '../urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'bucksell.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR,'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
+    )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -115,18 +151,25 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bucksell.apps.user_profile',
-    'bucksell.apps.payments', 
-    'bucksell.apps.items',
-    'bucksell.apps.universities',
-    'bucksell.apps.ads',
-    #'bucksell.lib.south',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'ads',
+    'registration',
+    'categories',
+    'feedbacks',
+    'messages',
+    'payments',
+    'user_profiles',
+    'payments',
+    'items',
+    'universities',
+    'south',
+    'transactions'
 
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-)
+    )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -153,6 +196,31 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
-        },
-    }
+            },
+        }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 30
+REGISTRATION_OPEN = True
+DEFAULT_FROM_EMAIL = "noReply@bucksell.com"
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = 'bucksell'
+EMAIL_HOST_PASSWORD = 'bucksell'
+EMAIL_USE_TLS = True
+
+
+
+#flash messages
+FLASH_IGNORE_MEDIA = True
+FLASH_STORAGE = 'session'
+
+LOGIN_REDIRECT_URL = "/"
+
+LOGIN_URL='/user/login/'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5
+MAX_FILE_SIZE = 5242880
+IMAGE_SUPPORTED_TYPES = ['image']
+
+PROFILE_IMG_SIZE = (150,200)
+PROFILE_THUMBNAILS_SIZE = (30,30)

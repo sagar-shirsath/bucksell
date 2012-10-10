@@ -68,8 +68,6 @@ def edit_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
-            print form.cleaned_data
-
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             profile = user.auth_user.all()[0]

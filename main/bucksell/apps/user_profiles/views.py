@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from datetime import date
+from time import time
 
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
@@ -147,10 +148,11 @@ def upload_profile_photo(request):
                     if(profile.thumbnail):
                         profile.thumbnail.delete()
                     user_profile_photo = handle_uploaded_image(file,settings.PROFILE_IMG_SIZE)
-                    profile.photo.save("%d_profile_photo.%s"%(user.id,user_profile_photo[0].split('.')[1]),user_profile_photo[1])
+
+                    profile.photo.save("%d_%s_profile_photo.%s"%(user.id,("%s"%time())[1:6],user_profile_photo[0].split('.')[1]),user_profile_photo[1])
                     file.seek(0)
                     thumbnail = handle_uploaded_image(file,settings.PROFILE_THUMBNAILS_SIZE)
-                    profile.thumbnail.save("%d_profile_thumbnail.%s"%(user.id,thumbnail[0].split('.')[1]),thumbnail[1])
+                    profile.thumbnail.save("%d_%s_profile_thumbnail.%s"%(user.id,("%s"%time())[1:6],thumbnail[0].split('.')[1]),thumbnail[1])
                     request.flash['message'] = "Photo Uploaded Successfully"
         else:
             request.flash['message'] = "Sorry Can't Upload the image"

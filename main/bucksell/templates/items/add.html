@@ -1,106 +1,171 @@
 {% extends "site_base.html" %}
-<script type="text/javascript">
-
-    function initialize() {
-        var mapOptions = {
-            zoom: 2,
-            center: new google.maps.LatLng(34.00, 97.00),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        $('#map_canvas').css('width','500px');
-        $('#map_canvas').css('height','500px');
-    }
-
-    function loadScript() {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false&callback=initialize";
-        document.body.appendChild(script);
-    }
-
-    window.onload = loadScript;
+{%block javascripts%}
+<script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(display_current_location, onErrorLocation, {timeout:3000});
+        }
+        else {
+            alert('Error detecting your location');
+        }
+    });
+    function onErrorLocation(error) {
+        alert('Error detecting your location');
+    }
+    function display_current_location(position) {
+        display_map(position.coords.latitude, position.coords.longitude);
+    }
+
+    function display_map(latitude, longitude) {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(latitude, longitude);
+        var myOptions = {
+            zoom:8,
+            center:latlng,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        google.maps.event.trigger(map, "resize");
+        map.setZoom(map.getZoom());
+
+        var marker = new google.maps.Marker({
+            position:latlng,
+            map:map,
+            title:"My Location"
+        });
+
+        geocoder.geocode({'address':'india'}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                var result_objects = results.length - 1;
+                var address_comp = results[result_objects].address_components.length - 1;
+                locality = results[result_objects].address_components[address_comp].locality;
+
+                console.log(results[0]);
+
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map:map,
+                    position:results[0].geometry.location
+                });
+            }
+            else {
+                alert('error');
+            }
+        });
+    }
+
+</script>
+{%endblock%}
 {% block content%}
-< <div class="container-fluid" style="margin-top: 50px;">
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab">1. Basic Info</a></li>
-        <li><a href="#profile" data-toggle="tab">2. Pics</a></li>
-        <li><a href="#location_tab" data-toggle="tab">3. Location</a></li>
-        <li><a href="#review_tab" data-toggle="tab">4. Review</a></li>
+<div class="offset1">
+    <div class="container-fluid ">
+        <ul id="myTab" class="nav nav-tabs span10">
+            <li class="active offset1"><a href="#home" data-toggle="tab">1. Basic Info</a></li>
+            <li><a href="#profile" data-toggle="tab">2. Pics</a></li>
+            <li id="location"><a href="#location_tab" data-toggle="tab">3. Location</a></li>
+            <li><a href="#review_tab" data-toggle="tab">4. Review</a></li>
 
-    </ul>
+        </ul>
+    </div>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
+                <div class="control-group">
+                    <label class="control-label" for="item_name">Item Name:</label>
+
+                    <div class="controls">
+                        <!--<input type="text" id="item_name">-->
+                        {{ form.item_name }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="item_price">Category:</label>
+
+                    <div class="controls">
+                        {{form.category}}
+                        <!--<select>-->
+                        <!--<option>Books</option>-->
+                        <!--<option>Music</option>-->
+                        <!--<option>Services</option>-->
+
+                        <!--</select>-->
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="item_price">Condition:</label>
+
+                    <div class="controls">
+                        {{form.condition}}
+
+                        <!--<label class="radio">-->
+                        <!--<input type="radio" name="item_condition" id="mint" value="mint" checked>-->
+                        <!--Mint-->
+                        <!--</label>-->
+                        <!--<label class="radio">-->
+                        <!--<input type="radio" name="item_condition" id="like_new" value="like_new" checked>-->
+                        <!--Like New-->
+                        <!--</label>-->
+                        <!--<label class="radio">-->
+                        <!--<input type="radio" name="item_condition" id="fair" value="fair" checked>-->
+                        <!--Fair-->
+                        <!--</label>-->
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="item_price">Price:</label>
+
+                    <div class="controls">
+                        <!--<input type="text" id="item_price">-->
+                        {{form.price}}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="item_description">Description:</label>
+
+                    <div class="controls">
+                        <!--<textarea rows="3" id="item_description"></textarea>-->
+                        {{form.description}}
+                    </div>
+                </div>
+        </div>
+        <div class="tab-pane fade" id="profile">
+            <div class="container-fluid">
+                <div>
+                    <h4>Choose Files :</h4>
+                </div>
+                <div class="item-listing">
+                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="location_tab">
+            <div class="container-fluid">
+                <div>
+                    <h4>Pin point your item on the map</h4>
+                </div>
+                <div class="item-listing">
+                    <div id="map_canvas" style="height: 500px; width: 500px;"></div>
+                </div>
+                <button type="submit" class="btn btn-warning">Submit Item</button>
+            </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="review_tab">
+            <div class="container-fluid">
+
+                <div class="item-listing" style="text-align: center; width: 100%">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade in active" id="home">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="item_name">Item Name:</label>
-                <div class="controls">
-                    <input type="text" id="item_name">
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
 
-                    <label class="radio">
-                        <input type="radio" name="item_condition" id="mint" value="mint" checked>
-                        Mint
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="item_condition" id="like_new" value="like_new" checked>
-                        Like New
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="item_condition" id="fair" value="fair" checked>
-                        Fair
-                    </label>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="item_price">Price:</label>
-                <div class="controls">
-                    <input type="text" id="item_price">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="item_description">Description:</label>
-                <div class="controls">
-                    <textarea rows="3" id="item_description"></textarea>
-                </div>
-            </div>
-        </form>
-        <button type="submit" class="btn btn-warning">Next</button>
-    </div>
-    <div class="tab-pane fade" id="profile">
-        <div class="container-fluid">
-            <div style="text-align: center; width: 100%">
-                <h4>Choose Files :</h4>
-            </div>
-            <div class="item-listing">
-                <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="location_tab">
-        <div class="container-fluid">
-            <div style="text-align: center; width: 100%">
-                <h4>Pin point your item on the map</h4>
-            </div>
-            <div class="item-listing" style="text-align: center; width: 100%">
-                <div id="map_canvas"></div>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="review_tab">
-        <div class="container-fluid">
-
-            <div class="item-listing" style="text-align: center; width: 100%">
-
-            </div>
-        </div>
-    </div>
-    </div>
 {% endblock %}

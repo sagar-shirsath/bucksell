@@ -7,13 +7,46 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#map_div_big').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
-        loadMap();
+        $(document).ready(function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(display_current_location, onErrorLocation, {timeout:3000});
+            }
+            else {
+                alert('Error detecting your location');
+            }
+        });
     });
+    function onErrorLocation(error) {
+        alert('Error detecting your location');
+    }
+    function display_current_location(position) {
+        display_map(position.coords.latitude, position.coords.longitude);
+    }
+
+    function display_map(latitude, longitude) {
+
+        var latlng = new google.maps.LatLng(latitude, longitude);
+        var myOptions = {
+            zoom:8,
+            center:latlng,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_div_big"), myOptions);
+        google.maps.event.trigger(map, "resize");
+        map.setZoom(map.getZoom());
+
+        var marker = new google.maps.Marker({
+            position:latlng,
+            map:map,
+            title:"My Location"
+        });
+    }
 
     function loadMap() {
         var latlng = new google.maps.LatLng(18.5236, 73.8478);
         var myOptions = {
-            zoom:9,
+            zoom:10,
             center:latlng,
             mapTypeId:google.maps.MapTypeId.ROADMAP
         };

@@ -35,8 +35,44 @@
     });
 
     $(document).ready(function(){
-        loadMap();
-    })
+        console.log('hii');
+        if (navigator.geolocation) {
+
+
+            navigator.geolocation.getCurrentPosition(display_current_location, onErrorLocation, {timeout:3000});
+        }
+        else {
+            alert('Error detecting your location');
+        }
+    });
+
+    function onErrorLocation(error) {
+        alert('Error detecting your location');
+    }
+    function display_current_location(position) {
+
+        console.log(position.coords.latitude);
+
+        display_map(position.coords.latitude, position.coords.longitude);
+    }
+
+    function display_map(latitude, longitude) {
+
+        var latlng = new google.maps.LatLng(latitude, longitude);
+        var myOptions = {
+            zoom:8,
+            center:latlng,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_div"), myOptions);
+
+        var marker = new google.maps.Marker({
+            position:latlng,
+            map:map,
+            title:"My Location"
+        });
+
+    }
 
     function loadMap() {
         var latlng = new google.maps.LatLng(18.5236, 73.8478);

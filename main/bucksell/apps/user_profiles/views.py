@@ -19,13 +19,9 @@ import django
 import hashlib
 
 from django.conf import settings
-
 from registration.backends import get_backend
-
 from registration.forms import LoginForm
-
 from user_profiles.forms import ProfileForm , ImageUploadForm
-
 from user_profiles.models import Profile
 
 def get_user_profile(id):

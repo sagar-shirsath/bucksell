@@ -13,7 +13,7 @@ from items.models import Item
 def get_user_item(id):
 	user = User.objects.get(id=id)
 	try:
-		item = user.auth_user.all()[2]
+		item = user.auth_user.all()[0]
 	except Exception:
 		item = Item.objects.create(seller_id=id)
 		item.save()

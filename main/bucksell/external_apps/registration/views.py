@@ -193,7 +193,7 @@ def register(request, backend, success_url=None, form_class=None,
                 to, args, kwargs = backend.post_registration_redirect(request, new_user)
                 return redirect(to, *args, **kwargs)
             else:
-                request.flash['message'] = 'You have successfully registered with the site , please check your mails.'
+                request.flash['message'] = 'You have successfully registered. Please check your email to confirm your email address.'
                 return redirect(success_url)
     else:
         form = form_class()

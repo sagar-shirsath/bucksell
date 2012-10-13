@@ -18,7 +18,7 @@ class ProfileForm(forms.Form):
     confirm_password = forms.CharField(widget=forms.PasswordInput,required=False)
     phone_number = forms.CharField(required=False)
     address = forms.CharField(required=False)
-    university = forms.ModelChoiceField(queryset=University.objects.filter())
+    university = forms.ModelChoiceField(queryset=University.objects.filter(),required=False)
     paypal_url = forms.CharField(required=False)
     zip_code = forms.CharField(required=False)
     visibility = forms.ChoiceField(widget=forms.RadioSelect, choices=VISIBILITY_CHOICES,required=False)

@@ -15,7 +15,8 @@ if path: sys.path = list(path) + sys.path
 sys.path.insert(0, abspath(join(dirname(__file__), 'apps')))
 sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
 sys.path.insert(0, abspath(join(dirname(__file__), '../libs')))
-
+sys.path.insert(0,abspath(join(dirname(__file__),'../bucksell')))
+#sys.path.append('/home/ubuntu/bucksell/code/main/bucksell/')
 ADMINS = (
 # ('Your Name', 'your_email@example.com'),
 )
@@ -132,7 +133,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     'djangoflash.context_processors.flash',)
 
-ROOT_URLCONF = '../urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'bucksell.wsgi.application'
@@ -208,7 +209,6 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = 'bucksell'
 EMAIL_HOST_PASSWORD = 'bucksell'
 EMAIL_USE_TLS = True
-
 
 
 #flash messages

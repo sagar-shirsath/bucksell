@@ -7,13 +7,13 @@ class University(models.Model):
     description = models.TextField()
     photo = models.ImageField(upload_to='images/universities')
     address = models.TextField()
-    longitude = models.FloatField()
-    latitude = models.FloatField()
+    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(null=True)
     phone = models.CharField(max_length=12)
     city = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
     class Meta:
-        verbose_name = 'University Management'
+        verbose_name = 'University'
     def __unicode__(self):
         return self.name
 

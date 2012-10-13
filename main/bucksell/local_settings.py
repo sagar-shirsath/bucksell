@@ -3,19 +3,6 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
-from os.path import abspath, dirname, join
-from site import addsitedir
-import sys
-# adding external lib folder to the path.
-path = addsitedir(abspath(join(dirname(__file__), '../libs')), set())
-if path: sys.path = list(path) + sys.path
-
-# updating python sys path to include project applications.
-
-sys.path.insert(0, abspath(join(dirname(__file__), 'apps')))
-sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
-sys.path.insert(0, abspath(join(dirname(__file__), '../libs')))
-
 ADMINS = (
 # ('Your Name', 'your_email@example.com'),
 )
@@ -132,7 +119,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     'djangoflash.context_processors.flash',)
 
-ROOT_URLCONF = '../urls'
+ROOT_URLCONF = 'bucksell.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'bucksell.wsgi.application'
@@ -202,13 +189,12 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 30
 REGISTRATION_OPEN = True
-DEFAULT_FROM_EMAIL = "noReply@bucksell.com"
-EMAIL_HOST = 'smtp.sendgrid.net'
+DEFAULT_FROM_EMAIL = "noReply@pranavan.com"
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = 'bucksell'
-EMAIL_HOST_PASSWORD = 'bucksell'
+EMAIL_HOST_USER = 'sagar.s@pranavan.com'
+EMAIL_HOST_PASSWORD = 'omkaraomkara1'
 EMAIL_USE_TLS = True
-
 
 
 #flash messages

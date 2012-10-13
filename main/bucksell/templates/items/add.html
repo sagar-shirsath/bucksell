@@ -3,62 +3,12 @@
 <script type="text/javascript"
         src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
 </script>
+<script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(display_current_location, onErrorLocation, {timeout:3000});
-        }
-        else {
-            alert('Error detecting your location');
-        }
+        $('#map_canvas').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
+        getLocation();
     });
-    function onErrorLocation(error) {
-        alert('Error detecting your location');
-    }
-    function display_current_location(position) {
-        display_map(position.coords.latitude, position.coords.longitude);
-    }
-
-    function display_map(latitude, longitude) {
-        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(latitude, longitude);
-        var myOptions = {
-            zoom:8,
-            center:latlng,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        google.maps.event.trigger(map, "resize");
-        map.setZoom(map.getZoom());
-
-        var marker = new google.maps.Marker({
-            position:latlng,
-            map:map,
-            title:"My Location"
-        });
-
-        geocoder.geocode({'address':'india'}, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-
-                var result_objects = results.length - 1;
-                var address_comp = results[result_objects].address_components.length - 1;
-                locality = results[result_objects].address_components[address_comp].locality;
-
-                console.log(results[0]);
-
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map:map,
-                    position:results[0].geometry.location
-                });
-            }
-            else {
-                alert('error');
-            }
-        });
-    }
-
 </script>
 {%endblock%}
 {% block content%}
@@ -76,7 +26,7 @@
         <div class="tab-pane fade in active" id="home">
             <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
                 <div class="control-group">
-                    <label class="control-label" for="item_name">Item Name:</label>
+                    <label class="control-label">Item Name:</label>
 
                     <div class="controls">
                         <!--<input type="text" id="item_name">-->
@@ -84,7 +34,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="item_price">Category:</label>
+                    <label class="control-label">Category:</label>
 
                     <div class="controls">
                         {{form.category}}
@@ -97,7 +47,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="item_price">Condition:</label>
+                    <label class="control-label">Condition:</label>
 
                     <div class="controls">
                         {{form.condition}}
@@ -117,7 +67,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="item_price">Price:</label>
+                    <label class="control-label">Price:</label>
 
                     <div class="controls">
                         <!--<input type="text" id="item_price">-->
@@ -125,13 +75,14 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="item_description">Description:</label>
+                    <label class="control-label">Description:</label>
 
                     <div class="controls">
                         <!--<textarea rows="3" id="item_description"></textarea>-->
                         {{form.description}}
                     </div>
                 </div>
+                </form>
         </div>
         <div class="tab-pane fade" id="profile">
             <div class="container-fluid">
@@ -145,17 +96,17 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="location_tab">
+        <div class="tab-pane" id="location_tab">
             <div class="container-fluid">
-                <div>
+                <div class="offset3">
                     <h4>Pin point your item on the map</h4>
                 </div>
-                <div class="item-listing">
-                    <div id="map_canvas" style="height: 500px; width: 500px;"></div>
+                <div class="">
+                    <div id="map_canvas" class="big_map"></div>
                 </div>
-                <button type="submit" class="btn btn-warning">Submit Item</button>
+                <button type="submit" class="btn btn-warning offset6">Submit Item</button>
             </div>
-            </form>
+
         </div>
         <div class="tab-pane fade" id="review_tab">
             <div class="container-fluid">

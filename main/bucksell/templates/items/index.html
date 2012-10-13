@@ -4,60 +4,14 @@
 <script type="text/javascript"
         src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
 </script>
+<script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#map_div_big').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
-        $(document).ready(function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(display_current_location, onErrorLocation, {timeout:3000});
-            }
-            else {
-                alert('Error detecting your location');
-            }
-        });
+        $('#map_canvas').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
+
+            getLocation();
     });
-    function onErrorLocation(error) {
-        alert('Error detecting your location');
-    }
-    function display_current_location(position) {
-        display_map(position.coords.latitude, position.coords.longitude);
-    }
 
-    function display_map(latitude, longitude) {
-
-        var latlng = new google.maps.LatLng(latitude, longitude);
-        var myOptions = {
-            zoom:8,
-            center:latlng,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map_div_big"), myOptions);
-        google.maps.event.trigger(map, "resize");
-        map.setZoom(map.getZoom());
-
-        var marker = new google.maps.Marker({
-            position:latlng,
-            map:map,
-            title:"My Location"
-        });
-    }
-
-    function loadMap() {
-        var latlng = new google.maps.LatLng(18.5236, 73.8478);
-        var myOptions = {
-            zoom:10,
-            center:latlng,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_div_big"), myOptions);
-
-        var marker = new google.maps.Marker({
-            position:latlng,
-            map:map,
-            title:"my hometown, Malim Nawar!"
-        });
-    }
     $(document).on('click','#map_tab',function(){
         $('#map_tab_content').addClass('active');
         $('#list_tab_content').removeClass('active');
@@ -111,7 +65,7 @@
         </div>
         <div class="tab-content span8">
             <div class="tab-pane active" id="map_tab_content">
-                <div id="map_div_big" class="span1 big_map">
+                <div id="map_canvas" class="span1 big_map">
                 </div>
             </div>
             <div class="tab-pane" id="list_tab_content">

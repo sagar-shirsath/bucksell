@@ -19,7 +19,7 @@ class Item(models.Model):
     category = models.ForeignKey(Category)
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
-    slug = models.CharField(max_length=30)
+#    slug = models.CharField(max_length=30)
 
 
 

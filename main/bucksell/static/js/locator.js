@@ -3,7 +3,7 @@ var marker = null;
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(display_map, onErrorLocation, {timeout:3000});
+        navigator.geolocation.getCurrentPosition(display_map, onErrorLocation, {timeout:30000});
     }
     else {
         alert('Error detecting your location');

@@ -6,8 +6,32 @@
 <script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#map_canvas').css('width', window.innerWidth - 600).css('height', window.innerHeight - 150);
+        $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();
+    });
+    $(document).on('click','#pics_tab',function(){
+        $('#p_tab').addClass('active');
+        $('#info_tab').removeClass('active');
+        $('#home').removeClass('active');
+        $('#profile').addClass('fade active in');
+    })
+    $(document).on('click','#loc_tab',function(){
+        $('#location').addClass('active');
+        $('#p_tab').removeClass('active');
+        $('#profile').removeClass('active');
+        $('#location_tab').addClass('fade active in');
+    });
+    $(document).on('click','#inf_tab',function(){
+        $('#info_tab').addClass('active');
+        $('#p_tab').removeClass('active');
+        $('#profile').removeClass('active');
+        $('#home').addClass('fade active in');
+    });
+    $(document).on('click','#back_pics_tab',function(){
+        $('#p_tab').addClass('active');
+        $('#location').removeClass('active');
+        $('#location_tab').removeClass('active');
+        $('#profile').addClass('fade active in');
     });
 </script>
 {%endblock%}
@@ -15,11 +39,10 @@
 <div class="offset1">
     <div class="container-fluid ">
         <ul id="myTab" class="nav nav-tabs span10">
-            <li class="active offset1"><a href="#home" data-toggle="tab">1. Basic Info</a></li>
-            <li><a href="#profile" data-toggle="tab">2. Pics</a></li>
+            <li class="active offset1" id="info_tab"><a href="#home" data-toggle="tab">1. Basic Info</a></li>
+            <li id="p_tab"><a href="#profile" data-toggle="tab">2. Pics</a></li>
             <li id="location"><a href="#location_tab" data-toggle="tab">3. Location</a></li>
-            <li><a href="#review_tab" data-toggle="tab">4. Review</a></li>
-
+            <li id="review"><a href="#review_tab" data-toggle="tab">4. Review</a></li>
         </ul>
     </div>
     <div id="myTabContent" class="tab-content">
@@ -83,6 +106,7 @@
                     </div>
                 </div>
                 </form>
+            <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
         </div>
         <div class="tab-pane fade" id="profile">
             <div class="container-fluid">
@@ -95,15 +119,18 @@
                     <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" id="inf_tab">Previous</button>
+            <button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>
         </div>
         <div class="tab-pane" id="location_tab">
             <div class="container-fluid">
                 <div class="offset3">
                     <h4>Pin point your item on the map</h4>
                 </div>
-                <div class="">
+                <div class="offset2">
                     <div id="map_canvas" class="big_map"></div>
                 </div>
+                <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
                 <button type="submit" class="btn btn-warning offset6">Submit Item</button>
             </div>
 

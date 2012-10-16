@@ -23,11 +23,19 @@ def add(request):
     if request.method == "POST":
         form = ItemForm(request.POST)
         if form.is_valid():
-            item = Item()
-            print "Heree"
             form.cleaned_data['seller']= request.user
-            print item.saveFields(form.cleaned_data)
-            print "&&&&&&&&"
+            data = form.cleaned_data
+            item =  Item(
+                name=data['name'],
+                description =data['description'],
+                condition=data['condition'],
+                price=data['price'],
+                longitude =data['longitude'],
+                latitude=data['latitude'],
+                seller =request.user,
+                category =data['category']
+            )
+            item.save()
 
     return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
 

@@ -13,30 +13,17 @@ class Item(models.Model):
     longitude = models.FloatField()
     latitude = models.FloatField()
     location = models.TextField()
-    buyer = models.ForeignKey(User , related_name="buyer" )
+    buyer = models.ForeignKey(User , related_name="buyer",null=True)
     seller = models.ForeignKey(User , related_name="seller" )
     discount = models.FloatField(default=0)
     sell_type = models.PositiveIntegerField(default=1)
-    publishing_date = models.DateTimeField(datetime.now())
+    publishing_date = models.DateTimeField(default=datetime.now())
     category = models.ForeignKey(Category)
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     slug = models.CharField(max_length=60)
 
-    def saveFields(self,data):
-        print(data['name'])
-        if self.create(
-                name=data['name'],
-                description =data['description'],
-                condition=data['condition'],
-                price=data['price'],
-                longitude =data['longitude'],
-                latitude=data['latitude'],
-                seller =data['seller']
-            ):
-            return True
-        else:
-            return False
+
 
 
 

@@ -1,6 +1,8 @@
 from django.db import models
 from categories.models import Category
 from django.contrib.auth.models import User
+from datetime import datetime
+
 # Create your models here.
 
 class Item(models.Model):
@@ -13,13 +15,29 @@ class Item(models.Model):
     location = models.TextField()
     buyer = models.ForeignKey(User , related_name="buyer" )
     seller = models.ForeignKey(User , related_name="seller" )
-    discount = models.FloatField()
+    discount = models.FloatField(default=0)
     sell_type = models.PositiveIntegerField(default=1)
-    publishing_date = models.DateTimeField()
+    publishing_date = models.DateTimeField(datetime.now())
     category = models.ForeignKey(Category)
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
-#    slug = models.CharField(max_length=30)
+    slug = models.CharField(max_length=60)
+
+    def saveFields(self,data):
+        print(data['name'])
+        if self.create(
+                name=data['name'],
+                description =data['description'],
+                condition=data['condition'],
+                price=data['price'],
+                longitude =data['longitude'],
+                latitude=data['latitude'],
+                seller =data['seller']
+            ):
+            return True
+        else:
+            return False
+
 
 
 

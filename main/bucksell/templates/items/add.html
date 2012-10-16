@@ -46,6 +46,7 @@
         </ul>
     </div>
     <div id="myTabContent" class="tab-content">
+
         <div class="tab-pane fade in active" id="home">
             <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
                 <div class="control-group">
@@ -53,13 +54,15 @@
 
                     <div class="controls">
                         <!--<input type="text" id="item_name">-->
-                        {{ form.item_name }}
+                        {{form.name.errors}}
+                        {{form.name}}
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Category:</label>
 
                     <div class="controls">
+                        {{form.category.errors}}
                         {{form.category}}
                         <!--<select>-->
                         <!--<option>Books</option>-->
@@ -73,6 +76,7 @@
                     <label class="control-label">Condition:</label>
 
                     <div class="controls">
+                        {{form.condition.errors}}
                         {{form.condition}}
 
                         <!--<label class="radio">-->
@@ -94,6 +98,7 @@
 
                     <div class="controls">
                         <!--<input type="text" id="item_price">-->
+                        {{form.price.errors}}
                         {{form.price}}
                     </div>
                 </div>
@@ -102,11 +107,15 @@
 
                     <div class="controls">
                         <!--<textarea rows="3" id="item_description"></textarea>-->
+                        {{form.description.errors}}
                         {{form.description}}
                     </div>
                 </div>
                 </form>
             <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
+          {{form.latitude}}
+           {{form.longitude}}
+
         </div>
         <div class="tab-pane fade" id="profile">
             <div class="container-fluid">
@@ -135,6 +144,7 @@
             </div>
 
         </div>
+        </form>
         <div class="tab-pane fade" id="review_tab">
             <div class="container-fluid">
 

@@ -35,7 +35,7 @@ function createMarker(latlng, name, html,map) {
         infowindow.open(map,marker);
     });
     google.maps.event.trigger(marker, 'click');
-    console.log(map);
+
     return marker;
 }
 //
@@ -43,6 +43,8 @@ function createMarker(latlng, name, html,map) {
 function display_map(position){
 
     geocoder = new google.maps.Geocoder();
+    $('#id_latitude').val(position.coords.latitude);
+    $('#id_longitude').val(position.coords.latitude);
     var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapsOptions={
         zoom:10,
@@ -65,6 +67,9 @@ function display_map(position){
             marker.setMap(null);
             marker = null;
         }
+        console.log(event.latLng.Xa+' '+event.latLng.Ya);
+        $('#id_latitude').val(event.latLng.Xa);
+        $('#id_longitude').val(event.latLng.Ya);
         marker = createMarker(event.latLng, "name", "<b>Location</b><br>"+event.latLng,map);
     });
 
@@ -74,29 +79,28 @@ function display_map(position){
         title: "User location"
     });
 
-//
-//    geocoder.geocode({'latLng': latlng}, function(results, status){
-//        if (status == google.maps.GeocoderStatus.OK)
-//        {
-//            if (results[1])
-//            {
-//                console.log('Address = '+JSON.stringify(results[0]['formatted_address']));
-//
-//                console.log('City = '+JSON.stringify(results[0]['address_components'][2]['long_name']));
-//
-//                console.log('State = '+JSON.stringify(results[0]['address_components'][4]['long_name']));
-////                console.log(JSON.stringify(results[0]['address_components'][4]['short_name']));
-//
-//                console.log('Country = '+JSON.stringify(results[0]['address_components'][5]['long_name']));
-////                console.log(JSON.stringify(results[0]['address_components'][5]['short_name']));
-//
-//            }
-//        }
-//        else
-//        {
-//            alert("Geocoder failed due to: " + status);
-//        }
-//    });
+    geocoder.geocode({'latLng': latlng}, function(results, status){
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            if (results[1])
+            {
+                console.log('Address = '+JSON.stringify(results[0]['formatted_address']));
+
+                console.log('City = '+JSON.stringify(results[0]['address_components'][2]['long_name']));
+
+                console.log('State = '+JSON.stringify(results[0]['address_components'][4]['long_name']));
+//                console.log(JSON.stringify(results[0]['address_components'][4]['short_name']));
+
+                console.log('Country = '+JSON.stringify(results[0]['address_components'][5]['long_name']));
+//                console.log(JSON.stringify(results[0]['address_components'][5]['short_name']));
+
+            }
+        }
+        else
+        {
+            alert("Geocoder failed due to: " + status);
+        }
+    });
 
 }
 

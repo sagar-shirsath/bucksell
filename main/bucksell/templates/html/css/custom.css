@@ -87,3 +87,22 @@
     height: 1px;
     margin-top: 50px;
 }
+.inbox_image{
+    height: 50px;
+    width: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+}
+
+.msg_margin{
+    margin: 10px 10px 10px 10px;
+}
+
+.listing_image{
+    height: 100px;
+    width: 100px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+}

@@ -16,6 +16,10 @@ def index(request):
     return render_to_response("items/index.html", {}, context_instance=RequestContext(request))
 
 
+def my_listing(request):
+    items = Item.objects.all()
+    return render_to_response("items/my_listing.html", {'items':items}, context_instance=RequestContext(request))
+
 @login_required
 def add(request):
 #    user, item = get_user_profile(request.user.id)
@@ -36,6 +40,7 @@ def add(request):
                 category =data['category']
             )
             item.save()
+            return HttpResponseRedirect(reverse('my_listing'))
 
     return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
 

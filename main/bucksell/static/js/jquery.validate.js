@@ -38,6 +38,9 @@
                 jQuery(this).find('input').bind('focus keypress click', function(){
                     jQuery("#" + SelfID).next('.' + options['error_class']).remove();
                     jQuery("#" + SelfID).removeClass(options['error_field_class']);
+                    jQuery("#" + SelfID).removeAttr('title');
+                    jQuery("#" + SelfID).removeAttr('rel');
+                    jQuery("#" + SelfID).tooltip('destroy');
                 });
             }
             else {
@@ -49,6 +52,9 @@
                         jQuery(this).remove();
                     });
                     jQuery(this).removeClass(options['error_field_class']);
+                    jQuery(this).removeAttr('rel');
+                    jQuery(this).removeAttr('title');
+                    jQuery(this).tooltip('destroy');
                 });
             }
         }

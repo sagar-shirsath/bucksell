@@ -9,29 +9,63 @@
         $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();
     });
-    $(document).on('click','#pics_tab',function(){
-        $('#p_tab').addClass('active');
-        $('#info_tab').removeClass('active');
-        $('#home').removeClass('active');
-        $('#profile').addClass('fade active in');
+    $(document).on('click', '#pics_tab', function () {
+        if ($('#id_name').attr('rel') == 'tooltip' || $('#id_price').attr('rel') == 'tooltip' ||
+                $('#id_description').attr('rel') == 'tooltip' || $('#id_category').attr('rel') == 'tooltip'
+                || $('#id_name').val() == '' || $('#id_price').val() == '' || $('#id_description').val() == '' || $('#id_category').val() == '') {
+            alert('Please Enter Valid Data');
+        }
+        else {
+            $('#p_tab').addClass('active');
+            $('#info_tab').removeClass('active');
+            $('#home').removeClass('active');
+            $('#profile').addClass('fade active in');
+        }
     })
-    $(document).on('click','#loc_tab',function(){
+    $(document).on('click', '#loc_tab', function () {
         $('#location').addClass('active');
         $('#p_tab').removeClass('active');
         $('#profile').removeClass('active');
         $('#location_tab').addClass('fade active in');
     });
-    $(document).on('click','#inf_tab',function(){
+    $(document).on('click', '#inf_tab', function () {
         $('#info_tab').addClass('active');
         $('#p_tab').removeClass('active');
         $('#profile').removeClass('active');
         $('#home').addClass('fade active in');
     });
-    $(document).on('click','#back_pics_tab',function(){
+    $(document).on('click', '#back_pics_tab', function () {
         $('#p_tab').addClass('active');
         $('#location').removeClass('active');
         $('#location_tab').removeClass('active');
         $('#profile').addClass('fade active in');
+    });
+    jQuery(function () {
+        jQuery("#id_name").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Item Name",
+            position:"right"
+        });
+        jQuery("#id_price").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Item price",
+            position:"right"
+        });
+        jQuery("#id_description").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Item description",
+            position:"right"
+        });
+        jQuery("#id_category").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please select category",
+            position:"right"
+        });
+        jQuery("#id_price").validate({
+            expression:"if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+            message:"Please enter valid price",
+            position:"right"
+        });
     });
 </script>
 {%endblock%}
@@ -50,7 +84,7 @@
         <div class="tab-pane fade in active" id="home">
             <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
                 <div class="control-group">
-                    <label class="control-label">Item Name:</label>
+                    <label class="control-label">Item Name <span style="color: red;">*</span></label>
 
                     <div class="controls">
                         <!--<input type="text" id="item_name">-->
@@ -59,7 +93,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Category:</label>
+                    <label class="control-label">Category <span style="color: red;">*</span></label>
 
                     <div class="controls">
                         {{form.category.errors}}
@@ -73,7 +107,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Condition:</label>
+                    <label class="control-label">Condition <span style="color: red;">*</span></label>
 
                     <div class="controls">
                         {{form.condition.errors}}
@@ -94,7 +128,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Price:</label>
+                    <label class="control-label">Price <span style="color: red;">*</span></label>
 
                     <div class="controls">
                         <!--<input type="text" id="item_price">-->
@@ -103,7 +137,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Description:</label>
+                    <label class="control-label">Description <span style="color: red;">*</span></label>
 
                     <div class="controls">
                         <!--<textarea rows="3" id="item_description"></textarea>-->
@@ -111,10 +145,10 @@
                         {{form.description}}
                     </div>
                 </div>
-                </form>
+            </form>
             <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
-          {{form.latitude}}
-           {{form.longitude}}
+            {{form.latitude}}
+            {{form.longitude}}
 
         </div>
         <div class="tab-pane fade" id="profile">

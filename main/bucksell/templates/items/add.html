@@ -83,6 +83,7 @@
 
         <div class="tab-pane fade in active" id="home">
             <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
+
                 <div class="control-group">
                     <label class="control-label">Item Name <span style="color: red;">*</span></label>
 
@@ -136,6 +137,7 @@
                         {{form.price}}
                     </div>
                 </div>
+
                 <div class="control-group">
                     <label class="control-label">Description <span style="color: red;">*</span></label>
 
@@ -145,7 +147,7 @@
                         {{form.description}}
                     </div>
                 </div>
-            </form>
+
             <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
             {{form.latitude}}
             {{form.longitude}}
@@ -177,10 +179,12 @@
                     <div id="map_canvas" class="big_map"></div>
                 </div>
                 <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
-                <button type="submit" class="btn btn-warning offset6">Submit Item</button>
+                <input type="submit" class="btn btn-warning offset6" value='Submit Item' />
+
             </div>
 
         </div>
+
         </form>
         <div class="tab-pane fade" id="review_tab">
             <div class="container-fluid">

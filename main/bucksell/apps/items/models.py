@@ -22,6 +22,11 @@ class Item(models.Model):
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     slug = models.CharField(max_length=60)
+    def save(self, *args, **kwargs):
+        strtime = "".join(str(time()).split("."))
+        string = "%s-%s" % (strtime[7:], self.name)
+        self.slug = slugify(string)
+        super(test, self).save(*args, **kwargs)
 
 
 

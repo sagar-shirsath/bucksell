@@ -19,10 +19,16 @@
             $("#message").fadeOut(5000, "linear");
         }
         else {
-            $('#p_tab').addClass('active');
-            $('#info_tab').removeClass('active');
-            $('#home').removeClass('active');
-            $('#profile').addClass('fade active in');
+            if($('input[type="radio"]:checked').length == 1){
+                $('#message').css('display', 'block');
+                $("#message").fadeOut(5000, "linear");
+            }else{
+                $('#p_tab').addClass('active');
+                $('#info_tab').removeClass('active');
+                $('#home').removeClass('active');
+                $('#profile').addClass('fade active in');
+            }
+
         }
     })
     $(document).on('click', '#loc_tab', function () {
@@ -173,14 +179,26 @@
                 <div class="row">
                     <div class="span3">
                         <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        <label class="radio" style="margin-left: 100px;">
+                            <input type="radio" name="default_pic" id="d1" value="mint" checked="true">
+                            Default Pic
+                        </label>
                         {{form.image1}}
                     </div>
                     <div class="span3">
                         <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        <label class="radio" style="margin-left: 100px;">
+                            <input type="radio" name="default_pic" id="d2" value="mint">
+                            Default Pic
+                        </label>
                         {{form.image2}}
                     </div>
                     <div class="span3">
                         <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        <label class="radio" style="margin-left: 100px;">
+                            <input type="radio" name="default_pic" id="d3" value="mint">
+                            Default Pic
+                        </label>
                         {{form.image3}}
                     </div>
                 </div>

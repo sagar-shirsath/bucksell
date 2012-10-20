@@ -47,7 +47,7 @@ function display_map(position){
     $('#id_longitude').val(position.coords.latitude);
     var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapsOptions={
-        zoom:10,
+        zoom:16,
         center: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         mapTypeControl: true,
         mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},

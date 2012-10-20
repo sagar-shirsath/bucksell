@@ -6,6 +6,7 @@
 <script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#location_tab').hide();
         $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();
     });
@@ -13,7 +14,9 @@
         if ($('#id_name').attr('rel') == 'tooltip' || $('#id_price').attr('rel') == 'tooltip' ||
                 $('#id_description').attr('rel') == 'tooltip' || $('#id_category').attr('rel') == 'tooltip'
                 || $('#id_name').val() == '' || $('#id_price').val() == '' || $('#id_description').val() == '' || $('#id_category').val() == '') {
-            alert('Please Enter Valid Data');
+
+            $('#message').css('display','block');
+            $("#message").fadeOut(5000,"linear");
         }
         else {
             $('#p_tab').addClass('active');
@@ -27,6 +30,7 @@
         $('#p_tab').removeClass('active');
         $('#profile').removeClass('active');
         $('#location_tab').addClass('fade active in');
+        $('#location_tab').show();
     });
     $(document).on('click', '#inf_tab', function () {
         $('#info_tab').addClass('active');
@@ -40,6 +44,11 @@
         $('#location_tab').removeClass('active');
         $('#profile').addClass('fade active in');
     });
+//    $(document).on('click','#p_tab',function(e){
+//        e.preventDefault();
+//        $(this).removeClass('active');
+//
+//    });
     jQuery(function () {
         jQuery("#id_name").validate({
             expression:"if (VAL) return true; else return false;",
@@ -70,13 +79,15 @@
 </script>
 {%endblock%}
 {% block content%}
+<div class="alert alert-error offset3 span5" style="display: none;" id="message">
+<div class="offset1">Please enter valid data !!!</div>
+</div>
 <div class="offset1">
     <div class="container-fluid ">
         <ul id="myTab" class="nav nav-tabs span10">
             <li class="active offset1" id="info_tab"><a href="#home" data-toggle="tab">1. Basic Info</a></li>
-            <li id="p_tab"><a href="#profile" data-toggle="tab">2. Pics</a></li>
-            <li id="location"><a href="#location_tab" data-toggle="tab">3. Location</a></li>
-            <li id="review"><a href="#review_tab" data-toggle="tab">4. Review</a></li>
+            <li id="p_tab"><a href="#">2. Pics</a></li>
+            <li id="location"><a href="#">3. Location</a></li>
         </ul>
     </div>
     <div id="myTabContent" class="tab-content">
@@ -165,19 +176,6 @@
             <button type="button" class="btn btn-primary" id="inf_tab">Previous</button>
             <button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>
         </div>
-        <div class="tab-pane" id="location_tab">
-            <div class="container-fluid">
-                <div class="offset3">
-                    <h4>Pin point your item on the map</h4>
-                </div>
-                <div class="offset2">
-                    <div id="map_canvas" class="big_map"></div>
-                </div>
-                <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
-                <button type="submit" class="btn btn-warning offset6">Submit Item</button>
-            </div>
-
-        </div>
         </form>
         <div class="tab-pane fade" id="review_tab">
             <div class="container-fluid">
@@ -189,5 +187,17 @@
         </div>
     </div>
 </div>
+<div class="" id="location_tab">
+    <div class="container-fluid">
+        <div class="offset3">
+            <h4>Pin point your item on the map</h4>
+        </div>
+        <div class="offset2">
+            <div id="map_canvas" class="big_map"></div>
+        </div>
+        <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
+        <button type="submit" class="btn btn-warning offset6">Submit Item</button>
+    </div>
 
+</div>
 {% endblock %}

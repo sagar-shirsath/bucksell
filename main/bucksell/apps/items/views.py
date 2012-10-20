@@ -61,3 +61,6 @@ def edit(request):
 
     return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
 
+def view(request):
+
+	return render_to_response("items/views.html", {}, context_instance=RequestContext(request))

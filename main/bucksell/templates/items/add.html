@@ -32,11 +32,23 @@
         }
     })
     $(document).on('click', '#loc_tab', function () {
-        $('#location').addClass('active');
-        $('#p_tab').removeClass('active');
-        $('#profile').removeClass('active');
-        $('#location_tab').addClass('fade active in');
-        $('#location_tab').show();
+        var img_flag = false;
+        $.each($('img'),function(){
+            if($(this).attr('src')=='/static/img/item_pics.jpg'){
+                img_flag=true
+            }
+        });
+        if(img_flag==true){
+            $('#img_message').css('display', 'block');
+            $("#img_message").fadeOut(5000, "linear");
+        }
+        else{
+            $('#location').addClass('active');
+            $('#p_tab').removeClass('active');
+            $('#profile').removeClass('active');
+            $('#location_tab').addClass('fade active in');
+            $('#location_tab').show();
+        }
     });
     $(document).on('click', '#inf_tab', function () {
         $('#info_tab').addClass('active');
@@ -88,6 +100,9 @@
 {% block content%}
 <div class="alert alert-error offset3 span5" style="display: none;" id="message">
     <div class="offset1">Please enter valid data !!!</div>
+</div>
+<div class="alert alert-error offset3 span5" style="display: none;" id="img_message">
+    <div class="offset1">Please upload all 3 images.</div>
 </div>
 <div class="offset1">
     <div class="container-fluid ">

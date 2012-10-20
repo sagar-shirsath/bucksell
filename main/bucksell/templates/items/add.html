@@ -15,8 +15,8 @@
                 $('#id_description').attr('rel') == 'tooltip' || $('#id_category').attr('rel') == 'tooltip'
                 || $('#id_name').val() == '' || $('#id_price').val() == '' || $('#id_description').val() == '' || $('#id_category').val() == '') {
 
-            $('#message').css('display','block');
-            $("#message").fadeOut(5000,"linear");
+            $('#message').css('display', 'block');
+            $("#message").fadeOut(5000, "linear");
         }
         else {
             $('#p_tab').addClass('active');
@@ -45,11 +45,11 @@
         $('#profile').addClass('fade active in');
         $('#location_tab').hide();
     });
-//    $(document).on('click','#p_tab',function(e){
-//        e.preventDefault();
-//        $(this).removeClass('active');
-//
-//    });
+    //    $(document).on('click','#p_tab',function(e){
+    //        e.preventDefault();
+    //        $(this).removeClass('active');
+    //
+    //    });
     jQuery(function () {
         jQuery("#id_name").validate({
             expression:"if (VAL) return true; else return false;",
@@ -81,7 +81,7 @@
 {%endblock%}
 {% block content%}
 <div class="alert alert-error offset3 span5" style="display: none;" id="message">
-<div class="offset1">Please enter valid data !!!</div>
+    <div class="offset1">Please enter valid data !!!</div>
 </div>
 <div class="offset1">
     <div class="container-fluid ">
@@ -160,9 +160,9 @@
                     </div>
                 </div>
 
-            <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
-            {{form.latitude}}
-            {{form.longitude}}
+                <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
+                {{form.latitude}}
+                {{form.longitude}}
 
         </div>
         <div class="tab-pane fade" id="profile">
@@ -170,13 +170,19 @@
                 <div>
                     <h4>Choose Files :</h4>
                 </div>
-                <div class="item-listing">
-                    {{form.image1}}
-                    {{form.image2}}
-                    {{form.image3}}
-                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
-                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
-                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                <div class="row">
+                    <div class="span3">
+                        <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        {{form.image1}}
+                    </div>
+                    <div class="span3">
+                        <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        {{form.image2}}
+                    </div>
+                    <div class="span3">
+                        <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                        {{form.image3}}
+                    </div>
                 </div>
             </div>
             <button type="button" class="btn btn-primary" id="inf_tab">Previous</button>

@@ -43,6 +43,7 @@
         $('#location').removeClass('active');
         $('#location_tab').removeClass('active');
         $('#profile').addClass('fade active in');
+        $('#location_tab').hide();
     });
 //    $(document).on('click','#p_tab',function(e){
 //        e.preventDefault();
@@ -94,6 +95,7 @@
 
         <div class="tab-pane fade in active" id="home">
             <form class="form-horizontal" id="item_form" method="POST" action=".">{% csrf_token %}
+
                 <div class="control-group">
                     <label class="control-label">Item Name <span style="color: red;">*</span></label>
 
@@ -147,6 +149,7 @@
                         {{form.price}}
                     </div>
                 </div>
+
                 <div class="control-group">
                     <label class="control-label">Description <span style="color: red;">*</span></label>
 
@@ -156,7 +159,7 @@
                         {{form.description}}
                     </div>
                 </div>
-            </form>
+
             <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
             {{form.latitude}}
             {{form.longitude}}
@@ -168,9 +171,12 @@
                     <h4>Choose Files :</h4>
                 </div>
                 <div class="item-listing">
-                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                    {{form.image1}}
+                    {{form.image2}}
+                    {{form.image3}}
+                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
                 </div>
             </div>
             <button type="button" class="btn btn-primary" id="inf_tab">Previous</button>
@@ -198,6 +204,5 @@
         <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
         <button type="submit" class="btn btn-warning offset6">Submit Item</button>
     </div>
-
 </div>
 {% endblock %}

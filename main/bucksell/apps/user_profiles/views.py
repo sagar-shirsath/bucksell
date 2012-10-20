@@ -105,7 +105,7 @@ def handle_uploaded_image(image,size=(100,100)):
     imageImage = Image.open(imagefile)
     size = imageImage.size
     if size[0] >= width or size[1] >= height :
-        resizedImage = imageImage.resize((width,height))
+        resizedImage = imageImage.resize((width,height),Image.ANTIALIAS)
     else:
         resizedImage = imageImage
 

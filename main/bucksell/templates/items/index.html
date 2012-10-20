@@ -42,21 +42,23 @@
                 <label>Refine Location</label>
                 <input type="text" placeholder="City or university" class="span12">
                 <label>Categories</label>
+                {% for category in categories%}
                 <label class="checkbox">
-                    <input type="checkbox"> All
+                    <input type="checkbox"> {{category}}
                 </label>
-                <label class="checkbox">
-                    <input type="checkbox"> Books
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox"> Electronics
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox"> Music
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox"> Movie
-                </label>
+                {% endfor %}
+                <!--<label class="checkbox">-->
+                    <!--<input type="checkbox"> Books-->
+                <!--</label>-->
+                <!--<label class="checkbox">-->
+                    <!--<input type="checkbox"> Electronics-->
+                <!--</label>-->
+                <!--<label class="checkbox">-->
+                    <!--<input type="checkbox"> Music-->
+                <!--</label>-->
+                <!--<label class="checkbox">-->
+                    <!--<input type="checkbox"> Movie-->
+                <!--</label>-->
             </form>
             <div class="btn-group span2" data-toggle="buttons-radio">
                 <button type="button" class="btn btn-primary active">For sell</button>

@@ -10,10 +10,11 @@ from datetime import date
 from items.forms import ItemForm
 from items.models import Item
 from user_profiles.views import get_user_profile
-
+from categories.models import Category
 @login_required
 def index(request):
-    return render_to_response("items/index.html", {}, context_instance=RequestContext(request))
+    categories = Category.objects.all()
+    return render_to_response("items/index.html", {'categories':categories}, context_instance=RequestContext(request))
 
 
 def my_listing(request):

@@ -27,37 +27,73 @@ def add(request):
     form = ItemForm()
     if request.method == "POST":
         form = ItemForm(request.POST)
+        print(request.POST);
         if form.is_valid():
             form.cleaned_data['seller']= request.user
             data = form.cleaned_data
+            print(data)
             item =  Item(
                 name=data['name'],
                 description =data['description'],
                 condition=data['condition'],
                 price=data['price'],
-                longitude =data['longitude'],
-                latitude=data['latitude'],
+                longitude =data['longitude'] or 0,
+                latitude=data['latitude'] or 0,
                 seller =request.user,
                 category =data['category']
             )
-            item.save()
+            if(item.save()):
+                request.flash['message'] = "Item saved successfully"
+            else:
+                request.flash['message'] = "Sorry can't save item"
             return HttpResponseRedirect(reverse('my_listing'))
+        else:
+            request.flash['message'] = "Invalid data"
 
     return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
 
 @login_required
-def edit(request):
-    user, item = get_user_item(request.user.id)
+def edit(request,slug=""):
+    print  slug
+    item = get_object_or_404(Item,slug=slug)
+    if(item.seller != request.user):
+        request.flash['message'] = "Sorry you are not authorised to edit this item"
+        return HttpResponseRedirect(reverse('my_listing'))
+#    print(item)
 
     form = ItemForm(initial={
-        'item_name': item.item_name,
-        'price': item.price,
+        'name': item.name,
+        'description': item.price,
         'description': item.description,
         'condition': item.condition,
-        'category': item.category,
+        'price': item.price,
         'longitude': item.longitude,
-        'latitude': item.latitude
+        'latitude': item.latitude,
+        'category': item.category
     })
 
-    return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        print(request.POST);
+        if form.is_valid():
+            data = form.cleaned_data
+            item.name =data['name']
+            item.description =data['description']
+            item.condition=data['condition']
+            item.price=data['price']
+            item.longitude =data['longitude'] or 0
+            item.latitude=data['latitude'] or 0
+            item.seller =request.user
+            item.category =data['category']
+            item.save()
+            if(item.save()):
+                request.flash['message'] = "Item saved successfully"
+            else:
+                request.flash['message'] = "Sorry can't save item"
+
+            return HttpResponseRedirect(reverse('my_listing'))
+        else:
+            request.flash['message'] = "Form data is not valid"
+
+    return render_to_response("items/edit.html", {'form': form,'slug':slug}, context_instance=RequestContext(request))
 

@@ -2,7 +2,8 @@ from django.db import models
 from categories.models import Category
 from django.contrib.auth.models import User
 from datetime import datetime
-
+from django.template.defaultfilters import slugify
+import random
 # Create your models here.
 
 class Item(models.Model):
@@ -23,10 +24,9 @@ class Item(models.Model):
     is_sold = models.BooleanField(default=False)
     slug = models.CharField(max_length=60)
     def save(self, *args, **kwargs):
-        strtime = "".join(str(time()).split("."))
-        string = "%s-%s" % (strtime[7:], self.name)
+        string = "%s-%s" % (random.randrange(0, 101, 2), self.name)
         self.slug = slugify(string)
-        super(test, self).save(*args, **kwargs)
+        super(Item, self).save(*args, **kwargs)
 
 
 

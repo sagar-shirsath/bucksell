@@ -12,9 +12,9 @@ class ItemForm(forms.Form):
     longitude = forms.CharField(widget=forms.HiddenInput,required=False)
     latitude = forms.CharField(widget=forms.HiddenInput,required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.filter())
-    image1 = forms.ImageField()
-    image2 = forms.ImageField()
-    image3 = forms.ImageField()
+    image1 = forms.ImageField(required=False)
+    image2 = forms.ImageField(required=False)
+    image3 = forms.ImageField(required=False)
 
 
 class ImageUploadForm(forms.Form):

@@ -122,7 +122,6 @@ def handle_uploaded_image(image,size=(100,100)):
 def is_image(file):
     flag = 1
     file_type = file.content_type.split('/')[0]
-    #                if len(file.name.split('.')) == 1:
 
     if file_type in settings.IMAGE_SUPPORTED_TYPES:
         if file._size > settings.IMAGE_SUPPORTED_TYPES:

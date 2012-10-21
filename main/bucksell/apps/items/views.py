@@ -26,7 +26,7 @@ def my_listing(request):
 
 def upload_item_images(image1,image2,image3,item_id):
     img_obj = ItemPhoto(item=item_id)
-    img_obj.photo = image1
+    img_obj.photo.save(image1)
     img_obj.save()
     return True
 @login_required
@@ -35,13 +35,17 @@ def add(request):
     form = ItemForm()
     if request.method == "POST":
         form = ItemForm(request.POST,request.FILES)
-        print(request.POST);
         if form.is_valid():
             form.cleaned_data['seller']= request.user
             data = form.cleaned_data
-            image1 = form.cleaned_data['image1']
-            image2 = form.cleaned_data['image2']
-            image3 = form.cleaned_data['image3']
+            image1 = data['image1']
+            image2 = data['image2']
+            image3 = data['image3']
+            print(form)
+            print(image1)
+            print(image2)
+            print(image3)
+
             if is_image(image1) and is_image(image2) and is_image(image3):
                 request.flash['message'] = "Sorry can't Upload the Images"
                 return HttpResponseRedirect(reverse('add'))
@@ -61,7 +65,7 @@ def add(request):
                 request.flash['message'] = "Item saved successfully"
             else:
                 request.flash['message'] = "Sorry can't save item"
-            return HttpResponseRedirect(reverse('add'))
+            return HttpResponseRedirect(reverse('add_item'))
         else:
             request.flash['message'] = "Invalid data"
             image_id = upload_item_images(image1,image2,image3,item.id)

@@ -44,7 +44,27 @@ function display_map(position){
 
     geocoder = new google.maps.Geocoder();
     $('#id_latitude').val(position.coords.latitude);
-    $('#id_longitude').val(position.coords.latitude);
+    $('#id_longitude').val(position.coords.longitude);
+
+    var ilat = position.coords.latitude, ilong = position.coords.longitude;
+    var locations = [
+        ['Item 1', 18.520163803962166,73.8522221772156,2],
+        ['Item 2', 18.519349945198922, 73.8575007645569,1],
+        ['Item 2', 18.520123111115968, 73.85172865075685,1],
+        ['Item 2', 18.522178087747562, 73.85074159783937,1],
+        ['Item 2', 18.523622660500678, 73.85988256616213,1],
+        ['Item 2', 18.523887158415445, 73.86247894448854,1],
+        ['Item 2', 18.52350058440203, 73.86361620111086,1],
+        ['Item 2', 18.523724390516314, 73.84986183328249,1],
+        ['Item 2', 18.520774195493225, 73.84891769570925,1],
+        ['Item 2', 18.523276777994827, 73.84621402902224,1],
+        ['Item 2', 18.525514828885502, 73.85820886773683,1],
+        ['Item 2', 18.527061101480598, 73.85820886773683,1],
+        ['Item 2', 18.523643006508646, 73.84411117715456,1],
+        ['Item 2', 18.519858607379767, 73.84466907662966,1]
+    ];
+
+
     var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapsOptions={
         zoom:16,
@@ -73,8 +93,29 @@ function display_map(position){
         marker = createMarker(event.latLng, "name", "<b>Location</b><br>"+event.latLng,map);
     });
 
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            animation: google.maps.Animation.DROP,
+            map: map,
+            title:locations[i][0]
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
     var marker = new google.maps.Marker({
         position: latlng,
+        animation: google.maps.Animation.DROP,
         map: map,
         title: "User location"
     });

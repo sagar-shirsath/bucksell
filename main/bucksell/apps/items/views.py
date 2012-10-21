@@ -97,3 +97,6 @@ def edit(request,slug=""):
 
     return render_to_response("items/edit.html", {'form': form,'slug':slug}, context_instance=RequestContext(request))
 
+def view(request):
+
+	return render_to_response("items/views.html", {}, context_instance=RequestContext(request))

@@ -35,14 +35,14 @@ class Item(models.Model):
 
 class ItemPhoto():
     item = models.ForeignKey(Item)
-    photo = models.ImageField(upload_to='images/items/')
-    photo1 = models.ImageField(upload_to='images/items/')
-    photo2 = models.ImageField(upload_to='images/items/')
-    photo3 = models.ImageField(upload_to='images/items/')
-    feedback_photo = models.ImageField(upload_to='images/items/')
-    thumbnail = models.ImageField(upload_to='images/items/thumbnails')
-    thumbnail1 = models.ImageField(upload_to='images/items/thumbnails')
-    thumbnail2 = models.ImageField(upload_to='images/items/thumbnails')
-    thumbnail3 = models.ImageField(upload_to='images/items/thumbnails')
+    photo = models.ImageField(upload_to='images/items/',null=True)
+    photo1 = models.ImageField(upload_to='images/items/',null=True)
+    photo2 = models.ImageField(upload_to='images/items/',null=True)
+    photo3 = models.ImageField(upload_to='images/items/',null=True)
+    feedback_photo = models.ImageField(upload_to='images/items/',null=True)
+    thumbnail = models.ImageField(upload_to='images/items/thumbnails',null=True)
+    thumbnail1 = models.ImageField(upload_to='images/items/thumbnails',null=True)
+    thumbnail2 = models.ImageField(upload_to='images/items/thumbnails',null=True)
+    thumbnail3 = models.ImageField(upload_to='images/items/thumbnails',null=True)
 
 

@@ -119,6 +119,20 @@ def handle_uploaded_image(image,size=(100,100)):
 
     return (filename, content)
 
+def is_image(file):
+    flag = 1
+    file_type = file.content_type.split('/')[0]
+    #                if len(file.name.split('.')) == 1:
+
+    if file_type in settings.IMAGE_SUPPORTED_TYPES:
+        if file._size > settings.IMAGE_SUPPORTED_TYPES:
+            request.flash['message'] = "Sorry Can't Upload the image , Too large size"
+            flag = 0
+    else:
+        request.flash['message'] = "Sorry Can't Upload the image , image type is not supported"
+        flag = 0
+    return flag
+
 def upload_profile_photo(request):
     if request.method == 'POST':
         flag = 1;
@@ -127,17 +141,7 @@ def upload_profile_photo(request):
             user , profile = get_user_profile(request.user.id)
             file = form.cleaned_data.get('photo')
             if file:
-                file_type = file.content_type.split('/')[0]
-#                if len(file.name.split('.')) == 1:
-
-                if file_type in settings.IMAGE_SUPPORTED_TYPES:
-                    if file._size > settings.IMAGE_SUPPORTED_TYPES:
-                        request.flash['message'] = "Sorry Can't Upload the image , Too large size"
-                        flag = 0
-                else:
-                    request.flash['message'] = "Sorry Can't Upload the image , image type is not supported"
-                    flag = 0
-
+                flag = is_image(file)
                 if(flag):
                     if(profile.photo):
                         profile.photo.delete()

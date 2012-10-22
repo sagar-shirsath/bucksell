@@ -33,7 +33,7 @@ class Item(models.Model):
 
 
 
-class ItemPhoto():
+class ItemPhoto(models.Model):
     item = models.ForeignKey(Item)
     photo = models.ImageField(upload_to='images/items/',null=True)
     photo1 = models.ImageField(upload_to='images/items/',null=True)

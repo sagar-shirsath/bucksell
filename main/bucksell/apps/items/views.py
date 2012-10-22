@@ -41,14 +41,10 @@ def add(request):
             image1 = data['image1']
             image2 = data['image2']
             image3 = data['image3']
-            print(form)
-            print(image1)
-            print(image2)
-            print(image3)
-
-            if is_image(image1) and is_image(image2) and is_image(image3):
+            print(data)
+            if not (is_image(image1) and is_image(image2) and is_image(image3)):
                 request.flash['message'] = "Sorry can't Upload the Images"
-                return HttpResponseRedirect(reverse('add'))
+                return HttpResponseRedirect(reverse('add_item'))
             item =  Item(
                 name=data['name'],
                 description =data['description'],
@@ -61,14 +57,15 @@ def add(request):
             )
 
             item_obj = item.save()
-            if(item_obj):
-                request.flash['message'] = "Item saved successfully"
-            else:
-                request.flash['message'] = "Sorry can't save item"
-            return HttpResponseRedirect(reverse('add_item'))
+            upload_item_images(image1,image2,image3,item)
+            request.flash['message'] = "Item saved successfully"
+
+#            else:
+#                request.flash['message'] = "Sorry can't save item"
+#                return HttpResponseRedirect(reverse('add_item'))
         else:
             request.flash['message'] = "Invalid data"
-            image_id = upload_item_images(image1,image2,image3,item.id)
+
 
     return render_to_response("items/add.html", {'form': form}, context_instance=RequestContext(request))
 

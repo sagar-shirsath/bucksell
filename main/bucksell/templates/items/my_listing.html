@@ -12,7 +12,12 @@
             {% for item in items%}
 
                 <div class="span2 msg_margin">
-                    <div class="listing_image">{{item.name}}</div>
+
+                    <div class="listing_image">{% if item.itemphoto_set.all.0%}
+                        {{item.itemphoto_set.all.0.photo.url}}
+                        {%else%}
+                        No Image
+                        {% endif %}</div>
                     <a href="{%url item_edit item.slug%}" class="btn btn-primary msg_margin">Edit</a>
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                         <input type="hidden" name="cmd" value="_xclick">

@@ -97,12 +97,28 @@ function display_map(position){
 
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) {
+//    for (i = 0; i < locations.length; i++) {
+//        marker = new google.maps.Marker({
+//            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+//            animation: google.maps.Animation.DROP,
+//            map: map,
+//            title:locations[i][0]
+//        });
+//
+//        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//            return function() {
+//                infowindow.setContent(locations[i][0]);
+//                infowindow.open(map, marker);
+//            }
+//        })(marker, i));
+//    }
+    $.each($('input[type=hidden]'),function(){
+
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            position: new google.maps.LatLng($(this).attr('rel'), $(this).attr('rev')),
             animation: google.maps.Animation.DROP,
             map: map,
-            title:locations[i][0]
+            title:$(this).attr('value')
         });
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -111,8 +127,11 @@ function display_map(position){
                 infowindow.open(map, marker);
             }
         })(marker, i));
-    }
+//        console.log($(this).attr('value'));
+//        console.log($(this).attr('rel'));
+//        console.log($(this).attr('rev'));
 
+    });
     var marker = new google.maps.Marker({
         position: latlng,
         animation: google.maps.Animation.DROP,

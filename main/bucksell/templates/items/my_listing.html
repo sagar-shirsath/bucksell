@@ -14,7 +14,11 @@
                 <div class="span2 msg_margin">
 
                     <div class="listing_image">{% if item.itemphoto_set.all.0%}
-                        {{item.itemphoto_set.all.0.photo.url}}
+                        {% if item.itemphoto_set.all.0.photo1%}
+                        <img src={{item.itemphoto_set.all.0.photo1.url}} />
+                        {% else %}
+                        No Image
+                        {% endif %}
                         {%else%}
                         No Image
                         {% endif %}</div>

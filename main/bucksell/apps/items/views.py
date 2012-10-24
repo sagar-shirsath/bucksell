@@ -18,7 +18,8 @@ from time import time
 @login_required
 def index(request):
     categories = Category.objects.all()
-    return render_to_response("items/index.html", {'categories':categories}, context_instance=RequestContext(request))
+    items = Item.objects.all()
+    return render_to_response("items/index.html", {'categories':categories , 'items':items}, context_instance=RequestContext(request))
 
 
 def my_listing(request):

@@ -28,14 +28,23 @@
 //            $('#loginBox').css('display','block');
     });
 </script>
+        {% for item in items %}
+        {{item.name}}
+        {{item.latitude}}
+        {{item.location}}
+        {{item.location}}
+        {% if item.itemphoto_set.all.0.photo1%}
+         <img src={{item.itemphoto_set.all.0.photo1.url}} width="50px" height="50px" />
+        {% endif %}
+        {% endfor %}
 <div class="navbar navbar-inverse navbar-static-top">
     {% if user.is_authenticated %}
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="/">Bucksell</a>
             <ul class="nav">
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Post</a></li>
+                <li><a href={%url item_index %}>Browse</a></li>items
+                <li><a href={%url my_listing %}>Post</a></li>
             </ul>
             <ul class="nav pull-right">
                 <li>
@@ -55,7 +64,7 @@
                         {{user.username}} <b class="caret"></b></button>
                     <ul class="dropdown-menu">
                         <li><a href="{%url edit_profile%}">Profile Edit</a></li>
-                        <li><a href="#">Your Posts</a></li>
+                        <li><a href="{%url my_listing %}">Your Posts</a></li>
                         <li class="divider"></li>
                         <li><a href="{%url auth_logout%}">Logout</a></li>
                     </ul>

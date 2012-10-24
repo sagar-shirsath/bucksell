@@ -52,6 +52,7 @@
             $('#profile').removeClass('active');
             $('#location_tab').addClass('fade active in');
             $('#location_tab').show();
+            $('#map_canvas').css('opacity','1');
         }
     });
     $(document).on('click', '#inf_tab', function () {
@@ -243,11 +244,12 @@
             <h4>Pin point your item on the map</h4>
         </div>
         <div class="offset2">
-            <div id="map_canvas" class="big_map"></div>
+
         </div>
         <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
         <button type="submit" class="btn btn-warning offset6">Submit Item</button>
         </form>
     </div>
 </div>
+<div id="map_canvas" class="big_map offset2" style="opacity: 0;"></div>
 {% endblock %}

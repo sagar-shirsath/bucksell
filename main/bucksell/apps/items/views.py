@@ -23,7 +23,7 @@ def index(request):
 
 
 def my_listing(request):
-    items = Item.objects.all()
+    items = Item.objects.filter(seller = request.user)
     return render_to_response("items/my_listing.html", {'items':items}, context_instance=RequestContext(request))
 
 def upload_item_images(image1,image2,image3,item):
@@ -80,7 +80,6 @@ def add(request):
             image1 = data['image1']
             image2 = data['image2']
             image3 = data['image3']
-            print(data)
             if not (is_image(image1) and is_image(image2) and is_image(image3)):
                 request.flash['message'] = "Sorry can't Upload the Images"
                 return HttpResponseRedirect(reverse('add_item'))
@@ -110,7 +109,6 @@ def add(request):
 
 @login_required
 def edit(request,slug=""):
-    print  slug
     item = get_object_or_404(Item,slug=slug)
     if(item.seller != request.user):
         request.flash['message'] = "Sorry you are not authorised to edit this item"
@@ -129,7 +127,6 @@ def edit(request,slug=""):
 
     if request.method == "POST":
         form = ItemForm(request.POST)
-        print(request.POST);
         if form.is_valid():
             data = form.cleaned_data
             item.name =data['name']
@@ -150,8 +147,8 @@ def edit(request,slug=""):
         else:
             request.flash['message'] = "Form data is not valid"
 
-    return render_to_response("items/edit.html", {'form': form,'slug':slug}, context_instance=RequestContext(request))
+    return render_to_response("items/edit.html", {'form': form,'slug':slug , 'item':item}, context_instance=RequestContext(request))
 
-def view(request):
+def view(request,slug=""):
 
     return render_to_response("items/views.html", {}, context_instance=RequestContext(request))

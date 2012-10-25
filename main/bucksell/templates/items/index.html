@@ -25,7 +25,7 @@
 
 {% block content %}
 {% for item in items %}
-<input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}>
+<input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}} id="{{item.itemphoto_set.all.0.photo1.url}}">
 {% if item.itemphoto_set.all.0.photo1%}
 <img src={{item.itemphoto_set.all.0.photo1.url}} width="50px" height="50px" />
 {% endif %}
@@ -90,8 +90,8 @@
         </div>
         <div class="span2 item-info">
             <div class="row item-info1">
-                <img src="{{STATIC_URL}}img/100x100.png" class="img-polaroid offset2">
-                <span class="offset3">Item Name</span>
+                <img src="{{STATIC_URL}}img/100x100.png" class="img-polaroid offset2" id="item_image_detail" height="100px" width="100px">
+                <span class="offset3" id="item_name_detail">Item Name</span>
             </div>
             <div class="row item-info1 offset1">
                 Seller : <img src="{{STATIC_URL}}img/user_32.png">

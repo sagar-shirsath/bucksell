@@ -1,4 +1,24 @@
 {% extends "site_base.html" %}
+{%block javascripts%}
+<script type="text/javascript">
+
+    $(document).on('click','#img2',function(){
+        var src = $(this).attr('src');
+        $('#img1').attr('src',src);
+    });
+
+    $(document).on('click','#img3',function(){
+        var src = $(this).attr('src');
+        $('#img1').attr('src',src);
+    });
+
+    $(document).on('click','#img4',function(){
+        var src = $(this).attr('src');
+        $('#img1').attr('src',src);
+    });
+
+</script>
+{% endblock %}
 {% block content%}
 <div class="navbar span9 offset1">
     <div class="navbar-inner">
@@ -50,19 +70,20 @@
             </table>
         </div>
         <div class="span4 offset1">
-            <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid">
+            <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid" id="img1" style="height: 202;width: 202;">
+
             <div class="container" style="margin-top: 10px;">
-            <div class="row">
-                <div class="span1">
-                    <img src="{{item.itemphoto_set.all.0.thumbnail1.url}} " class="img-polaroid">
+                <div class="row">
+                    <div class="span1">
+                        <img src="{{item.itemphoto_set.all.0.thumbnail1.url}} " class="img-polaroid" id="img2">
+                    </div>
+                    <div class="span1">
+                        <img src="{{item.itemphoto_set.all.0.thumbnail2.url}} " class="img-polaroid" id="img3">
+                    </div>
+                    <div class="span1">
+                        <img src="{{item.itemphoto_set.all.0.thumbnail3.url}} " class="img-polaroid" id="img4">
+                    </div>
                 </div>
-                <div class="span1">
-                    <img src="{{item.itemphoto_set.all.0.thumbnail2.url}} " class="img-polaroid">
-                </div>
-                <div class="span1">
-                    <img src="{{item.itemphoto_set.all.0.thumbnail3.url}} " class="img-polaroid">
-                </div>
-            </div>
 
 
             </div>

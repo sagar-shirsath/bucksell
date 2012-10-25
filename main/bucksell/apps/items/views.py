@@ -27,48 +27,53 @@ def my_listing(request):
     return render_to_response("items/my_listing.html", {'items':items}, context_instance=RequestContext(request))
 
 def upload_item_images(image1,image2,image3,item):
-    size = (50,50)
+    thumbnail_size = (50,50)
+    images_size = (192,192)
     path = settings.MEDIA_ROOT+"/images/items/"
-    photo_name1 = ("%d_%s_1.%s"%(item.id,("%s"%time())[1:6],"jpg"))
-    photo_name2 = ("%d_%s_2.%s"%(item.id,("%s"%time())[1:6],"jpg"))
-    photo_name3 = ("%d_%s_3.%s"%(item.id,("%s"%time())[1:6],"jpg"))
+    photo_name1 = ("%d_%s_1"%(item.id,("%s"%time())[1:6]))
+    photo_name2 = ("%d_%s_2"%(item.id,("%s"%time())[1:6]))
+    photo_name3 = ("%d_%s_3"%(item.id,("%s"%time())[1:6]))
 
-    photo_thumbnail_path1 = ("%d_thumbnail_%s_1.%s"%(item.id,("%s"%time())[1:6],"jpg"))
-    photo_thumbnail_path2= ("%d_%s_2%s"%(item.id,("%s"%time())[1:6],item.slug))
-    photo_thumbnail_path3= ("%d_%s_3%s"%(item.id,("%s"%time())[1:6],item.slug))
+    photo_thumbnail_path1 = ("%d_thumbnail_%s_1"%(item.id,("%s"%time())[1:6]))
+    photo_thumbnail_path2= ("%d_thumbnail_%s_2"%(item.id,("%s"%time())[1:6]))
+    photo_thumbnail_path3= ("%d_thumbnail_%s_3"%(item.id,("%s"%time())[1:6]))
 
     img_obj,created = ItemPhoto.objects.get_or_create(item=item)
 
+    if image1:
+        resized1 = handle_uploaded_image(image1,images_size)
+        if(img_obj.photo1):
+            img_obj.photo1.delete()
+        photo1 = img_obj.photo1.save(photo_name1+resized1[0].split('.')[1],resized1[1])
+        img1 = open(path+photo_name1+resized1[0].split('.')[1], 'r+')
+        thumb1 = handle_uploaded_image(img1,thumbnail_size)
+        if(img_obj.thumbnail1):
+            img_obj.thumbnail1.delete()
+        img_obj.thumbnail1.save(photo_thumbnail_path1+'.'+thumb1[0].split('.')[1],thumb1[1])
 
-    if(img_obj.photo1):
-        img_obj.photo1.delete()
-    photo1 = img_obj.photo1.save(photo_name1,image1)
-    img1 = open(path+photo_name1, 'r+')
-    thumb1 = handle_uploaded_image(img1,size)
-    if(img_obj.thumbnail1):
-        img_obj.thumbnail1.delete()
-    img_obj.thumbnail1.save(photo_thumbnail_path1+'.'+thumb1[0].split('.')[1],thumb1[1])
+    if image2:
+        resized2 = handle_uploaded_image(image2,images_size)
+        if(img_obj.photo2):
+            img_obj.photo2.delete()
+        photo2 = img_obj.photo2.save(photo_name2+resized2[0].split('.')[1],resized2[1])
+        img2 = open(path+photo_name2+resized2[0].split('.')[1], 'r+')
+        thumb2 = handle_uploaded_image(img2,thumbnail_size)
+        if(img_obj.thumbnail2):
+            img_obj.thumbnail2.delete()
+        img_obj.thumbnail2.save(photo_thumbnail_path2+'.'+thumb2[0].split('.')[1],thumb2[1])
 
 
-    if(img_obj.photo2):
-        img_obj.photo2.delete()
-    photo2 = img_obj.photo2.save(photo_name2,image2)
-    img2 = open(path+photo_name2, 'r+')
-    thumb2 = handle_uploaded_image(img2,size)
-    if(img_obj.thumbnail2):
-        img_obj.thumbnail2.delete()
-    img_obj.thumbnail2.save(photo_thumbnail_path2+'.'+thumb2[0].split('.')[1],thumb2[1])
+    if image3:
+        resized3 = handle_uploaded_image(image3,images_size)
+        if(img_obj.photo3):
+            img_obj.photo3.delete()
+        photo3 = img_obj.photo3.save(photo_name3+resized3[0].split('.')[1],resized3[1])
 
-
-    if(img_obj.photo3):
-        img_obj.photo3.delete()
-    photo3 = img_obj.photo3.save(photo_name3,image3)
-
-    img3 = open(path+photo_name3, 'r+')
-    thumb3 = handle_uploaded_image(img3,size)
-    if(img_obj.thumbnail3):
-        img_obj.thumbnail3.delete()
-    img_obj.thumbnail3.save(photo_thumbnail_path3+'.'+thumb3[0].split('.')[1],thumb3[1])
+        img3 = open(path+photo_name3+resized3[0].split('.')[1], 'r+')
+        thumb3 = handle_uploaded_image(img3,thumbnail_size)
+        if(img_obj.thumbnail3):
+            img_obj.thumbnail3.delete()
+        img_obj.thumbnail3.save(photo_thumbnail_path3+'.'+thumb3[0].split('.')[1],thumb3[1])
 
     img_obj.save()
     return img_obj

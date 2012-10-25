@@ -77,15 +77,22 @@
                 </div>
             </div>
             <div class="tab-pane" id="list_tab_content">
+                {% for item in items %}
+
                 <div class="span2 item-block">
-                    <img src="img/64x64.png">
-                    Item Name<br>
-                    <span>$99</span>
+                    {% if item.itemphoto_set.all.0.photo1%}
+                    <img src={{item.itemphoto_set.all.0.photo1.url}} width="50px" height="50px" />
+                    {% endif %}
+                    {{item.name}}<br>
+                    <span>${{item.price}}</span>
                 </div>
                 <div class="span2 item-block">
                     <button class="btn">Buy</button>
                     <button class="btn">Wish</button>
                 </div>
+
+                {% endfor %}
+
             </div>
         </div>
         <div class="span2 item-info">

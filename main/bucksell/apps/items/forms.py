@@ -11,6 +11,7 @@ class ItemForm(forms.Form):
     price = forms.CharField(max_length=30)
     longitude = forms.CharField(widget=forms.HiddenInput,required=False)
     latitude = forms.CharField(widget=forms.HiddenInput,required=False)
+    location = forms.CharField(widget=forms.HiddenInput,required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.filter())
     image1 = forms.ImageField(required=False)
     image2 = forms.ImageField(required=False)

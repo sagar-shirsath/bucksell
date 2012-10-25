@@ -28,39 +28,39 @@
                 <tbody>
                 <tr>
                     <td>Item Name</td>
-                    <td>iPod Touch 32GB</td>
+                    <td>{{item.name}}</td>
                 </tr>
                 <tr>
                     <td>Condition</td>
-                    <td>Mint</td>
+                    <td>{{item.condition}}</td>
                 </tr>
                 <tr>
                     <td>Price</td>
-                    <td colspan="2">$145</td>
+                    <td colspan="2">${{item.price}}</td>
                 </tr>
                 <tr>
                     <td>Location</td>
-                    <td colspan="2">Bucknell</td>
+                    <td colspan="2">{{item.location}}</td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td colspan="2">2011 Model</td>
+                    <td colspan="2">{{item.description}}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <div class="span4 offset1">
-            <img src="http://placehold.it/192x192" class="img-polaroid">
+            <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid">
             <div class="container" style="margin-top: 10px;">
             <div class="row">
                 <div class="span1">
-                    <img src="http://placehold.it/50x50" class="img-polaroid">
+                    <img src="{{item.itemphoto_set.all.0.thumbnail1.url}} " class="img-polaroid">
                 </div>
                 <div class="span1">
-                    <img src="http://placehold.it/50x50" class="img-polaroid">
+                    <img src="{{item.itemphoto_set.all.0.thumbnail2.url}} " class="img-polaroid">
                 </div>
                 <div class="span1">
-                    <img src="http://placehold.it/50x50" class="img-polaroid">
+                    <img src="{{item.itemphoto_set.all.0.thumbnail3.url}} " class="img-polaroid">
                 </div>
             </div>
 

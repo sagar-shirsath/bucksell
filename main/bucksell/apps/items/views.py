@@ -95,7 +95,8 @@ def add(request):
                 longitude =data['longitude'] or 0,
                 latitude=data['latitude'] or 0,
                 seller =request.user,
-                category =data['category']
+                category =data['category'],
+                location =data['location']
             )
 
             item_obj = item.save()
@@ -161,5 +162,5 @@ def edit(request,slug=""):
     return render_to_response("items/edit.html", {'form': form,'slug':slug , 'item':item}, context_instance=RequestContext(request))
 
 def view(request,slug=""):
-
-    return render_to_response("items/views.html", {}, context_instance=RequestContext(request))
+    item = get_object_or_404(Item,slug=slug)
+    return render_to_response("items/view.html", {'item':item}, context_instance=RequestContext(request))

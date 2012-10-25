@@ -38,17 +38,22 @@
 //                img_flag=true
 //            }
 //        });
-//        if(img_flag==true){
-//            $('#img_message').css('display', 'block');
-//            $("#img_message").fadeOut(5000, "linear");
-//        }
-//        else{
+        /*if(img_flag==true){
+         $('#img_message').css('display', 'block');
+         $("#img_message").fadeOut(5000, "linear");
+         }*/
+        if($('#id_image1').val() == '' || $('#id_image2').val() == '' || $('#id_image3').val() == ''){
+            $('#img_message').css('display', 'block');
+            $("#img_message").fadeOut(5000, "linear");
+        }
+        else{
             $('#location').addClass('active');
             $('#p_tab').removeClass('active');
             $('#profile').removeClass('active');
             $('#location_tab').addClass('fade active in');
             $('#location_tab').show();
-//        }
+            $('#map_canvas').css('opacity','1');
+        }
     });
     $(document).on('click', '#inf_tab', function () {
         $('#info_tab').addClass('active');
@@ -62,6 +67,7 @@
         $('#location_tab').removeClass('active');
         $('#profile').addClass('fade active in');
         $('#location_tab').hide();
+        $('#map_canvas').css('opacity','0');
     });
     //    $(document).on('click','#p_tab',function(e){
     //        e.preventDefault();
@@ -115,7 +121,7 @@
     <div id="myTabContent" class="tab-content">
 
         <div class="tab-pane fade in active" id="home">
-            <form class="form-horizontal" id="item_form" method="POST" action="./{{slug}}">{% csrf_token %}
+            <form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
 
                 <div class="control-group">
                     <label class="control-label">Item Name <span style="color: red;">*</span></label>
@@ -196,12 +202,12 @@
                     <div class="span3">
                         {% if item.itemphoto_set.all.0.photo1%}
                         <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid item-img"/>
-                        <!--<img src="{{item.}}" class="img-polaroid item-img">-->
                         {% else %}
-                        <img src="{{item.}}" class="img-polaroid item-img">
+                        <input type="radio" name="default_pic" id="d1" value="1" checked="true">
                         {% endif %}
+
                         <label class="radio" style="margin-left: 100px;">
-                            <input type="radio" name="default_pic" id="d1" value="1" checked="true">
+
                             Default Pic
                         </label>
                         {{form.image1}}
@@ -210,9 +216,9 @@
                         {% if item.itemphoto_set.all.0.photo2%}
                         <img src={{item.itemphoto_set.all.0.photo2.url}} class="img-polaroid item-img"/>
                         {% else %}
-                        <img src="{{item.}}" class="img-polaroid item-img">
-                        <!--<img src="{{item.}}" class="img-polaroid item-img">-->
+                        <input type="radio" name="default_pic" id="d1" value="1" checked="true">
                         {% endif %}
+
                         <label class="radio" style="margin-left: 100px;">
                             <input type="radio" name="default_pic" id="d2" value="2">
                             Default Pic
@@ -222,10 +228,10 @@
                     <div class="span3">
                         {% if item.itemphoto_set.all.0.photo3%}
                         <img src={{item.itemphoto_set.all.0.photo3.url}} class="img-polaroid item-img"/>
-                         {% else %}
-                        <img src="{{item.}}" class="img-polaroid item-img">
+                        {% else %}
+                        <input type="radio" name="default_pic" id="d1" value="1" checked="true">
                         {% endif %}
-                      <label class="radio" style="margin-left: 100px;">
+                        <label class="radio" style="margin-left: 100px;">
                             <input type="radio" name="default_pic" id="d3" value="3">
                             Default Pic
                         </label>
@@ -253,11 +259,12 @@
             <h4>Pin point your item on the map</h4>
         </div>
         <div class="offset2">
-            <div id="map_canvas" class="big_map"></div>
+
         </div>
         <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
         <button type="submit" class="btn btn-warning offset6">Submit Item</button>
         </form>
     </div>
 </div>
+<div id="map_canvas" class="big_map offset2" style="opacity: 0;"></div>
 {% endblock %}

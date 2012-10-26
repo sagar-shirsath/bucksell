@@ -178,11 +178,11 @@ function display_map(position) {
         position:latlng,
         animation:google.maps.Animation.DROP,
         map:map,
-        title:"My location"
+        title:"Your location"
     });
 
     google.maps.event.addListener(marker, 'mouseover', function () {
-        infowindow.setContent("<h3>My Location :)</h3>");
+        infowindow.setContent("<h3>Your Location :)</h3>");
         infowindow.open(map, marker);
     });
 

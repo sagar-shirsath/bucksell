@@ -25,9 +25,11 @@
 
 {% block content %}
 {% for item in items %}
-<input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}} id="{{item.itemphoto_set.all.0.photo1.url}}">
-{% if item.itemphoto_set.all.0.photo1%}
-<img src={{item.itemphoto_set.all.0.photo1.url}} width="50px" height="50px" />
+
+{% if item.itemphoto_set.all.0.thumbnail1%}
+<input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}} id="{{item.itemphoto_set.all.0.thumbnail1.url}}">
+
+
 {% endif %}
 {% endfor %}
     <div class="row">

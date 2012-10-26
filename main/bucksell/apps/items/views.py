@@ -167,5 +167,6 @@ def edit(request,slug=""):
     return render_to_response("items/edit.html", {'form': form,'slug':slug , 'item':item}, context_instance=RequestContext(request))
 
 def view(request,slug=""):
+    conditions = {'1': 'Mint', '2': 'Like New', '3':'Fair'}
     item = get_object_or_404(Item,slug=slug)
-    return render_to_response("items/view.html", {'item':item}, context_instance=RequestContext(request))
+    return render_to_response("items/view.html", {'item':item,'conditions':conditions}, context_instance=RequestContext(request))

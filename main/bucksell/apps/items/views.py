@@ -170,3 +170,21 @@ def view(request,slug=""):
     conditions = {'1': 'Mint', '2': 'Like New', '3':'Fair'}
     item = get_object_or_404(Item,slug=slug)
     return render_to_response("items/view.html", {'item':item,'conditions':conditions}, context_instance=RequestContext(request))
+
+@login_required
+def search(request):
+    query_string = ''
+    found_entries = None
+    categories = Category.objects.all()
+
+    if ('q' in request.GET) and request.GET['q'].strip():
+        item_obj = Item()
+        query_string = request.GET['q']
+
+        entry_query = item_obj.get_query(query_string, ['name', 'description','price','location'])
+
+        found_entries = Item.objects.filter(entry_query).order_by('name')
+
+    return render_to_response('items/index.html',
+            { 'query_string': query_string,'categories':categories , 'items':found_entries},
+        context_instance=RequestContext(request))

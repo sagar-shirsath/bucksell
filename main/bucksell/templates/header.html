@@ -43,8 +43,8 @@
             </ul>
             <ul class="nav pull-right">
                 <li>
-                    <form class="navbar-search pull-left">
-                        <input type="text" class="search-query" placeholder="search for..">
+                    <form class="navbar-search pull-left" method="GET" action="{% url search%}">
+                        <input type="text" name="q" class="search-query" placeholder="search for..">
                     </form>
                 </li>
                 <li class="divider-vertical"></li>

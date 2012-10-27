@@ -34,9 +34,9 @@
 {% endfor %}
     <div class="row">
         <ul class="breadcrumb span10">
-            <li><a href="#">PA</a> <span class="divider"> > </span></li>
-            <li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>
-            <li class="active">Bucknell U</li>
+            <!--<li><a href="#">PA</a> <span class="divider"> > </span></li>-->
+            <!--<li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>-->
+            <!--<li class="active">Bucknell U</li>-->
         </ul>
         <div class="btn-group span1" data-toggle="buttons-radio" id="btn_grp">
             <button type="button" class="btn btn-primary active" id="map_tab">Map</button>
@@ -46,13 +46,13 @@
 
     <div class="row-fluid">
         <div class="span2">
-            <form>
+            <form method='GET' action="{%url search%}">
                 <label>Refine Location</label>
-                <input type="text" placeholder="City or university" class="span12">
+                <input name="q" type="text" placeholder="City or university" class="span12">
                 <label>Categories</label>
                 {% for category in categories%}
-                <label class="checkbox">
-                    <input type="checkbox"> {{category}}
+                <label>
+                    <a href="{% url search%}?q={{category}}"> {{category}}</a>
                 </label>
                 {% endfor %}
                 <!--<label class="checkbox">-->
@@ -68,10 +68,10 @@
                     <!--<input type="checkbox"> Movie-->
                 <!--</label>-->
             </form>
-            <div class="btn-group span2" data-toggle="buttons-radio">
-                <button type="button" class="btn btn-primary active">For sell</button>
-                <button type="button" class="btn btn-primary">Wanted</button>
-            </div>
+            <!--<div class="btn-group span2" data-toggle="buttons-radio">-->
+                <!--<button type="button" class="btn btn-primary active">For sell</button>-->
+                <!--<button type="button" class="btn btn-primary">Wanted</button>-->
+            <!--</div>-->
         </div>
         <div class="tab-content span8">
             <div class="tab-pane active" id="map_tab_content">

@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td>Condition</td>
-                    <td>{{conditions.item.condition}}</td>
+                    <td>{{item.condition}}</td>
                 </tr>
                 <tr>
                     <td>Price</td>
@@ -101,7 +101,11 @@
     </div>
     <div class="offset1">
         Q & A:<br>
-        <textarea class="span9" rows="12"></textarea>
+        <form action="{%url message_add%}" method   ="POST">{% csrf_token%}
+        <input type="hidden" name="to_user" value="{{item.to_user}}"/>
+        <textarea class="span9" rows="12" name="body"></textarea>
+        <input type="submit" value="Submit Quesion">
+        </form>
     </div>
 </div>
 

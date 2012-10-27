@@ -102,7 +102,7 @@
     <div class="offset1">
         Q & A:<br>
         <form action="{%url message_add%}" method   ="POST">{% csrf_token%}
-        <input type="hidden" name="to_user" value="{{item.to_user}}"/>
+        <input type="hidden" name="to_user" value="{{item.seller.id}}"/>
         <textarea class="span9" rows="12" name="body"></textarea>
         <input type="submit" value="Submit Quesion">
         </form>

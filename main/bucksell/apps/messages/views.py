@@ -16,9 +16,10 @@ from messages.models import Message
 
 def add(request):
     body = request.POST.get('body')
-    from_user = request.POST.get('from_user')
+    to_user = request.POST.get('to_user')
+    from_user = request.user
     if body:
-        message = Message.objects.create(body=body,to_user=to_user)
+        message = Message.objects.create(body=body,to_user_id=to_user,from_user=from_user)
         message.save()
         request.flash['message'] = "Message has been sent to%s"%to_user['first_name']
     return HttpResponseRedirect(reverse('message_index'))

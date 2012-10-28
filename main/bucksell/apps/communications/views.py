@@ -27,5 +27,15 @@ def add(request):
     return HttpResponseRedirect(reverse('item_view',args=(item_slug,)))
 
 def index(request):
-    messages = Message.objects.all()
+    messages = Message.objects.filter(to_user=request.user  )
     return render_to_response("messages/index.html", {'messages':messages}, context_instance=RequestContext(request))
+
+def delete(request,id):
+    print "Hiii"
+    messages = get_object_or_404(Message , id=id)
+    messages.delete()
+    request.flash['message'] = "Message has been deleted"
+    return HttpResponseRedirect(reverse('message_index'))
+
+
+

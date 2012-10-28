@@ -178,8 +178,9 @@ def search(request):
     query_string = ''
     found_entries = None
     categories = Category.objects.all()
-
-    if ('q' in request.GET) and request.GET['q'].strip():
+    if ('category' in request.GET) and request.GET['category'].strip():
+        found_entries = Item.objects.filter(category__icontains)
+    elif ('q' in request.GET) and request.GET['q'].strip():
         item_obj = Item()
         query_string = request.GET['q']
 

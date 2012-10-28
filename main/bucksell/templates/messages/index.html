@@ -18,8 +18,8 @@
             <mess></mess>
             <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
                 <div class="inbox_image span1">
-                    {%if message.to_user.auth_user.all.0.photo.url %}
-                      <img src="{{message.to_user.auth_user.all.0.photo.url}}" alt="No image">
+                    {%if message.from_user.auth_user.all.0.photo.url %}
+                      <img src="{{message.from_user.auth_user.all.0.photo.url}}" alt="No image">
                     {% endif %}
 
 
@@ -29,7 +29,7 @@
                     <p>{{message.body}}</p>
                 </div>
                 <div class="span1">
-                    <span class="icon-remove"></span>
+                    <a class="icon-remove" href="{% url message_delete message.id %}"></a>
                 </div>
             </div>
             {% endfor %}

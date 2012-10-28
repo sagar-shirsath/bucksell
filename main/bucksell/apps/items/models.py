@@ -25,10 +25,12 @@ class Item(models.Model):
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     slug = models.CharField(max_length=60)
+
     def save(self, *args, **kwargs):
         string = "%s-%s" % (random.randrange(0, 101, 2), self.name)
         self.slug = slugify(string)
         super(Item, self).save(*args, **kwargs)
+
     def normalize_query(self,query_string,
                         findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                         normspace=re.compile(r'\s{2,}').sub):

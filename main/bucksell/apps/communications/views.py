@@ -11,18 +11,21 @@ from datetime import date
 from django.conf import settings
 import os
 from time import time
-from messages.models import Message
+from communications.models import Message
 
 
 def add(request):
     body = request.POST.get('body')
     to_user = request.POST.get('to_user')
+    item_slug = request.POST.get('item_slug')
     from_user = request.user
-    if body:
+    if body and (from_user!=to_user):
         message = Message.objects.create(body=body,to_user_id=to_user,from_user=from_user)
         message.save()
-        request.flash['message'] = "Message has been sent to%s"%to_user['first_name']
-    return HttpResponseRedirect(reverse('message_index'))
+        request.flash['message'] = "Message has been sent"
+    request.flash['message'] = "Its your item!!!"
+    return HttpResponseRedirect(reverse('item_view',args=(item_slug,)))
 
 def index(request):
-    return render_to_response("messages/index.html", {}, context_instance=RequestContext(request))
+    messages = Message.objects.all()
+    return render_to_response("messages/index.html", {'messages':messages}, context_instance=RequestContext(request))

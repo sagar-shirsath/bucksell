@@ -2,10 +2,14 @@
 {%block javascripts%}
         {%endblock%}
 {% block content %}
+
+<a href="{% url message_index %}">Inbox</a>
+
+
 <div class="tabbable span8"> <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#listing" data-toggle="tab">Listing</a></li>
-        <li><a href="#inbox" data-toggle="tab">Inbox</a></li>
+        <li class="active"><a href={%url my_listing %} data-toggle="tab">Listing</a></li>
+        <li><a href={% url message_index %} data-toggle="tab">Inbox</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="listing">
@@ -69,40 +73,7 @@
                     <!--</div>-->
                 <!--</div>-->
         </div>
-        <div class="tab-pane" id="inbox">
-            <div>
-                <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
-                    <div class="inbox_image span1">
-                    </div>
-                    <div class="span2">
-                        Sender<p>Example Title</p>
-                    </div>
-                    <div class="span1">
-                        <span class="icon-remove"></span>
-                    </div>
-                </div>
-                <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
-                    <div class="inbox_image span1">
-                    </div>
-                    <div class="span2">
-                        Sender<p>Example Title</p>
-                    </div>
-                    <div class="span1">
-                        <span class="icon-remove"></span>
-                    </div>
-                </div>
-                <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
-                    <div class="inbox_image span1">
-                    </div>
-                    <div class="span2">
-                        Sender<p>Example Title</p>
-                    </div>
-                    <div class="span1">
-                        <span class="icon-remove"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
         {%endblock%}

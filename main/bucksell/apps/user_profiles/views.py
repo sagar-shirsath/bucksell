@@ -120,17 +120,19 @@ def handle_uploaded_image(image,size=(100,100)):
     return (filename, content)
 
 def is_image(file):
-    flag = 1
-    file_type = file.content_type.split('/')[0]
+    if file:
+        flag = 1
+        file_type = file.content_type.split('/')[0]
 
-    if file_type in settings.IMAGE_SUPPORTED_TYPES:
-        if file._size > settings.IMAGE_SUPPORTED_TYPES:
-            request.flash['message'] = "Sorry Can't Upload the image , Too large size"
+        if file_type in settings.IMAGE_SUPPORTED_TYPES:
+            if file._size > settings.IMAGE_SUPPORTED_TYPES:
+                request.flash['message'] = "Sorry Can't Upload the image , Too large size"
+                flag = 0
+        else:
+            request.flash['message'] = "Sorry Can't Upload the image , image type is not supported"
             flag = 0
-    else:
-        request.flash['message'] = "Sorry Can't Upload the image , image type is not supported"
-        flag = 0
-    return flag
+        return flag
+    return 1
 
 def upload_profile_photo(request):
     if request.method == 'POST':

@@ -135,7 +135,7 @@
     <div id="myTabContent" class="tab-content">
 
         <div class="tab-pane fade in active" id="home">
-            <form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+            <form class="form-horizontal" id="item_form" method="POST" action="{%url item_edit item.slug %}" enctype="multipart/form-data">{% csrf_token %}
 
                 <div class="control-group">
                     <label class="control-label">Item Name <span style="color: red;">*</span></label>

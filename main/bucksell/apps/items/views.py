@@ -21,7 +21,7 @@ def index(request):
     items = Item.objects.all()
     return render_to_response("items/index.html", {'categories':categories , 'items':items}, context_instance=RequestContext(request))
 
-
+@login_required
 def my_listing(request):
     items = Item.objects.filter(seller = request.user)
     return render_to_response("items/my_listing.html", {'items':items}, context_instance=RequestContext(request))
@@ -41,6 +41,7 @@ def upload_item_images(image1,image2,image3,item):
     img_obj,created = ItemPhoto.objects.get_or_create(item=item)
 
     if image1:
+        print "one"
         resized1 = handle_uploaded_image(image1,images_size)
         if(img_obj.photo1):
             img_obj.photo1.delete()
@@ -52,6 +53,7 @@ def upload_item_images(image1,image2,image3,item):
         img_obj.thumbnail1.save(photo_thumbnail_path1+'.'+thumb1[0].split('.')[1],thumb1[1])
 
     if image2:
+        print "two"
         resized2 = handle_uploaded_image(image2,images_size)
         if(img_obj.photo2):
             img_obj.photo2.delete()
@@ -64,6 +66,7 @@ def upload_item_images(image1,image2,image3,item):
 
 
     if image3:
+        print "three"
         resized3 = handle_uploaded_image(image3,images_size)
         if(img_obj.photo3):
             img_obj.photo3.delete()
@@ -77,6 +80,7 @@ def upload_item_images(image1,image2,image3,item):
 
     img_obj.save()
     return img_obj
+
 @login_required
 def add(request):
 #    user, item = get_user_profile(request.user.id)
@@ -136,13 +140,13 @@ def edit(request,slug=""):
     })
 
     if request.method == "POST":
-        form = ItemForm(request.POST)
+        form = ItemForm(request.POST,request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             image1 = data['image1']
             image2 = data['image2']
             image3 = data['image3']
-            if not (is_image(image1) and is_image(image2) and is_image(image3)):
+            if not ((is_image(image1) and is_image(image2) and is_image(image3))):
                 request.flash['message'] = "Sorry can't Upload the Images"
                 return HttpResponseRedirect(reverse('add_item'))
             item.name =data['name']
@@ -155,10 +159,7 @@ def edit(request,slug=""):
             item.category =data['category']
             item.save()
             upload_item_images(image1,image2,image3,item)
-            if(item.save()):
-                request.flash['message'] = "Item saved successfully"
-            else:
-                request.flash['message'] = "Sorry can't save item"
+            request.flash['message'] = "Item saved successfully"
 
             return HttpResponseRedirect(reverse('my_listing'))
         else:
@@ -166,12 +167,13 @@ def edit(request,slug=""):
 
     return render_to_response("items/edit.html", {'form': form,'slug':slug , 'item':item}, context_instance=RequestContext(request))
 
+@login_required
 def view(request,slug=""):
     conditions = {'1': 'Mint', '2': 'Like New', '3':'Fair'}
     item = get_object_or_404(Item,slug=slug)
     return render_to_response("items/view.html", {'item':item,'conditions':conditions}, context_instance=RequestContext(request))
 
-@login_required
+
 def search(request):
     query_string = ''
     found_entries = None

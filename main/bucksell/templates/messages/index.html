@@ -1,10 +1,42 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "site_base.html" %}
+{%block javascripts%}
+{%endblock%}
+{% block content %}
 
-</body>
-</html>
+<a href="{% url my_listing%}">Listing</a>
+
+
+<div class="tabbable span8"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+        <li><a href={%url my_listing %} data-toggle="tab">Listing</a></li>
+        <li class="active"><a href={% url message_index %} data-toggle="tab">Inbox</a></li>
+    </ul>
+    <div class="tab-content">
+    <div class="tab-pane active" id="inbox">
+        <div>
+            {%for message in messages%}
+            <mess></mess>
+            <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
+                <div class="inbox_image span1">
+                    {%if message.to_user.auth_user.all.0.photo.url %}
+                      <img src="{{message.to_user.auth_user.all.0.photo.url}}" alt="No image">
+                    {% endif %}
+
+
+                </div>
+                <div class="span2">
+                    {{message.to_user}}<p>Example Title</p>
+                    <p>{{message.body}}</p>
+                </div>
+                <div class="span1">
+                    <span class="icon-remove"></span>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+        </div>
+</div>
+</div>
+{%endblock%}

@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 
-urlpatterns = patterns('messages.views',
+urlpatterns = patterns('communications.views',
 
     url(r'^add/','add',{},name="message_add"),
     url(r'^','index',{},name="message_index"),

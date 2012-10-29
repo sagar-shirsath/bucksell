@@ -18,7 +18,7 @@ from time import time
 @login_required
 def index(request):
     categories = Category.objects.all()
-    items = Item.objects.all()
+    items = Item.objects.filter(is_published=True)
     return render_to_response("items/index.html", {'categories':categories , 'items':items}, context_instance=RequestContext(request))
 
 @login_required
@@ -41,7 +41,6 @@ def upload_item_images(image1,image2,image3,item):
     img_obj,created = ItemPhoto.objects.get_or_create(item=item)
 
     if image1:
-        print "one"
         resized1 = handle_uploaded_image(image1,images_size)
         if(img_obj.photo1):
             img_obj.photo1.delete()
@@ -53,7 +52,6 @@ def upload_item_images(image1,image2,image3,item):
         img_obj.thumbnail1.save(photo_thumbnail_path1+'.'+thumb1[0].split('.')[1],thumb1[1])
 
     if image2:
-        print "two"
         resized2 = handle_uploaded_image(image2,images_size)
         if(img_obj.photo2):
             img_obj.photo2.delete()
@@ -66,7 +64,6 @@ def upload_item_images(image1,image2,image3,item):
 
 
     if image3:
-        print "three"
         resized3 = handle_uploaded_image(image3,images_size)
         if(img_obj.photo3):
             img_obj.photo3.delete()
@@ -112,8 +109,8 @@ def add(request):
             upload_item_images(image1,image2,image3,item)
             request.flash['message'] = "Item saved successfully"
 
-        #            else:
-        #                request.flash['message'] = "Sorry can't save item"
+            #            else:
+            #                request.flash['message'] = "Sorry can't save item"
             return HttpResponseRedirect(reverse('my_listing'))
         else:
             request.flash['message'] = "Invalid data"
@@ -169,25 +166,52 @@ def edit(request,slug=""):
 
 @login_required
 def view(request,slug=""):
-    conditions = {'1': 'Mint', '2': 'Like New', '3':'Fair'}
+    conditions = {1: 'Mint', 2: 'Like New', 3:'Fair'}
     item = get_object_or_404(Item,slug=slug)
-    return render_to_response("items/view.html", {'item':item,'conditions':conditions}, context_instance=RequestContext(request))
+    condition = conditions[item.condition]
+    return render_to_response("items/view.html", {'item':item,'condition':condition}, context_instance=RequestContext(request))
 
 
 def search(request):
     query_string = ''
     found_entries = None
+    item_obj = Item()
     categories = Category.objects.all()
     if ('category' in request.GET) and request.GET['category'].strip():
-        found_entries = Item.objects.filter(category__icontains)
-    elif ('q' in request.GET) and request.GET['q'].strip():
-        item_obj = Item()
-        query_string = request.GET['q']
+        category = request.GET['category'].strip().lower()
+        category_inst = Category.objects.filter(name__icontains=category)
+        if category_inst:
+            if 'q' in request.GET and request.GET['q']:
+                query_string = request.GET['q']
+                entry_query = item_obj.get_query(query_string, ['name', 'description','price','location','category__name'])
+                found_entries = Item.objects.filter(entry_query,category=category_inst[0]).order_by('name')
+            else:
+                found_entries = Item.objects.filter(category = category_inst[0]).order_by('name')
+        else:
+            found_entries = []
 
-        entry_query = item_obj.get_query(query_string, ['name', 'description','price','location'])
+    elif ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q'].strip()
+        entry_query = item_obj.get_query(query_string, ['name', 'description','price','location','category__name'])
 
         found_entries = Item.objects.filter(entry_query).order_by('name')
+    else:
+        found_entries = Item.objects.filter()
 
     return render_to_response('items/index.html',
             { 'query_string': query_string,'categories':categories , 'items':found_entries},
         context_instance=RequestContext(request))
+
+def publish(request):
+    if request.method == "POST":
+        is_published = request.POST.get('is_published_check',0)
+        id = request.POST.get('id')
+        item = get_object_or_404(Item,id=id)
+        if is_published:
+            item.is_published = True
+        else:
+            item.is_published = False
+        item.save()
+    return HttpResponseRedirect(reverse('my_listing'))
+
+

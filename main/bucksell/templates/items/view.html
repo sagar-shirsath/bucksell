@@ -37,9 +37,9 @@
     </div>
 </div>
 <ul class="breadcrumb span9 offset1" style="background-color: white;">
-    <li><a href="#">PA</a> <span class="divider"> > </span></li>
-    <li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>
-    <li class="active">Bucknell U</li>
+    <li><a href="{% url search%}?category={{item.category.name}}">{{item.category.name}}</a> <span class="divider"> > </span></li>
+    <li><a href=".">{{item.name}}</a> <span class="divider"> > </span></li>
+
 </ul>
 <div class="container">
     <div class="row">
@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td>Condition</td>
-                    <td>{{item.condition}}</td>
+                    <td>{{condition}}</td>
                 </tr>
                 <tr>
                     <td>Price</td>

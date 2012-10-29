@@ -27,6 +27,17 @@
                         {%else%}
                         No Image
                         {% endif %}</div>
+                    <form action="{%url item_publish%}" method="POST" name="publish_form">{% csrf_token%}
+
+                     {% ifequal item.is_published 1%}
+                        <input type="hidden" value="1" name="is_published">
+                     <input type="checkbox" name="is_published_check" checked="checked"  onclick="publish_form.submit()"/>is published<br />
+                     {% else  %}
+                        <input type="hidden" value="0" name="is_published">
+                     <input type="checkbox" name="is_published_check" onclick="publish_form.submit()"/>is published<br />
+                     {% endifequal %}
+                        <input type="hidden" value="{{item.id}}" name="id">
+                    </form>
                     <a href="{%url item_edit item.slug%}" class="btn btn-primary msg_margin">Edit</a>
                     <a href="{%url item_view item.slug%}" class="btn btn-primary msg_margin">View</a>
                     <!--<form action="https://www.paypal.com/cgi-bin/webscr" method="post">-->

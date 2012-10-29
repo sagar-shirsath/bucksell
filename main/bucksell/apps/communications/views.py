@@ -15,15 +15,15 @@ from communications.models import Message
 
 
 def add(request):
-    body = request.POST.get('body')
-    to_user = request.POST.get('to_user')
-    item_slug = request.POST.get('item_slug')
-    from_user = request.user
-    if body and (from_user!=to_user):
+    if request.method == "POST":
+        body = request.POST.get('body')
+        to_user = request.POST.get('to_user')
+        item_slug = request.POST.get('item_slug')
+        from_user = request.user
         message = Message.objects.create(body=body,to_user_id=to_user,from_user=from_user)
         message.save()
         request.flash['message'] = "Message has been sent"
-    request.flash['message'] = "Its your item!!!"
+        request.flash['message'] = "Its your item!!!"
     return HttpResponseRedirect(reverse('item_view',args=(item_slug,)))
 
 def index(request):
@@ -31,11 +31,21 @@ def index(request):
     return render_to_response("messages/index.html", {'messages':messages}, context_instance=RequestContext(request))
 
 def delete(request,id):
-    print "Hiii"
     messages = get_object_or_404(Message , id=id)
     messages.delete()
     request.flash['message'] = "Message has been deleted"
     return HttpResponseRedirect(reverse('message_index'))
 
+def reply(request):
+    print "Hiiii"
+    if request.method == "POST":
+        body = request.POST.get('body')
+        to_user = request.POST.get('from_user')
+        from_user = request.user
+        message = Message.objects.create(body=body,to_user_id=to_user,from_user=from_user)
+        message.save()
+        request.flash['message'] = "Message has been sent"
+
+    return HttpResponseRedirect(reverse('message_index'))
 
 

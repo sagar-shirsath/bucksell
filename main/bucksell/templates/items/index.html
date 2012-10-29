@@ -33,11 +33,11 @@
 {% endif %}
 {% endfor %}
     <div class="row">
-        <ul class="breadcrumb span10">
+        <!--<ul class="breadcrumb span10">-->
             <!--<li><a href="#">PA</a> <span class="divider"> > </span></li>-->
             <!--<li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>-->
             <!--<li class="active">Bucknell U</li>-->
-        </ul>
+        <!--</ul>-->
         <div class="btn-group span1" data-toggle="buttons-radio" id="btn_grp">
             <button type="button" class="btn btn-primary active" id="map_tab">Map</button>
             <button type="button" class="btn btn-primary" id="list_tab">List</button>
@@ -52,7 +52,7 @@
                 <label>Categories</label>
                 {% for category in categories%}
                 <label>
-                    <a href="{% url search%}?q={{category}}"> {{category}}</a>
+                    <a href="{% url search%}?category={{category}}"> {{category}}</a>
                 </label>
                 {% endfor %}
                 <!--<label class="checkbox">-->

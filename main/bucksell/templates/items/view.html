@@ -20,9 +20,45 @@
 </script>
 {% endblock %}
 {% block content%}
+
+
+
+
+
+
+
+
 <div class="navbar span9 offset1">
     <div class="navbar-inner">
-        <a class="brand" href="#">Interested ?</a>
+        <FORM ACTION="https://www.paypal.com/cgi-bin/webscr" METHOD="POST">
+            <INPUT TYPE="hidden" NAME="cmd" VALUE="_xclick">
+            <INPUT TYPE="hidden" NAME="business" VALUE="{{item.seller.email}}">
+            <INPUT TYPE="hidden" NAME="undefined_quantity" VALUE="1">
+            <INPUT TYPE="hidden" NAME="item_name" VALUE="{{item.name}}">
+            <INPUT TYPE="hidden" NAME="item_number" VALUE="{{item.id}}">
+            <INPUT TYPE="hidden" NAME="amount" VALUE="{{item.price}}">
+            <INPUT TYPE="hidden" NAME="shipping" VALUE="0.00">
+            <!--<INPUT TYPE="hidden" NAME="shipping2" VALUE="0.50">-->
+            <INPUT TYPE="hidden" NAME="currency_code" VALUE="USD">
+            <INPUT TYPE="hidden" NAME="first_name" VALUE="{{item.buyer.first_name}}">
+            <INPUT TYPE="hidden" NAME="last_name" VALUE="{{item.buyer.last_name}}">
+            <INPUT TYPE="hidden" NAME="address1" VALUE="{{item.buyer.address}}">
+            <!--<INPUT TYPE="hidden" NAME="address2" VALUE="Apt 5">-->
+            <!--<INPUT TYPE="hidden" NAME="city" VALUE="Berwyn">-->
+            <!--<INPUT TYPE="hidden" NAME="state" VALUE="PA">-->
+            <INPUT TYPE="hidden" NAME="zip" VALUE="{{item.buyer.zip_code}}">
+            <INPUT TYPE="hidden" NAME="lc" VALUE="US">
+            <INPUT TYPE="hidden" NAME="email" VALUE="{{item.buyer.email}}">
+            <INPUT TYPE="hidden" NAME="night_phone_a" VALUE="{{item.buyer.phone_number}}">
+            <input type="hidden" name="return" value="http://{{current_site}}/payments/thank_you.htm">
+            <input type="hidden" name="cancel_return" value="http://{{current_site}}/payments/cancel">
+
+            <!--<INPUT TYPE="hidden" NAME="night_phone_b" VALUE="555">-->
+            <!--<INPUT TYPE="hidden" NAME="night_phone_c" VALUE="1234">-->
+            <!--<INPUT TYPE="image" NAME="submit" BORDER="0" SRC="http://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" ALT="PayPal - The safer, easier way to pay online">-->
+            <!--<img alt="" border="" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">-->
+        <!--</FORM>-->
+            <a class="brand" href="#">Interested ?</a>
         <ul class="nav pull-right">
             <li>
                 <button class="btn btn-info" style="margin-right: 20px;">Ask a question</button>
@@ -31,9 +67,11 @@
                 <button class="btn btn-info" style="margin-right: 20px;">Add me to waiting list</button>
             </li>
             <li>
-                <button class="btn btn-info" style="margin-right: 20px;">Buy Now</button>
+                <button type="submit" class="btn btn-info" style="margin-right: 20px;">Buy Now</button>
             </li>
         </ul>
+            <!--<input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">-->
+        </form>
     </div>
 </div>
 <ul class="breadcrumb span9 offset1" style="background-color: white;">

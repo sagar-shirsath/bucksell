@@ -158,7 +158,7 @@ INSTALLED_APPS = (
     'registration',
     'categories',
     'feedbacks',
-    'messages',
+    'communications',
     'payments',
     'user_profiles',
     'payments',

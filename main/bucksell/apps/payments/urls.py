@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('payments.views',
 
-#    url(r'^user_type/$','user_type',{},name = "user_profile_user_type"),
-    
+    url(r'^cancel/$','cancelled',{},name = "payment_cancel"),
+    url(r'^success/$','success',{},name = "payment_success"),
+
 )

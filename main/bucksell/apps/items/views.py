@@ -14,6 +14,9 @@ from categories.models import Category
 from django.conf import settings
 import os
 from time import time
+from django.contrib.sites.models import Site
+
+
 
 @login_required
 def index(request):
@@ -166,10 +169,11 @@ def edit(request,slug=""):
 
 @login_required
 def view(request,slug=""):
+    current_site = Site.objects.get_current()
     conditions = {1: 'Mint', 2: 'Like New', 3:'Fair'}
     item = get_object_or_404(Item,slug=slug)
     condition = conditions[item.condition]
-    return render_to_response("items/view.html", {'item':item,'condition':condition}, context_instance=RequestContext(request))
+    return render_to_response("items/view.html", {'item':item,'condition':condition,'current_site':current_site}, context_instance=RequestContext(request))
 
 
 def search(request):

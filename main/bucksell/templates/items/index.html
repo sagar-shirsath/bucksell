@@ -4,10 +4,11 @@
 <script type="text/javascript"
         src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
 </script>
+<script src="{{STATIC_URL}}js/infobox.js" type="text/javascript"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#map_canvas').css('width',640).css('height', 400);
+        $('#map_canvas').css('width', 640).css('height', 400);
 
         getLocation();
     });
@@ -21,60 +22,60 @@
         $('#map_tab_content').removeClass('active');
     });
 </script>
-        <style type="text/css">
-            h3 {
-                margin: 0;
-                padding: 0 0 .3em;
-            }
+<style type="text/css">
+    h3 {
+        margin: 0;
+        padding: 0 0 .3em;
+    }
 
-            p {
-                margin: 0;
-                padding: 0 0 .5em;
-            }
+    p {
+        margin: 0;
+        padding: 0 0 .5em;
+    }
 
-            .pane {
-                background: #f9f9f9;
-                padding: 10px 20px 30px;
-                position: relative;
-                border-top: solid 1px #e8eef4;
-                border-bottom: solid 1px #e8eef4;
-            }
+    .pane {
+        background: #f9f9f9;
+        padding: 10px 20px 30px;
+        position: relative;
+        border-top: solid 1px #e8eef4;
+        border-bottom: solid 1px #e8eef4;
+    }
 
-            .pane .delete {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                cursor: pointer;
-            }
+    .pane .delete {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
 
-            .pane {
-                float: none;
-                margin: 0px auto;
-                width: 85%;
-            }
+    .pane {
+        float: none;
+        margin: 0px auto;
+        width: 85%;
+    }
 
-            .pane h3 {
-                font-size: 16px;
-                font-weight: bold;
-                color: #086bb1;
-                line-height: normal;
-                margin: 0px;
-                padding: 0px;
-            }
+    .pane h3 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #086bb1;
+        line-height: normal;
+        margin: 0px;
+        padding: 0px;
+    }
 
-            .pane h4 {
-                font-size: 14px;
-                font-weight: bold;
-                color: #000;
-                line-height: normal
-            }
+    .pane h4 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        line-height: normal
+    }
 
-            .inboxpic {
-                float: left;
-                width: 155px;
-                margin-right: 20px;
-            }
-        </style>
+    .inboxpic {
+        float: left;
+        width: 155px;
+        margin-right: 20px;
+    }
+</style>
 
 {% endblock %}
 
@@ -83,7 +84,7 @@
 
 {% if item.itemphoto_set.all.0.thumbnail1%}
 <input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}
-       id="{{item.itemphoto_set.all.0.thumbnail1.url}}">
+       id="{{item.itemphoto_set.all.0.thumbnail1.url}}" item-id="{{item.id}}" item-slug="{{item.slug}}">
 
 
 {% endif %}
@@ -191,24 +192,24 @@
                     <li>
                         <div class="lisitnginfo">
                             <!--<form>-->
-                                <!--<label>Refine Location</label>-->
-                                <!--<input type="text" placeholder="City or university">-->
-                                <!--<label>Categories</label>-->
-                                <!--<label class="checkbox">-->
-                                    <!--<input type="checkbox"> All-->
-                                <!--</label>-->
-                                <!--<label class="checkbox">-->
-                                    <!--<input type="checkbox"> Books-->
-                                <!--</label>-->
-                                <!--<label class="checkbox">-->
-                                    <!--<input type="checkbox"> Electronics-->
-                                <!--</label>-->
-                                <!--<label class="checkbox">-->
-                                    <!--<input type="checkbox"> Music-->
-                                <!--</label>-->
-                                <!--<label class="checkbox">-->
-                                    <!--<input type="checkbox"> Movie-->
-                                <!--</label>-->
+                            <!--<label>Refine Location</label>-->
+                            <!--<input type="text" placeholder="City or university">-->
+                            <!--<label>Categories</label>-->
+                            <!--<label class="checkbox">-->
+                            <!--<input type="checkbox"> All-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                            <!--<input type="checkbox"> Books-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                            <!--<input type="checkbox"> Electronics-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                            <!--<input type="checkbox"> Music-->
+                            <!--</label>-->
+                            <!--<label class="checkbox">-->
+                            <!--<input type="checkbox"> Movie-->
+                            <!--</label>-->
                             <!--</form>-->
                             <form method='GET' action="{%url search%}">
                                 <label>Refine Location</label>
@@ -241,16 +242,15 @@
                     <li>
                         <div class="item-info" style="margin-top:30px; float:left">
                             <div class="row item-info1" style="width:100%; text-align:center">
-                                <img src="images/100x100.png" width="100" height="100" class="img-polaroid">
-                <span style="float:left;
-				text-align:center; width:100%">Item Name</span></div>
+                                <img src="{{STATIC_URL}}images/100x100.png" width="100" height="100" class="img-polaroid" id="item_img">
+                <span style="float:left;text-align:center; width:100%" id="item_name">Item Name</span></div>
                             <div class="row item-info1" style=" float:none; margin:0px auto; width:120px;">
-                                Seller : <img src="images/user_32.png">
+                                Seller : <img src="{{STATIC_URL}}images/user_32.png" id="seller_img">
                             </div>
                             <div class="row item-info1">
                                 <label>Description</label>
 
-                                <div class="description">
+                                <div class="description" id="item_description">
                                     Demo description
                                     Demo description Demo description Demo description Demo description
                                     Demo description Demo description Demo descriptionDemo description
@@ -259,8 +259,8 @@
                             </div>
                         </div>
                     </li>
-                    <li style="float:left; width:100%; text-align:center; margin-top:20px;"><img
-                            src="images/rightbanner.jpg"/></li>
+                    <!--<li style="float:left; width:100%; text-align:center; margin-top:20px;"><img-->
+                            <!--src="{{STATIC_URL}}images/rightbanner.jpg"/></li>-->
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="lA">
@@ -268,8 +268,8 @@
 
                             <div style="float:left; margin-left:30px; margin-top:15px; margin-bottom:30px;">
                                 <!--<iframe width="640" height="400" frameborder="0" scrolling="no" marginheight="0"-->
-                                        <!--marginwidth="0"-->
-                                        <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
+                                <!--marginwidth="0"-->
+                                <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
                                 <div id="map_canvas" class="span1 big_map"></div>
                             </div>
 

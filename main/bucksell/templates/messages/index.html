@@ -1,0 +1,50 @@
+{% extends "site_base.html" %}
+{%block javascripts%}
+{%endblock%}
+{% block content %}
+
+<a href="{% url my_listing%}">Listing</a>
+
+
+<div class="tabbable span8"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+        <li><a href={%url my_listing %} data-toggle="tab">Listing</a></li>
+        <li class="active"><a href={% url message_index %} data-toggle="tab">Inbox</a></li>
+    </ul>
+    <div class="tab-content">
+    <div class="tab-pane active" id="inbox">
+        <div>
+            {%for message in messages%}
+            <mess></mess>
+            <div class="container span6 row msg_margin" style="border-style: solid;border-width: 1px;padding: 20px 20px 20px 0px;">
+                <div class="inbox_image span1">
+                    {%if message.from_user.auth_user.all.0.photo.url %}
+                      <img src="{{message.from_user.auth_user.all.0.photo.url}}" alt="No image">
+                    {% endif %}
+
+
+                </div>
+
+                <div class="span2" id="reply">
+                    {{message.to_user}}<p>Example Title</p>
+                    <p>{{message.body}}</p>
+                </div>
+                <div>
+                    <form action="{%url message_reply%}" method ="POST">{% csrf_token%}
+                        <input type="hidden" name="from_user" value="{{message.from_user.id}}"/>
+                       <textarea class="span1" rows="12" style="width: 253px; height: 74px;" name="body"></textarea>
+                        <input type="submit" value="Reply">
+                    </form>
+                    </div>
+                <div class="span1">
+                    <a class="icon-remove" href="{% url message_delete message.id %}"></a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+        </div>
+</div>
+</div>
+{%endblock%}

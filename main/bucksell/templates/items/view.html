@@ -1,0 +1,173 @@
+{% extends "site_base.html" %}
+{%block javascripts%}
+<script type="text/javascript">
+
+    $(document).on('click', '#img2', function () {
+        var src = $('#img2-1').val();
+        $('#img1').attr('src', src);
+    });
+
+    $(document).on('click', '#img3', function () {
+        var src = $('#img3-1').val();
+        $('#img1').attr('src', src);
+    });
+
+    $(document).on('click', '#img4', function () {
+        var src = $('#img4-1').val();
+        $('#img1').attr('src', src);
+    });
+
+</script>
+{% endblock %}
+{% block content%}
+<!--<div class="navbar span9 offset1">-->
+<!--<div class="navbar-inner">-->
+<!--<a class="brand" href="#">Interested ?</a>-->
+<!--<ul class="nav pull-right">-->
+<!--<li>-->
+<!--<button class="btn btn-info" style="margin-right: 20px;">Ask a question</button>-->
+<!--</li>-->
+<!--<li>-->
+<!--<button class="btn btn-info" style="margin-right: 20px;">Add me to waiting list</button>-->
+<!--</li>-->
+<!--<li>-->
+<!--<button class="btn btn-info" style="margin-right: 20px;">Buy Now</button>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<div class="navbar span9 offset1" style="display: none">
+    <div class="navbar-inner">
+        <FORM ACTION="https://www.paypal.com/cgi-bin/webscr" METHOD="POST">
+            <INPUT TYPE="hidden" NAME="cmd" VALUE="_xclick">
+            <INPUT TYPE="hidden" NAME="business" VALUE="{{item.seller.email}}">
+            <INPUT TYPE="hidden" NAME="undefined_quantity" VALUE="1">
+            <INPUT TYPE="hidden" NAME="item_name" VALUE="{{item.name}}">
+            <INPUT TYPE="hidden" NAME="item_number" VALUE="{{item.id}}">
+            <INPUT TYPE="hidden" NAME="amount" VALUE="{{item.price}}">
+            <INPUT TYPE="hidden" NAME="shipping" VALUE="0.00">
+            <!--<INPUT TYPE="hidden" NAME="shipping2" VALUE="0.50">-->
+            <INPUT TYPE="hidden" NAME="currency_code" VALUE="USD">
+            <INPUT TYPE="hidden" NAME="first_name" VALUE="{{item.buyer.first_name}}">
+            <INPUT TYPE="hidden" NAME="last_name" VALUE="{{item.buyer.last_name}}">
+            <INPUT TYPE="hidden" NAME="address1" VALUE="{{item.buyer.address}}">
+            <!--<INPUT TYPE="hidden" NAME="address2" VALUE="Apt 5">-->
+            <!--<INPUT TYPE="hidden" NAME="city" VALUE="Berwyn">-->
+            <!--<INPUT TYPE="hidden" NAME="state" VALUE="PA">-->
+            <INPUT TYPE="hidden" NAME="zip" VALUE="{{item.buyer.zip_code}}">
+            <INPUT TYPE="hidden" NAME="lc" VALUE="US">
+            <INPUT TYPE="hidden" NAME="email" VALUE="{{item.buyer.email}}">
+            <INPUT TYPE="hidden" NAME="night_phone_a" VALUE="{{item.buyer.phone_number}}">
+            <input type="hidden" name="return" value="http://{{current_site}}/payments/thank_you.htm">
+            <input type="hidden" name="cancel_return" value="http://{{current_site}}/payments/cancel">
+
+            <!--<INPUT TYPE="hidden" NAME="night_phone_b" VALUE="555">-->
+            <!--<INPUT TYPE="hidden" NAME="night_phone_c" VALUE="1234">-->
+            <!--<INPUT TYPE="image" NAME="submit" BORDER="0" SRC="http://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" ALT="PayPal - The safer, easier way to pay online">-->
+            <!--<img alt="" border="" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">-->
+            <!--</FORM>-->
+            <a class="brand" href="#">Interested ?</a>
+            <ul class="nav pull-right">
+                <li>
+                    <button class="btn btn-info" style="margin-right: 20px;">Ask a question</button>
+                </li>
+                <li>
+                    <button class="btn btn-info" style="margin-right: 20px;">Add me to waiting list</button>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-info" style="margin-right: 20px;">Buy Now</button>
+                </li>
+            </ul>
+            <!--<input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">-->
+        </form>
+    </div>
+</div>
+<!--<ul class="breadcrumb span9 offset1" style="background-color: white;">-->
+    <!--<li><a href="{% url search%}?category={{item.category.name}}">{{item.category.name}}</a> <span-->
+            <!--class="divider"> > </span></li>-->
+    <!--<li><a href=".">{{item.name}}</a> <span class="divider"> > </span></li>-->
+<!--</ul>-->
+
+<div class="container">
+    <div class="row">
+        <ul class="breadcrumb span9 offset1" style="background-color: white;">
+            <li><a href="{% url search%}?category={{item.category.name}}">{{item.category.name}}</a> <span
+                    class="divider"> > </span></li>
+            <li><a href=".">{{item.name}}</a> <span class="divider"> > </span></li>
+
+        </ul>
+        <div class="offset2 span4">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td>Item Name</td>
+                    <td>{{item.name}}</td>
+                </tr>
+                <tr>
+                    <td>Condition</td>
+                    <td>{{condition}}</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td colspan="2">${{item.price}}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td colspan="2">{{item.location}}</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td colspan="2">{{item.description}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="span4 offset1">
+            <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid" id="img1"
+                 style="height: 202;width: 202;">
+
+            <div class="container" style="margin-top: 10px;">
+                <div class="row">
+                    <div class="span1">
+                        {% if item.itemphoto_set.all.0.thumbnail1.url and item.itemphoto_set.all.0.photo1.url%}
+                        <img src="{{item.itemphoto_set.all.0.thumbnail1.url}} " class="img-polaroid" id="img2">
+                        <input type="hidden" name="2rd" value="{{item.itemphoto_set.all.0.photo1.url}} "
+                               id="img2-1">
+                        {% endif %}
+                    </div>
+                    <div class="span1">
+                        {% if item.itemphoto_set.all.0.thumbnail2.url and item.itemphoto_set.all.0.photo2.url%}
+                        <img src="{{item.itemphoto_set.all.0.thumbnail2.url}} " class="img-polaroid" id="img3">
+                        <input type="hidden" name="3rd" value="{{item.itemphoto_set.all.0.photo2.url}} "
+                               id="img3-1">
+                        {% endif %}
+                    </div>
+                    <div class="span1">
+                        {% if item.itemphoto_set.all.0.thumbnail3.url and item.itemphoto_set.all.0.photo3.url%}
+                        <img src="{{item.itemphoto_set.all.0.thumbnail3.url}} " class="img-polaroid" id="img4">
+                        <input type="hidden" name="4rd" value="{{item.itemphoto_set.all.0.photo3.url}} "
+                               id="img4-1">
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    {%if not user == item.seller %}
+    <div class="offset1">
+        Q & A:<br>
+
+        <form action="{%url message_add%}" method="POST">{% csrf_token%}
+            <input type="hidden" name="to_user" value="{{item.seller.id}}"/>
+            <input type="hidden" name="item_slug" value="{{item.slug}}"/>
+            <textarea class="span9" rows="12" name="body"></textarea>
+            <input type="submit" value="Submit Quesion">
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

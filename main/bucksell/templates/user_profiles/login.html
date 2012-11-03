@@ -1,0 +1,95 @@
+{%extends "site_base.html"%}
+{% block content%}
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#id_email").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please Enter email",
+            position: "bottom"
+        });
+
+        jQuery("#id_password").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter password ",
+            position: "bottom"
+        });
+        jQuery("#id_email").validate({
+            expression:"if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message:"Please enter valid email address.",
+            position: "bottom"
+        });
+    });
+</script>
+<!--<div class="hero-unit">-->
+
+    <!--<div class="offset2">-->
+        <!--<legend><h2 class="header">Sign In</h2></legend>-->
+
+        <!--<form class="form-inline" method="post" action=".">{% csrf_token %}-->
+            <!--{{form.email.errors}}-->
+            <!--{{form.email}}-->
+            <!--<input type="text" class="input-medium register-form" placeholder="Username">-->
+            <!--<input type="password" class="input-medium register-form" placeholder="Password">-->
+            <!--{{form.password.errors}}-->
+            <!--{{form.password}}-->
+            <!--<button type="submit" class="btn btn-primary">Sign In</button><br />-->
+            <!--<span><a href="{% url password_reset %}">Forgot your password?</a></span>-->
+        <!--</form>-->
+        <!--<hr class="hr_line" />-->
+        <!--Dont have Bucksell account? <a href="{% url registration_register %}" style="text-decoration: none;"><span class="label label-info">Join Here</span></a>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<form action="." method="post">{% csrf_token %}-->
+    <!--{{form.as_p}}-->
+    <!--<input type="submit" value="Submit" />-->
+<!--</form>-->
+
+<div class="bannerbg">
+    <div class="container">
+        <h2 class="innerhead">Sign In</h2>
+
+        <div class="innerbanner"><img src="{{STATIC_URL}}images/banner.jpg"/></div>
+    </div>
+</div>
+<div class="innerbody">
+    <div class="container">
+        <div class="registerblank">
+            <div class="span20 hero-unit">
+                <legend>Sign In</legend>
+                <form class="form-horizontal" method="post" action=".">{% csrf_token %}
+                    <div class="control-group">
+                        <label class="control-label">Username</label>
+
+                        <div class="controls">
+                            <!--<input type="text" id="user_name">-->
+                            {{form.email.errors}}
+                            {{form.email}}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Password</label>
+
+                        <div class="controls">
+                            <!--<input type="password" id="inputPassword">-->
+                            {{form.password.errors}}
+                            {{form.password}}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <label style="margin-top:15px;">
+                                Dont have Bucksell account?</label>
+                            <button type="submit" class="btn btn-primary">Join Here</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="topbanner">
+            <img src="{{STATIC_URL}}images/banner.jpg"/>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,434 @@
+{% extends "site_base.html" %}
+{%block javascripts%}
+<script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+</script>
+<script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#location_tab').hide();
+        $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
+        getLocation();
+    });
+    $(document).on('click', '#pics_tab', function () {
+        if ($('#id_name').attr('rel') == 'tooltip' || $('#id_price').attr('rel') == 'tooltip' ||
+                $('#id_description').attr('rel') == 'tooltip' || $('#id_category').attr('rel') == 'tooltip'
+                || $('#id_name').val() == '' || $('#id_price').val() == '' || $('#id_description').val() == '' || $('#id_category').val() == '') {
+
+            $('#message').css('display', 'block');
+            $("#message").fadeOut(5000, "linear");
+        }
+        else {
+            if ($('input[type="radio"]:checked').length == 1) {
+                $('#message').css('display', 'block');
+                $("#message").fadeOut(5000, "linear");
+            } else {
+                $('#p_tab').addClass('active');
+                $('#info_tab').removeClass('active');
+                $('#home').removeClass('active');
+                $('#profile').addClass('fade active in');
+            }
+
+        }
+    })
+    $(document).on('click', '#loc_tab', function () {
+        var img_flag = false;
+//        $.each($('img'),function(){
+//            if($(this).attr('src')=='/static/img/item_pics.jpg'){
+//                img_flag=true
+//            }
+//        });
+        /*if(img_flag==true){
+         $('#img_message').css('display', 'block');
+         $("#img_message").fadeOut(5000, "linear");
+         }*/
+        if ($('#id_image1').val() == '' || $('#id_image2').val() == '' || $('#id_image3').val() == '') {
+            $('#img_message').css('display', 'block');
+            $("#img_message").fadeOut(5000, "linear");
+        }
+        else {
+            $('#location').addClass('active');
+            $('#p_tab').removeClass('active');
+            $('#profile').removeClass('active');
+            $('#location_tab').addClass('fade active in');
+            $('#location_tab').show();
+            $('#map_canvas').css('opacity', '1');
+        }
+    });
+    $(document).on('click', '#inf_tab', function () {
+        $('#info_tab').addClass('active');
+        $('#p_tab').removeClass('active');
+        $('#profile').removeClass('active');
+        $('#home').addClass('fade active in');
+    });
+    $(document).on('click', '#back_pics_tab', function () {
+        $('#p_tab').addClass('active');
+        $('#location').removeClass('active');
+        $('#location_tab').removeClass('active');
+        $('#profile').addClass('fade active in');
+        $('#location_tab').hide();
+        $('#map_canvas').css('opacity', '0');
+    });
+    //    $(document).on('click','#p_tab',function(e){
+    //        e.preventDefault();
+    //        $(this).removeClass('active');
+    //
+    //    });
+    jQuery(function () {
+        jQuery("#id_name").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Item Name",
+            position:"right"
+        });
+        jQuery("#id_price").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Enter Item price",
+            position:"right"
+        });
+        jQuery("#id_description").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please Item description",
+            position:"right"
+        });
+        jQuery("#id_category").validate({
+            expression:"if (VAL) return true; else return false;",
+            message:"Please select category",
+            position:"right"
+        });
+        jQuery("#id_price").validate({
+            expression:"if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+            message:"Please enter valid price",
+            position:"right"
+        });
+    });
+</script>
+{%endblock%}
+{% block content%}
+<div class="alert alert-error offset3 span5" style="display: none;" id="message">
+    <div class="offset1">Please enter valid data !!!</div>
+</div>
+<div class="alert alert-error offset3 span5" style="display: none;" id="img_message">
+    <div class="offset1">Please upload all 3 images.</div>
+</div>
+<!--<div class="offset1">-->
+<!--<div class="container-fluid ">-->
+<!--<ul id="myTab" class="nav nav-tabs span10">-->
+<!--<li class="active offset1" id="info_tab"><a href="#">1. Basic Info</a></li>-->
+<!--<li id="p_tab"><a href="#">2. Pics</a></li>-->
+<!--<li id="location"><a href="#">3. Location</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div id="myTabContent" class="tab-content">-->
+
+<!--<div class="tab-pane fade in active" id="home">-->
+<!--<form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">-->
+<!--{%csrf_token %}-->
+
+<!--<div class="control-group">-->
+<!--<label class="control-label">Item Name <span style="color: red;">*</span></label>-->
+
+<!--<div class="controls">-->
+<!--<input type="text" id="item_name">-->
+<!--{{form.name.errors}}-->
+<!--{{form.name}}-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="control-group">-->
+<!--<label class="control-label">Category <span style="color: red;">*</span></label>-->
+
+<!--<div class="controls">-->
+<!--{{form.category.errors}}-->
+<!--{{form.category}}-->
+<!--<select>-->
+<!--<option>Books</option>-->
+<!--<option>Music</option>-->
+<!--<option>Services</option>-->
+
+<!--</select>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="control-group">-->
+<!--<label class="control-label">Condition <span style="color: red;">*</span></label>-->
+
+<!--<div class="controls">-->
+<!--{{form.condition.errors}}-->
+<!--{{form.condition}}-->
+
+<!--<label class="radio">-->
+<!--<input type="radio" name="item_condition" id="mint" value="mint" checked>-->
+<!--Mint-->
+<!--</label>-->
+<!--<label class="radio">-->
+<!--<input type="radio" name="item_condition" id="like_new" value="like_new" checked>-->
+<!--Like New-->
+<!--</label>-->
+<!--<label class="radio">-->
+<!--<input type="radio" name="item_condition" id="fair" value="fair" checked>-->
+<!--Fair-->
+<!--</label>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="control-group">-->
+<!--<label class="control-label">Price <span style="color: red;">*</span></label>-->
+
+<!--<div class="controls">-->
+<!--<input type="text" id="item_price">-->
+<!--{{form.price.errors}}-->
+<!--{{form.price}}-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="control-group">-->
+<!--<label class="control-label">Description <span style="color: red;">*</span></label>-->
+
+<!--<div class="controls">-->
+<!--<textarea rows="3" id="item_description"></textarea>-->
+<!--{{form.description.errors}}-->
+<!--{{form.description}}-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>-->
+<!--{{form.latitude}}-->
+<!--{{form.longitude}}-->
+<!--{{form.location}}-->
+
+<!--</div>-->
+<!--<div class="tab-pane fade" id="profile">-->
+<!--<div class="container-fluid">-->
+<!--<div>-->
+<!--<h4>Choose Files :</h4>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="span3">-->
+<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+<!--<label class="radio" style="margin-left: 100px;">-->
+<!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
+<!--Default Pic-->
+<!--</label>-->
+<!--{{form.image1}}-->
+<!--</div>-->
+<!--<div class="span3">-->
+<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+<!--<label class="radio" style="margin-left: 100px;">-->
+<!--<input type="radio" name="default_pic" id="d2" value="2">-->
+<!--Default Pic-->
+<!--</label>-->
+<!--{{form.image2}}-->
+<!--</div>-->
+<!--<div class="span3">-->
+<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+<!--<label class="radio" style="margin-left: 100px;">-->
+<!--<input type="radio" name="default_pic" id="d3" value="3">-->
+<!--Default Pic-->
+<!--</label>-->
+<!--{{form.image3}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<button type="button" class="btn btn-primary" id="inf_tab">Previous</button>-->
+<!--<button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>-->
+<!--</div>-->
+
+<!--<div class="tab-pane fade" id="review_tab">-->
+<!--<div class="container-fluid">-->
+
+<!--<div class="item-listing" style="text-align: center; width: 100%">-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="" id="location_tab">-->
+<!--<div class="container-fluid">-->
+<!--<div class="offset3">-->
+<!--<h4>Pin point your item on the map</h4>-->
+<!--</div>-->
+<!--<div class="offset2">-->
+
+<!--</div>-->
+<!--<button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>-->
+<!--<button type="submit" class="btn btn-warning offset6">Submit Item</button>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<div class="bannerbg">
+    <div class="container">
+        <h2 class="innerhead">Add Item</h2>
+
+        <div class="innerbanner"><img src="{{STATIC_URL}}images/banner.jpg"/></div>
+    </div>
+</div>
+<div class="innerbody">
+    <div class="container">
+        <div class="twocolums">
+            <div class="tabbable tabs-left">
+                <!--<ul id="myTab" class="nav nav-tabs span10">-->
+                <!--<li class="active offset1" id="info_tab"><a href="#">1. Basic Info</a></li>-->
+                <!--<li id="p_tab"><a href="#">2. Pics</a></li>-->
+                <!--<li id="location"><a href="#">3. Location</a></li>-->
+                <!--</ul>-->
+                <ul id="myTab" class="nav nav-tabs span10">
+                    <li class="active" id="info_tab"><a href="#">1. Basic Info</a></li>
+                    <li class="" id="p_tab"><a href="#">2. Pics</a></li>
+                    <li class="" id="location"><a href="#">3. Location</a></li>
+                    <li style="float:left; width:100%; text-align:center; margin-top:20px;"><img
+                            src="{{STATIC_URL}}images/rightbanner.jpg"/></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <!--<div class="tab-content">-->
+                        <!--<div class="tab-pane active" id="lA">-->
+                        <!--<form class="form-horizontal">-->
+                        <form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">
+                            {%csrf_token %}
+
+                            <div class="control-group">
+                                <label class="control-label">Item Name</label>
+
+                                <div class="controls">
+                                    <!--&lt;!&ndash;<input type="text" id="user_name">-->
+                                    {{form.name.errors}}
+                                    {{form.name}}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Category</label>
+
+                                <div class="controls">
+                                    {{form.category.errors}}
+                                    {{form.category}}
+                                    <!--<select name="select">-->
+                                        <!--<option>Books</option>-->
+                                        <!--<option>2</option>-->
+                                        <!--<option>3</option>-->
+                                        <!--<option>4</option>-->
+                                        <!--<option>5</option>-->
+                                    <!--</select>-->
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Gender</label>
+
+                                <div class="controls">
+                                    {{form.condition.errors}}
+                                    {{form.condition}}
+                                    <!--<label class="radio">-->
+                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"-->
+                                               <!--checked>-->
+                                        <!--Mint-->
+                                    <!--</label>-->
+                                    <!--<label class="radio">-->
+                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
+                                        <!--Like New-->
+                                    <!--</label>-->
+                                    <!--<label class="radio">-->
+                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
+                                        <!--Fair-->
+                                    <!--</label>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Price</label>
+
+                                <div class="controls">
+                                    <!--<input name="text" type="text" id="label"/>-->
+                                    {{form.price.errors}}
+                                    {{form.price}}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Description</label>
+
+                                <div class="controls">
+                                    <!--<textarea rows="3" id="address"></textarea>-->
+                                    {{form.description.errors}}
+                                    {{form.description}}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>
+                                    {{form.latitude}}
+                                    {{form.longitude}}
+                                    {{form.location}}
+
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="tab-pane" id="profile">
+                        <div class="listingright">
+                            <h2><span style="padding-left:30px;">Choose file</span></h2>
+                            <ul>
+                                <li style="text-align:center; padding-top:10px;">
+                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                                    <label class="radio" style="margin-left: 50px;">
+                                        <input type="radio" name="default_pic" id="d1" value="1" checked="true">
+                                        Default Pic
+                                    </label>
+                                    {{form.image1}}
+                                </li>
+                                <li style="text-align:center; padding-top:10px;">
+                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                                    <label class="radio" style="margin-left: 50px;">
+                                        <input type="radio" name="default_pic" id="d2" value="2">
+                                        Default Pic
+                                    </label>
+                                    {{form.image2}}
+                                </li>
+                                <li style="text-align:center; padding-top:10px;">
+                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
+                                    <label class="radio" style="margin-left: 50px;">
+                                        <input type="radio" name="default_pic" id="d3" value="3">
+                                        Default Pic
+                                    </label>
+                                    {{form.image3}}
+                                </li>
+
+                            </ul>
+                            <div class="control-group" style="padding-left:30px; padding-right:38px;">
+                                <div class="controls">
+                                    <!--<button type="submit" class="btn btn-inverse">Previous</button>-->
+                                    <!--<button type="submit" class="btn btn-primary" style="float:right">Next</button>-->
+                                    <button type="button" class="btn btn-primary" id="inf_tab">Previous</button>
+                                    <button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="location_tab">
+                        <div class="listingright">
+                            <h2><span style="padding-left:30px;">Choose file</span></h2>
+
+                            <div style="float:left; margin-left:30px; margin-top:15px; margin-bottom:30px;">
+                                <!--<iframe width="640" height="400" frameborder="0" scrolling="no" marginheight="0"-->
+                                        <!--marginwidth="0"-->
+                                        <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
+
+                            </div>
+                            <div class="control-group" style="padding-left:30px; padding-right:38px;">
+                                <div class="controls">
+                                    <!--<button type="submit" class="btn btn-inverse">Previous</button>-->
+                                    <!--<button type="submit" class="btn btn-primary" style="float:right">Submit Item-->
+                                    <button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>
+                                    <button type="submit" class="btn btn-warning offset6">Submit Item</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map_canvas" class="big_map offset2" style="opacity: 0;"></div>
+                    <div class="tab-pane" id="lD">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

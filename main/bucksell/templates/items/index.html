@@ -1,0 +1,383 @@
+{% extends "site_base.html" %}
+
+{%block javascripts%}
+<script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzYp71CLSxqdi7d-lc1lVDdbFls3-x7GQ&sensor=false">
+</script>
+<script type="text/javascript" src="{{STATIC_URL}}js/locator.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#map_canvas').css('width',640).css('height', 400);
+
+        getLocation();
+    });
+
+    $(document).on('click', '#map_tab', function () {
+        $('#map_tab_content').addClass('active');
+        $('#list_tab_content').removeClass('active');
+    });
+    $(document).on('click', '#list_tab', function () {
+        $('#list_tab_content').addClass('active');
+        $('#map_tab_content').removeClass('active');
+    });
+</script>
+        <style type="text/css">
+            h3 {
+                margin: 0;
+                padding: 0 0 .3em;
+            }
+
+            p {
+                margin: 0;
+                padding: 0 0 .5em;
+            }
+
+            .pane {
+                background: #f9f9f9;
+                padding: 10px 20px 30px;
+                position: relative;
+                border-top: solid 1px #e8eef4;
+                border-bottom: solid 1px #e8eef4;
+            }
+
+            .pane .delete {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+            }
+
+            .pane {
+                float: none;
+                margin: 0px auto;
+                width: 85%;
+            }
+
+            .pane h3 {
+                font-size: 16px;
+                font-weight: bold;
+                color: #086bb1;
+                line-height: normal;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .pane h4 {
+                font-size: 14px;
+                font-weight: bold;
+                color: #000;
+                line-height: normal
+            }
+
+            .inboxpic {
+                float: left;
+                width: 155px;
+                margin-right: 20px;
+            }
+        </style>
+
+{% endblock %}
+
+{% block content %}
+{% for item in items %}
+
+{% if item.itemphoto_set.all.0.thumbnail1%}
+<input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}
+       id="{{item.itemphoto_set.all.0.thumbnail1.url}}">
+
+
+{% endif %}
+{% endfor %}
+<!--<div class="row">-->
+<!--<ul class="breadcrumb span10">-->
+<!--<li><a href="#">PA</a> <span class="divider"> > </span></li>-->
+<!--<li><a href="#">Lewisburg</a> <span class="divider"> > </span></li>-->
+<!--<li class="active">Bucknell U</li>-->
+<!--</ul>-->
+<!--<div class="btn-group span1" data-toggle="buttons-radio" id="btn_grp">-->
+<!--<button type="button" class="btn btn-primary active" id="map_tab">Map</button>-->
+<!--<button type="button" class="btn btn-primary" id="list_tab">List</button>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row-fluid">-->
+<!--<div class="span2">-->
+<!--<form method='GET' action="{%url search%}">-->
+<!--<label>Refine Location</label>-->
+<!--<input name="q" type="text" placeholder="City or university" class="span12">-->
+<!--<label>Categories</label>-->
+<!--{% for category in categories%}-->
+<!--<label>-->
+<!--<a href="{% url search%}?category={{category}}"> {{category}}</a>-->
+<!--</label>-->
+<!--{% endfor %}-->
+<!--<label class="checkbox">-->
+<!--<input type="checkbox"> Books-->
+<!--</label>-->
+<!--<label class="checkbox">-->
+<!--<input type="checkbox"> Electronics-->
+<!--</label>-->
+<!--<label class="checkbox">-->
+<!--<input type="checkbox"> Music-->
+<!--</label>-->
+<!--<label class="checkbox">-->
+<!--<input type="checkbox"> Movie-->
+<!--</label>-->
+<!--</form>-->
+<!--<div class="btn-group span2" data-toggle="buttons-radio">-->
+<!--<button type="button" class="btn btn-primary active">For sell</button>-->
+<!--<button type="button" class="btn btn-primary">Wanted</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="tab-content span8">-->
+<!--<div class="tab-pane active" id="map_tab_content">-->
+<!--<div id="map_canvas" class="span1 big_map">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="tab-pane" id="list_tab_content">-->
+<!--{% for item in items %}-->
+
+<!--<div class="span2 item-block">-->
+<!--{% if item.itemphoto_set.all.0.photo1%}-->
+<!--<img src={{item.itemphoto_set.all.0.photo1.url}} width="50px" height="50px" />-->
+<!--{% endif %}-->
+<!--{{item.name}}<br>-->
+<!--<span>${{item.price}}</span>-->
+<!--</div>-->
+<!--<div class="span2 item-block">-->
+<!--<button class="btn">Buy</button>-->
+<!--<button class="btn">Wish</button>-->
+<!--<a href="{% url item_view item.slug%}">view</a>-->
+<!--</div>-->
+
+<!--{% endfor %}-->
+
+<!--</div>-->
+<!--</div>-->
+<!--<div class="span2 item-info">-->
+<!--<div class="row item-info1">-->
+<!--<img src="{{STATIC_URL}}img/100x100.png" class="img-polaroid offset2" id="item_image_detail" height="100px" width="100px">-->
+<!--<span class="offset3" id="item_name_detail">Item Name</span>-->
+<!--</div>-->
+<!--<div class="row item-info1 offset1">-->
+<!--Seller : <img src="{{STATIC_URL}}img/user_32.png">-->
+<!--</div>-->
+<!--<div class="row item-info1">-->
+<!--<label>Description</label>-->
+
+<!--<div class="description">-->
+<!--Demo description-->
+<!--Demo description Demo description Demo description Demo description-->
+<!--Demo description Demo description Demo descriptionDemo description-->
+<!--</div>-->
+<!--<button type="button" class="btn btn-primary">View Detail</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="bannerbg">
+    <div class="container">
+        <h2 class="innerhead">Map</h2>
+
+        <div class="innerbanner"><img src="{{STATIC_URL}}images/banner.jpg"/></div>
+    </div>
+</div>
+<div class="innerbody">
+    <div class="container">
+        <div class="twocolums">
+            <div class="tabbable tabs-left">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#lA" data-toggle="tab">Map</a></li>
+                    <li class=""><a href="#lB" data-toggle="tab">List</a></li>
+                    <li>
+                        <div class="lisitnginfo">
+                            <!--<form>-->
+                                <!--<label>Refine Location</label>-->
+                                <!--<input type="text" placeholder="City or university">-->
+                                <!--<label>Categories</label>-->
+                                <!--<label class="checkbox">-->
+                                    <!--<input type="checkbox"> All-->
+                                <!--</label>-->
+                                <!--<label class="checkbox">-->
+                                    <!--<input type="checkbox"> Books-->
+                                <!--</label>-->
+                                <!--<label class="checkbox">-->
+                                    <!--<input type="checkbox"> Electronics-->
+                                <!--</label>-->
+                                <!--<label class="checkbox">-->
+                                    <!--<input type="checkbox"> Music-->
+                                <!--</label>-->
+                                <!--<label class="checkbox">-->
+                                    <!--<input type="checkbox"> Movie-->
+                                <!--</label>-->
+                            <!--</form>-->
+                            <form method='GET' action="{%url search%}">
+                                <label>Refine Location</label>
+                                <input name="q" type="text" placeholder="City or university" class="span3">
+                                <label>Categories</label>
+                                {% for category in categories%}
+                                <label>
+                                    <a href="{% url search%}?category={{category}}"> {{category}}</a>
+                                </label>
+                                {% endfor %}
+                                <label class="checkbox">
+                                    <input type="checkbox"> Books
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Electronics
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Music
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Movie
+                                </label>
+                            </form>
+                            <div class="btn-group span2" data-toggle="buttons-radio">
+                                <button type="button" class="btn btn-primary active">For sell</button>
+                                <button type="button" class="btn btn-primary">Wanted</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-info" style="margin-top:30px; float:left">
+                            <div class="row item-info1" style="width:100%; text-align:center">
+                                <img src="images/100x100.png" width="100" height="100" class="img-polaroid">
+                <span style="float:left;
+				text-align:center; width:100%">Item Name</span></div>
+                            <div class="row item-info1" style=" float:none; margin:0px auto; width:120px;">
+                                Seller : <img src="images/user_32.png">
+                            </div>
+                            <div class="row item-info1">
+                                <label>Description</label>
+
+                                <div class="description">
+                                    Demo description
+                                    Demo description Demo description Demo description Demo description
+                                    Demo description Demo description Demo descriptionDemo description
+                                </div>
+                                <button type="button" class="btn btn-primary">View Detail</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="float:left; width:100%; text-align:center; margin-top:20px;"><img
+                            src="images/rightbanner.jpg"/></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="lA">
+                        <div class="listingright">
+
+                            <div style="float:left; margin-left:30px; margin-top:15px; margin-bottom:30px;">
+                                <!--<iframe width="640" height="400" frameborder="0" scrolling="no" marginheight="0"-->
+                                        <!--marginwidth="0"-->
+                                        <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
+                                <div id="map_canvas" class="span1 big_map"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="lB">
+                        <div class="listingright">
+                            <ul>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                                <li>
+                                    <div class="productimage"><img src="images/product01.gif"/>
+                                    </div>
+                                    <h3>Item Name</h3>
+
+                                    <p>$99</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="lC">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="currentPassword">Current Password</label>
+
+                                <div class="controls">
+                                    <input type="password" id="currentPassword">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="newPassword">New Password</label>
+
+                                <div class="controls">
+                                    <input type="password" id="newPassword">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="confirmPassword">Confirm Password</label>
+
+                                <div class="controls">
+                                    <input type="password" id="confirmPassword">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-inverse">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

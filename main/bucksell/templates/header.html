@@ -277,6 +277,9 @@
     .container #loginBox{
         margin-left: 614px;
     }
+    .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle{
+    background-color: #D1EAFF ;
+    }
 </style>
 
 <div class="navbar navbar-static-top">
@@ -286,7 +289,7 @@
             {% if user.is_authenticated %}
             <ul class="nav">
                 <li>
-                    <form class="navbar-search pull-left" action="">
+                    <form class="navbar-search pull-left" method="GET" action="{% url search%}">
                         <input type="text" class="search-query" placeholder="Search">
                     </form>
                 </li>

@@ -392,27 +392,42 @@
                             <h2><span style="padding-left:30px;">Choose file</span></h2>
                             <ul>
                                 <li style="text-align:center; padding-top:10px;">
-                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                                    <label class="radio" style="margin-left: 50px;">
-                                        <input type="radio" name="default_pic" id="d1" value="1" checked="true">
-                                        Default Pic
-                                    </label>
+                                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                                    <!--<label class="radio" style="margin-left: 50px;">-->
+                                        <!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
+                                        <!--Default Pic-->
+                                    <!--</label>-->
+                                    {% if item.itemphoto_set.all.0.photo1%}
+                                    <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid item-img"/>
+                                    {% else %}
+                                    <input type="radio" name="default_pic" id="d1" value="1" checked="true">
+                                    {% endif %}
                                     {{form.image1}}
                                 </li>
                                 <li style="text-align:center; padding-top:10px;">
-                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                                    <label class="radio" style="margin-left: 50px;">
-                                        <input type="radio" name="default_pic" id="d2" value="2">
-                                        Default Pic
-                                    </label>
+                                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                                    <!--<label class="radio" style="margin-left: 50px;">-->
+                                        <!--<input type="radio" name="default_pic" id="d2" value="2">-->
+                                        <!--Default Pic-->
+                                    <!--</label>-->
+                                    {% if item.itemphoto_set.all.0.photo2%}
+                                    <img src={{item.itemphoto_set.all.0.photo2.url}} class="img-polaroid item-img"/>
+                                    {% else %}
+                                    <input type="radio" name="default_pic" id="d1" value="1" checked="true">
+                                    {% endif %}
                                     {{form.image2}}
                                 </li>
                                 <li style="text-align:center; padding-top:10px;">
-                                    <img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">
-                                    <label class="radio" style="margin-left: 50px;">
-                                        <input type="radio" name="default_pic" id="d3" value="3">
-                                        Default Pic
-                                    </label>
+                                    <!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
+                                    <!--<label class="radio" style="margin-left: 50px;">-->
+                                        <!--<input type="radio" name="default_pic" id="d3" value="3">-->
+                                        <!--Default Pic-->
+                                    <!--</label>-->
+                                    {% if item.itemphoto_set.all.0.photo3%}
+                                    <img src={{item.itemphoto_set.all.0.photo3.url}} class="img-polaroid item-img"/>
+                                    {% else %}
+                                    <input type="radio" name="default_pic" id="d1" value="1" checked="true">
+                                    {% endif %}
                                     {{form.image3}}
                                 </li>
 

@@ -160,7 +160,7 @@
                             <a href="{%url add_item %}" class="btn btn-primary pull-right"
                                style="margin-right: 20px;text-decoration: none">Add item</a>
                             <ul>{% for item in items%}
-                                <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden">
+                                <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden;text-align: center;padding-bottom: 0px !important;">
                                     <a href="/items/view/{{item.slug}}">
 
                                         <div class="productimage">
@@ -178,20 +178,20 @@
                                         </div>
                                     </a>
 
-                                    <p style="font-weight: lighter">Name : {{item.name}}</p>
+                                    <p style="font-weight: lighter"><h3>Name : {{item.name}}</h3></p>
 
-                                    <p style="font-weight: lighter">Price : {{item.price}}</p>
+                                    <p style="font-weight: lighter;font-size: 15px">Price : {{item.price}}</p>
                                     <a class="btn btn-primary msg_margin" href="{%url item_edit item.slug%}"
-                                       style="margin-left: 50px">Edit</a>
+                                       style="margin-left: 0px;margin-top: 5px;text-decoration: none">Edit</a>
 
                                     <form action="{%url item_publish%}" method="POST" name="publish_form">{%csrf_token%}
                                         {% ifequal item.is_published 1%}
                                         <input type="hidden" value="1" name="is_published">
                                         <input type="checkbox" name="is_published_check" checked="checked"
-                                               style="margin-left: 30px" onclick="this.form.submit()"/>is published<br/>
+                                               style="margin-left: 20px" onclick="this.form.submit()"/>is published<br/>
                                         {% else %}
                                         <input type="hidden" value="0" name="is_published">
-                                        <input type="checkbox" name="is_published_check" style="margin-left: 30px"
+                                        <input type="checkbox" name="is_published_check" style="margin-left: 20px"
                                                onclick="this.form.submit()"/>is published<br/>
                                         {% endifequal %}
                                         <input type="hidden" value="{{item.id}}" name="id">

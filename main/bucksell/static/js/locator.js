@@ -168,6 +168,7 @@ function display_map(position) {
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
+                $('#item_info').css('display','block');
                 $('#item_name_detail').text(item_name);
                 $('#item_image_detail').attr('src', img_src);
                 infowindow.open(map, marker);

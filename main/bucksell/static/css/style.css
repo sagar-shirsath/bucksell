@@ -709,3 +709,13 @@ h2.innerhead {
 .innerbanner {
     float: right;
 }
+.socialmediaright {
+    float: right;
+    background: #f7fdff;
+    border: 1px solid #cccccc;
+    border-right: none;
+    padding: 5px;
+    position: fixed;
+    top: 40%;
+    right: 0px;
+}

@@ -174,27 +174,20 @@
 //        $('#loginBox').css('display', 'block');
     });
 </script>
-{% if flash.message %}
-<div class="alert alert-error offset5 span4" style="text-align: center; margin-top: 10px;" id="flashMessage">
-    {{ flash.message }}
-</div>
-{% endif %}
-</div>
-
-
 <div class="headertop">
     <div class="container">
-        <div class="logo"><a href="/"><img src="{{STATIC_URL}}images/bucksell_logo.png"/></a></div>
+        <div class="logo"><a href="/"><img src="{{STATIC_URL}}images/logo.gif"/></a></div>
         <div class="navigation">
             <a href="/" class="buy">Buy</a>
             <a href="{%url my_listing%}" class="sell">Sell</a>
             {% if user.is_authenticated %}
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="search for..">
+            </form>
             <ul class="nav pull-right" style="border-top:none; margin-top:10px;">
-                <li>
-                    <form class="navbar-search pull-left">
-                        <input type="text" class="search-query" placeholder="search for..">
-                    </form>
-                </li>
+                <!--<li>-->
+                    <!---->
+                <!--</li>-->
                 <li class="divider-vertical"></li>
                 <!--<li class="dropdown" style="position: relative; top:-67px; right:-113px;">-->
                 <!--<button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span> Username <b-->
@@ -206,7 +199,7 @@
                 <!--<li><a href="#" style="text-decoration:none">Logout</a></li>-->
                 <!--</ul>-->
                 <!--</li>-->
-                <li class="divider-vertical"></li>
+                <!--<li class="divider-vertical"></li>-->
                 <li class="dropdown">
                     <button class="dropdown btn" data-toggle="dropdown">
                         {%if user.auth_user.all.0.thumbnail%}
@@ -214,7 +207,7 @@
                         {% else%}
                         <span class="icon-user">
                         {% endif %}
-</span>
+                        </span>
                         {{user.username}} <b class="caret"></b></button>
                     <ul class="dropdown-menu">
                         <li><a href="{%url edit_profile%}">Profile Edit</a></li>
@@ -224,10 +217,11 @@
                     </ul>
                 </li>
             </ul>
+            {% else%}
         </div>
     </div>
-    </ul>
-    {% else%}
+    <!--</ul>-->
+
     <a href="#" class="login" id="loginButton">Login</a>
     <span class="newuser">New user?</span>
     <a href="{%url registration_register%}" class="signup">Sigin up</a>
@@ -264,4 +258,11 @@
     {% endif %}
 </div>
 </div>
+</div>
+{% if flash.message %}
+<div class="alert alert-error offset6 span4"
+     style="text-align: center; margin-top: 10px;z-index: 99999;position: absolute;margin-top: 230px" id="flashMessage">
+    {{ flash.message }}
+</div>
+{% endif %}
 </div>

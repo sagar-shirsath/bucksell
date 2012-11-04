@@ -103,8 +103,9 @@ function display_map(position) {
         animation:google.maps.Animation.DROP,
         map:map,
         title:"Your location",
-        icon: 'http://127.0.0.1:8000/static/images/home.png'
+        icon:'http://'+location.hostname + ':8000/static/images/home.png'
     });
+
 
     geocoder.geocode({'latLng':latlng}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {

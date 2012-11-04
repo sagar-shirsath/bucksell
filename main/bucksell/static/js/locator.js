@@ -116,16 +116,16 @@ function display_map(position) {
 //        marker = createMarker(event.latLng, "name", "<b>Location</b><br>" + event.latLng, map);
 //    });
     var myOptions = {
-        disableAutoPan: false,
-        maxWidth: 0,
-        alignBottom: true,
-        pixelOffset: new google.maps.Size(-16, -11),
-        zIndex: null,
-        boxClass: "info-windows",
-        closeBoxURL: "",
-        pane: "floatPane",
-        enableEventPropagation: false,
-        infoBoxClearance: "10px"
+        disableAutoPan:false,
+        maxWidth:0,
+        alignBottom:true,
+        pixelOffset:new google.maps.Size(-16, -11),
+        zIndex:null,
+        boxClass:"info-windows",
+        closeBoxURL:"",
+        pane:"floatPane",
+        enableEventPropagation:false,
+        infoBoxClearance:"10px"
     };
 //    var infowindow = new google.maps.InfoWindow({
 //        boxClass: "info-windows"
@@ -159,10 +159,10 @@ function display_map(position) {
         });
         var img_src = $(this).attr('id');
         var item_name = $(this).attr('value');
-        var item_id=$(this).attr('item-id');
-        var view_url = '/items/view/'+$(this).attr('item-slug');
+        var item_id = $(this).attr('item-id');
+        var view_url = '/items/view/' + $(this).attr('item-slug');
 
-        var myHtml = '<div id='+item_id+'><a href='+view_url+'><img src=' + img_src + ' height=50px width=50px/>' +
+        var myHtml = '<div id=' + item_id + '><a href=' + view_url + '><img src=' + img_src + ' height=50px width=50px/>' +
             '<h3>' + item_name + '</h3></a></div>';
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -182,13 +182,13 @@ function display_map(position) {
                 var item_id = $(infowindow.getContent()).attr('id');
 
                 $.ajax({
-                    url:"/items/view_item_ajax/"+item_id,
-                    success:function(responce){
+                    url:"/items/view_item_ajax/" + item_id,
+                    success:function (responce) {
 
                         console.log(responce);
 
-                        $('#item_img').attr('src',responce.item_photo_url);
-                        $('#seller_img').attr('src',responce.seller_photo);
+                        $('#item_img').attr('src', responce.item_photo_url);
+                        $('#seller_img').attr('src', responce.seller_photo);
                         $('#item_name').text(responce.name);
 
                         $('#item_description').text(responce.description);
@@ -210,9 +210,9 @@ function display_map(position) {
         animation:google.maps.Animation.DROP,
         map:map,
         title:"Your location",
-        icon: 'http://127.0.0.1:8000/static/images/home.png'
+        icon:'http://'+location.hostname + ':8000/static/images/home.png'
     });
-
+//    console.log('http://'+location.hostname + ':8000/static/images/home.png');
     google.maps.event.addListener(marker, 'mouseover', function () {
 //        infowindow.setContent("<h3>Your Location :)</h3>");
 //        infowindow.open(map, marker);

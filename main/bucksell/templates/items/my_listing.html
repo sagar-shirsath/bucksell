@@ -160,7 +160,7 @@
                             <a href="{%url add_item %}" class="btn btn-primary pull-right"
                                style="margin-right: 20px;text-decoration: none">Add item</a>
                             <ul>{% for item in items%}
-                                <li class="img-polaroid">
+                                <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden">
                                     <a href="/items/view/{{item.slug}}">
 
                                         <div class="productimage">

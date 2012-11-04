@@ -163,7 +163,7 @@ function display_map(position) {
         var view_url = '/items/view/' + $(this).attr('item-slug');
         var price = $(this).attr('item-price');
 
-        var myHtml = '<div style="text-align: center" id=' + item_id + '><a style="text-decoration: none" href=' + view_url + '><img src=' + img_src + ' height=70px width=70px/>' +
+        var myHtml = '<div style="text-align: center; text-overflow: ellipsis;overflow-x: hidden" id=' + item_id + '><a style="text-decoration: none" href=' + view_url + '><img src=' + img_src + ' height=70px width=70px/>' +
             '' + item_name + '<br>'+price+'</a></div>';
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -177,6 +177,13 @@ function display_map(position) {
         google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
             return function () {
                 infowindow.setContent(myHtml);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+//                infowindow.setContent(myHtml);
 
                 console.log($(infowindow.getContent()).attr('id'));
 

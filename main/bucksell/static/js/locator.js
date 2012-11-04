@@ -204,16 +204,18 @@ function display_map(position) {
 //        console.log($(this).attr('rev'));
 
     });
+    var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/micons/homegardenbusiness.png");
     var marker = new google.maps.Marker({
         position:latlng,
         animation:google.maps.Animation.DROP,
         map:map,
-        title:"Your location"
+        title:"Your location",
+        icon: 'http://127.0.0.1:8000/static/images/home.png'
     });
 
     google.maps.event.addListener(marker, 'mouseover', function () {
-        infowindow.setContent("<h3>Your Location :)</h3>");
-        infowindow.open(map, marker);
+//        infowindow.setContent("<h3>Your Location :)</h3>");
+//        infowindow.open(map, marker);
     });
 
     geocoder.geocode({'latLng':latlng}, function (results, status) {

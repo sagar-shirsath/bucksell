@@ -81,51 +81,51 @@ function display_map(position) {
         infowindow.close();
     });
 
-    google.maps.event.addListener(map, 'click', function (event) {
-        //call function to create marker
-        if (marker) {
-            marker.setMap(null);
-            marker = null;
-        }
-        console.log(event.latLng.Ya + ' ' + event.latLng.Za);
-        $('#id_latitude').val(event.latLng.Ya);
-        $('#id_longitude').val(event.latLng.Za);
-
-        var latlng1 = new google.maps.LatLng(event.latLng.Ya, event.latLng.Za);
-
-        geocoder.geocode({'latLng':latlng1}, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    console.log('Address = ' + JSON.stringify(results[0]['formatted_address']));
-                    console.log('City = ' + JSON.stringify(results[0]['address_components'][2]['long_name']));
-                    console.log('State = ' + JSON.stringify(results[0]['address_components'][4]['long_name']));
-                    //                console.log(JSON.stringify(results[0]['address_components'][4]['short_name']));
-
-                    console.log('Country = ' + JSON.stringify(results[0]['address_components'][5]['long_name']));
-//                console.log(JSON.stringify(results[0]['address_components'][5]['short_name']));
-
-                    $('#id_location').val(JSON.stringify(results[0]['formatted_address']));
-
-                }
-            }
-            else {
-                alert("Geocoder failed due to: " + status);
-            }
-        });
-
-        marker = createMarker(event.latLng, "name", "<b>Location</b><br>" + event.latLng, map);
-    });
+//    google.maps.event.addListener(map, 'click', function (event) {
+//        //call function to create marker
+//        if (marker) {
+//            marker.setMap(null);
+//            marker = null;
+//        }
+//        console.log(event.latLng.Ya + ' ' + event.latLng.Za);
+//        $('#id_latitude').val(event.latLng.Ya);
+//        $('#id_longitude').val(event.latLng.Za);
+//
+//        var latlng1 = new google.maps.LatLng(event.latLng.Ya, event.latLng.Za);
+//
+//        geocoder.geocode({'latLng':latlng1}, function (results, status) {
+//            if (status == google.maps.GeocoderStatus.OK) {
+//                if (results[1]) {
+//                    console.log('Address = ' + JSON.stringify(results[0]['formatted_address']));
+//                    console.log('City = ' + JSON.stringify(results[0]['address_components'][2]['long_name']));
+//                    console.log('State = ' + JSON.stringify(results[0]['address_components'][4]['long_name']));
+//                    //                console.log(JSON.stringify(results[0]['address_components'][4]['short_name']));
+//
+//                    console.log('Country = ' + JSON.stringify(results[0]['address_components'][5]['long_name']));
+////                console.log(JSON.stringify(results[0]['address_components'][5]['short_name']));
+//
+//                    $('#id_location').val(JSON.stringify(results[0]['formatted_address']));
+//
+//                }
+//            }
+//            else {
+//                alert("Geocoder failed due to: " + status);
+//            }
+//        });
+//
+//        marker = createMarker(event.latLng, "name", "<b>Location</b><br>" + event.latLng, map);
+//    });
     var myOptions = {
-        disableAutoPan: false,
-        maxWidth: 0,
-        alignBottom: true,
-        pixelOffset: new google.maps.Size(-16, -11),
-        zIndex: null,
-        boxClass: "info-windows",
-        closeBoxURL: "",
-        pane: "floatPane",
-        enableEventPropagation: false,
-        infoBoxClearance: "10px"
+        disableAutoPan:false,
+        maxWidth:0,
+        alignBottom:true,
+        pixelOffset:new google.maps.Size(-16, -11),
+        zIndex:null,
+        boxClass:"info-windows",
+        closeBoxURL:"",
+        pane:"floatPane",
+        enableEventPropagation:false,
+        infoBoxClearance:"10px"
     };
 //    var infowindow = new google.maps.InfoWindow({
 //        boxClass: "info-windows"
@@ -159,11 +159,12 @@ function display_map(position) {
         });
         var img_src = $(this).attr('id');
         var item_name = $(this).attr('value');
-        var item_id=$(this).attr('item-id');
-        var view_url = '/items/view/'+$(this).attr('item-slug');
+        var item_id = $(this).attr('item-id');
+        var view_url = '/items/view/' + $(this).attr('item-slug');
+        var price = $(this).attr('item-price');
 
-        var myHtml = '<div id='+item_id+'><a href='+view_url+'><img src=' + img_src + ' height=50px width=50px/>' +
-            '<h3>' + item_name + '</h3></a></div>';
+        var myHtml = '<div style="text-align: center; text-overflow: ellipsis;overflow-x: hidden" id=' + item_id + '><a style="text-decoration: none" href=' + view_url + '><img src=' + img_src + ' height=70px width=70px/>' +
+            '' + item_name + '<br>'+price+'</a></div>';
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
@@ -176,19 +177,26 @@ function display_map(position) {
         google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
             return function () {
                 infowindow.setContent(myHtml);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+//                infowindow.setContent(myHtml);
 
                 console.log($(infowindow.getContent()).attr('id'));
 
                 var item_id = $(infowindow.getContent()).attr('id');
 
                 $.ajax({
-                    url:"/items/view_item_ajax/"+item_id,
-                    success:function(responce){
+                    url:"/items/view_item_ajax/" + item_id,
+                    success:function (responce) {
 
                         console.log(responce);
 
-                        $('#item_img').attr('src',responce.item_photo_url);
-                        $('#seller_img').attr('src',responce.seller_photo);
+                        $('#item_img').attr('src', responce.item_photo_url);
+                        $('#seller_img').attr('src', responce.seller_photo);
                         $('#item_name').text(responce.name);
 
                         $('#item_description').text(responce.description);
@@ -210,9 +218,9 @@ function display_map(position) {
         animation:google.maps.Animation.DROP,
         map:map,
         title:"Your location",
-        icon: 'http://127.0.0.1:8000/static/images/home.png'
+        icon:'http://'+location.hostname + ':8000/static/images/home.png'
     });
-
+//    console.log('http://'+location.hostname + ':8000/static/images/home.png');
     google.maps.event.addListener(marker, 'mouseover', function () {
 //        infowindow.setContent("<h3>Your Location :)</h3>");
 //        infowindow.open(map, marker);

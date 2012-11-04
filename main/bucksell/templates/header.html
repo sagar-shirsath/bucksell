@@ -157,9 +157,10 @@
     #loginBox {
         width: 276px;
         background: #009fc4;
-        margin-top: 35px;
+        margin-top: 85px;
         height: 250px;
         position: absolute;
+        margin-right: 00px !important;
     }
 </style>
 <script type="text/javascript">
@@ -174,94 +175,196 @@
 //        $('#loginBox').css('display', 'block');
     });
 </script>
-{% if flash.message %}
-<div class="alert alert-error offset5 span4" style="text-align: center; margin-top: 10px;" id="flashMessage">
-    {{ flash.message }}
-</div>
-{% endif %}
-</div>
+<!--<div class="headertop">-->
+<!--<div class="container">-->
+<!--<div class="logo"><a href="/"><img src="{{STATIC_URL}}images/logo.gif"/></a></div>-->
+<!--<div class="navigation">-->
+<!--<a href="/" class="buy">Buy</a>-->
+<!--<a href="{%url my_listing%}" class="sell">Sell</a>-->
+<!--{% if user.is_authenticated %}-->
+<!--<form class="navbar-search pull-left">-->
+<!--<input type="text" class="search-query" placeholder="search for..">-->
+<!--</form>-->
+<!--<ul class="nav pull-right" style="border-top:none; margin-top:10px;">-->
+<!--<li>-->
 
+<!--</li>-->
+<!--<li class="divider-vertical"></li>-->
+<!--<li class="dropdown" style="position: relative; top:-67px; right:-113px;">-->
+<!--<button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span> Username <b-->
+<!--class="caret"></b></button>-->
+<!--<ul class="dropdown-menu">-->
+<!--<li><a href="#" style="text-decoration:none">Profile Edit</a></li>-->
+<!--<li><a href="#" style="text-decoration:none">Your Posts</a></li>-->
+<!--<li class="divider"></li>-->
+<!--<li><a href="#" style="text-decoration:none">Logout</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<li class="divider-vertical"></li>-->
+<!--<li class="dropdown">-->
+<!--<button class="dropdown btn" data-toggle="dropdown">-->
+<!--{%if user.auth_user.all.0.thumbnail%}-->
+<!--<img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>-->
+<!--{% else%}-->
+<!--<span class="icon-user">-->
+<!--{% endif %}-->
+<!--</span>-->
+<!--{{user.username}} <b class="caret"></b></button>-->
+<!--<ul class="dropdown-menu">-->
+<!--<li><a href="{%url edit_profile%}">Profile Edit</a></li>-->
+<!--<li><a href="{%url my_listing %}">Your Posts</a></li>-->
+<!--<li class="divider"></li>-->
+<!--<li><a href="{%url auth_logout%}">Logout</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+<!--{% else%}-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
 
-<div class="headertop">
-    <div class="container">
-        <div class="logo"><a href="/"><img src="{{STATIC_URL}}images/bucksell_logo.png"/></a></div>
-        <div class="navigation">
-            <a href="/" class="buy">Buy</a>
-            <a href="{%url my_listing%}" class="sell">Sell</a>
+<!--<a href="#" class="login" id="loginButton">Login</a>-->
+<!--<span class="newuser">New user?</span>-->
+<!--<a href="{%url registration_register%}" class="signup">Sigin up</a>-->
+
+<!--<div id="loginBox" class="offset10 login_active">-->
+<!--<form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}-->
+<!--<div class="control-group">-->
+<!--&lt;!&ndash;<label class="control-label" for="inputEmail">Email</label>&ndash;&gt;-->
+<!--<div class="controls">-->
+<!--<input type="text" id="email" placeholder="Email" name="email">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="control-group">-->
+<!--&lt;!&ndash;<label class="control-label" for="inputPassword">Password</label>&ndash;&gt;-->
+<!--<div class="controls">-->
+<!--<input type="password" id="password" placeholder="Password" name="password">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="control-group">-->
+<!--<div class="controls">-->
+<!--<label class="checkbox">-->
+<!--<input type="checkbox" id="checkbox"> <font style="color: #fff">Remember me</font>-->
+<!--</label>-->
+<!--<button type="submit" class="btn btn-primary" id="login">Sign in</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="control-group">-->
+<!--<div class="controls">-->
+<!--<span><a href="{% url password_reset %}">Forgot your password?</a></span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--{% endif %}-->
+<!--</div>-->
+<!--</div>-->
+<style type="text/css">
+    .my_nav {
+        /*background:;*/
+        background: url({{STATIC_URL}}images/headerbg.gif) repeat-x top left;
+    }
+
+    .navbar .nav > li > a {
+        padding: 35px 15px 35px;
+        text-decoration: none !important;
+    }
+
+    form > input {
+        margin: 35px 15px 35px;
+        height: 30px !important;
+    }
+    .container #loginBox{
+        margin-left: 614px;
+    }
+</style>
+
+<div class="navbar navbar-static-top">
+    <div class="navbar-inner my_nav">
+        <div class="container">
+            <a class="brand" href="/"><img src="{{STATIC_URL}}images/logo.gif"></a>
             {% if user.is_authenticated %}
-            <ul class="nav pull-right" style="border-top:none; margin-top:10px;">
+            <ul class="nav">
                 <li>
-                    <form class="navbar-search pull-left">
-                        <input type="text" class="search-query" placeholder="search for..">
+                    <form class="navbar-search pull-left" action="">
+                        <input type="text" class="search-query" placeholder="Search">
                     </form>
                 </li>
-                <li class="divider-vertical"></li>
-                <!--<li class="dropdown" style="position: relative; top:-67px; right:-113px;">-->
-                <!--<button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span> Username <b-->
-                <!--class="caret"></b></button>-->
-                <!--<ul class="dropdown-menu">-->
-                <!--<li><a href="#" style="text-decoration:none">Profile Edit</a></li>-->
-                <!--<li><a href="#" style="text-decoration:none">Your Posts</a></li>-->
-                <!--<li class="divider"></li>-->
-                <!--<li><a href="#" style="text-decoration:none">Logout</a></li>-->
-                <!--</ul>-->
-                <!--</li>-->
-                <li class="divider-vertical"></li>
-                <li class="dropdown">
-                    <button class="dropdown btn" data-toggle="dropdown">
+
+            </ul>
+
+            <ul class="nav pull-right">
+                <!--<li class="active"><a href="#">Home</a></li>-->
+                <!--<li><a href="#">Link</a></li>-->
+                <!--<li><a href="#">Link</a></li>-->
+                <!--<li></li>-->
+                <li class=""><a href="/">Buy</a></li>
+                <li><a href="{%url my_listing%}">Sell</a></li>
+                <li class="dropdown my_dropdown">
+                    <a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">
                         {%if user.auth_user.all.0.thumbnail%}
                         <img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>
                         {% else%}
-                        <span class="icon-user">
+                        <span class="icon-user"></span>
                         {% endif %}
-</span>
-                        {{user.username}} <b class="caret"></b></button>
+                        {{user.username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{%url edit_profile%}">Profile Edit</a></li>
-                        <li><a href="{%url my_listing %}">Your Posts</a></li>
+                        <li><a href="{%url edit_profile%}" style="text-decoration: none">Profile Edit</a></li>
+                        <li><a href="{%url my_listing %}" style="text-decoration: none">Your Posts</a></li>
                         <li class="divider"></li>
-                        <li><a href="{%url auth_logout%}">Logout</a></li>
+                        <li><a href="{%url auth_logout%}" style="text-decoration: none">Logout</a></li>
                     </ul>
                 </li>
             </ul>
+            {% else%}
+
+            <div style="margin-top: 25px">
+                <a href="/" class="buy">Buy</a>
+                <a href="{%url my_listing%}" class="sell">Sell</a>
+                <a href="#" class="login" id="loginButton" style="margin-left: 00px">Login</a>
+                <span class="newuser">New user?</span>
+                <a href="{%url registration_register%}" class="signup">Sigin up</a>
+
+                <div id="loginBox" class="offset10 login_active">
+                    <form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}
+                        <div class="control-group">
+                            <!--<label class="control-label" for="inputEmail">Email</label>-->
+                            <div class="controls">
+                                <input type="text" id="email" placeholder="Email" name="email">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <!--<label class="control-label" for="inputPassword">Password</label>-->
+                            <div class="controls">
+                                <input type="password" id="password" placeholder="Password" name="password">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="checkbox"> <font style="color: #fff">Remember me</font>
+                                </label>
+                                <button type="submit" class="btn btn-primary" id="login">Sign in</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <span><a href="{% url password_reset %}">Forgot your password?</a></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
-    </ul>
-    {% else%}
-    <a href="#" class="login" id="loginButton">Login</a>
-    <span class="newuser">New user?</span>
-    <a href="{%url registration_register%}" class="signup">Sigin up</a>
+</div>
 
-    <div id="loginBox" class="offset10 login_active">
-        <form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}
-            <div class="control-group">
-                <!--<label class="control-label" for="inputEmail">Email</label>-->
-                <div class="controls">
-                    <input type="text" id="email" placeholder="Email" name="email">
-                </div>
-            </div>
-            <div class="control-group">
-                <!--<label class="control-label" for="inputPassword">Password</label>-->
-                <div class="controls">
-                    <input type="password" id="password" placeholder="Password" name="password">
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <label class="checkbox">
-                        <input type="checkbox" id="checkbox"> <font style="color: #fff">Remember me</font>
-                    </label>
-                    <button type="submit" class="btn btn-primary" id="login">Sign in</button>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <span><a href="{% url password_reset %}">Forgot your password?</a></span>
-                </div>
-            </div>
-        </form>
-    </div>
-    {% endif %}
 </div>
+{% if flash.message %}
+<div class="alert alert-error offset6 span4"
+     style="text-align: center; margin-top: 10px;z-index: 99999;position: absolute;margin-top: 130px" id="flashMessage">
+    {{ flash.message }}
 </div>
+{% endif %}
 </div>

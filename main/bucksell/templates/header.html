@@ -286,7 +286,7 @@
             {% if user.is_authenticated %}
             <ul class="nav">
                 <li>
-                    <form class="navbar-search pull-left" action="">
+                    <form class="navbar-search pull-left" method="GET" action="{% url search%}">
                         <input type="text" class="search-query" placeholder="Search">
                     </form>
                 </li>

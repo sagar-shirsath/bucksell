@@ -84,7 +84,7 @@
 
 {% if item.itemphoto_set.all.0.thumbnail1%}
 <input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}
-       id="{{item.itemphoto_set.all.0.thumbnail1.url}}" item-id="{{item.id}}" item-slug="{{item.slug}}">
+       id="{{item.itemphoto_set.all.0.thumbnail1.url}}" item-id="{{item.id}}" item-slug="{{item.slug}}" item-price="{{item.price}}">
 
 
 {% endif %}

@@ -158,6 +158,7 @@
                     </div>
                     <div class="tab-pane" id="lB">
                         <div class="inbox">
+                          {% if messages%}
                             {%for message in messages%}
                             <div class="pane">
                                 <div class="inboxpic">
@@ -177,6 +178,9 @@
                                 <img src="{% url message_delete message.id %}" alt="delete" class="delete"/>
                             </div>
                             {% endfor %}
+                            {% else %}
+                            <h3>No message</h3>
+                            {% endif %}
 
                         </div>
 

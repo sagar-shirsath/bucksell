@@ -148,32 +148,7 @@
                 <li>
                     <div class="listingleftcontent"><img src="{{STATIC_URL}}images/listingpic.jpg"/></div>
                     <div class="lisitnginfo">
-                        <table width="220" border="0" cellspacing="1" cellpadding="5">
-                            <tr>
-                                <td width="90" style=" background: #eaecee"><strong>User Name</strong></td>
-                                <td width="107">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style=" background: #eaecee"><strong>Bucknell U</strong></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style=" background: #eaecee"><strong>Email</strong></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td style=" background: #eaecee"><strong>Phone#</strong></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style=" background: #eaecee"><strong>Gender</strong></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style=" background: #eaecee"><strong>Interests</strong></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </table>
+
                     </div>
                 </li>
                 <li style="float:left; width:100%; text-align:center; margin-top:20px;"><img
@@ -182,6 +157,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="lA">
                     <div class="listingright">
+                        <a href="{%url add_item %}">Add item</a>
                         <ul>{% for item in items%}
                             <li>
 
@@ -197,6 +173,9 @@
                                     No Image
                                     {% endif %}
                                 </div>
+                                {{item.name}}
+                                {{item.price}}
+                                <a class="btn btn-primary msg_margin" href="{%url item_edit item.slug%}">Edit</a>
                                 <form action="{%url item_publish%}" method="POST" name="publish_form">{% csrf_token%}
                                     {% ifequal item.is_published 1%}
                                     <input type="hidden" value="1" name="is_published">
@@ -213,77 +192,8 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="lB">
-                    <div class="inbox">
-                        <div class="pane">
-                            <div class="inboxpic"><img src="{{STATIC_URL}}images/buyerimage.gif"/></div>
-                            <h3>Sender</h3>
-                            <h4>Example Title</h4>
+                 </div>
 
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, ante at
-                                feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
-                                Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.</p>
-                            <img src="images/close.png" alt="delete" class="delete"/>
-                        </div>
-                        <div class="pane">
-                            <div class="inboxpic"><img src="images/buyerimage.gif"/></div>
-                            <h3>Sender</h3>
-                            <h4>Example Title</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, ante at
-                                feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
-                                Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.</p>
-                            <img src="images/close.png" alt="delete" class="delete"/>
-                        </div>
-                        <div class="pane">
-                            <div class="inboxpic"><img src="images/buyerimage.gif"/></div>
-                            <h3>Sender</h3>
-                            <h4>Example Title</h4>
-
-
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, ante at
-                                feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
-                                Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.</p>
-                            <img src="images/close.png" alt="delete" class="delete"/>
-                        </div>
-                        <div class="pane">
-                            <div class="inboxpic"><img src="images/buyerimage.gif"/></div>
-                            <h3>Sender</h3>
-                            <h4>Example Title</h4>
-
-
-                    </div>
-                </div>
-                <div class="tab-pane" id="lC">
-                    <form class="form-horizontal">
-                        <div class="control-group">
-                            <label class="control-label" for="currentPassword">Current Password</label>
-
-                            <div class="controls">
-                                <input type="password" id="currentPassword">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="newPassword">New Password</label>
-
-                            <div class="controls">
-                                <input type="password" id="newPassword">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="confirmPassword">Confirm Password</label>
-
-                            <div class="controls">
-                                <input type="password" id="confirmPassword">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="submit" class="btn btn-inverse">Cancel</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>

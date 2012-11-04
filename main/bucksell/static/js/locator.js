@@ -160,7 +160,7 @@ function display_map(position) {
         var img_src = $(this).attr('id');
         var item_name = $(this).attr('value');
         var item_id=$(this).attr('item-id');
-        var view_url = 'items/view/'+$(this).attr('item-slug');
+        var view_url = '/items/view/'+$(this).attr('item-slug');
 
         var myHtml = '<div id='+item_id+'><a href='+view_url+'><img src=' + img_src + ' height=50px width=50px/>' +
             '<h3>' + item_name + '</h3></a></div>';

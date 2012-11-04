@@ -1,23 +1,24 @@
+# Django settings for bucksell project.
 import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 ADMINS = (
-# ('Your Name', 'your_email@example.com'),
+    # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-		'NAME': 'bucksell',                      # Or path to database file if using sqlite3.
-		'USER': 'root',                      # Not used with sqlite3.
-		'PASSWORD': 'root',                  # Not used with sqlite3.
-		'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-		'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-	}
-}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'bucksell',                      # Or path to database file if using sqlite3.
+        'USER': 'admin',                      # Not used with sqlite3.
+        'PASSWORD': 'admin177',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+ }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -66,8 +67,8 @@ STATIC_URL = '/static/'
 
 
 STATICFILES_DIRS = (
-	os.path.join(PROJECT_DIR,'static'),
-	)
+    os.path.join(PROJECT_DIR,'static'),
+    )
 
 # Additional locations of static files
 
@@ -75,49 +76,49 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-	'django.contrib.staticfiles.finders.FileSystemFinder',
-	'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-	#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-	)
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a^rr!q4x9=s_7l&amp;7(ej=z54400+(q1jbob*k@ik-a*3b-k%5$h'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-	'django.template.loaders.filesystem.Loader',
-	'django.template.loaders.app_directories.Loader',
-	#     'django.template.loaders.eggs.Loader',
-	)
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
+)
 
 MIDDLEWARE_CLASSES = (
-	'django.middleware.common.CommonMiddleware',
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.csrf.CsrfViewMiddleware',
-	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'django.contrib.messages.middleware.MessageMiddleware',
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'djangoflash.middleware.FlashMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'djangoflash.middleware.FlashMiddleware',
 
 
-	# Uncomment the next line for simple clickjacking protection:
-	# 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	)
+# Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
 
 FILE_UPLOAD_HANDLERS = (
-	"django.core.files.uploadhandler.MemoryFileUploadHandler",
-	"django.core.files.uploadhandler.TemporaryFileUploadHandler",
-	)
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-	"django.contrib.auth.context_processors.auth",
-	"django.core.context_processors.debug",
-	"django.core.context_processors.i18n",
-	"django.core.context_processors.media",
-	"django.core.context_processors.static",
-	"django.core.context_processors.tz",
-	"django.contrib.messages.context_processors.messages",
-	'djangoflash.context_processors.flash',)
+    "django.contrib.auth.context_processors.auth",
+     "django.core.context_processors.debug",
+     "django.core.context_processors.i18n",
+     "django.core.context_processors.media",
+     "django.core.context_processors.static",
+     "django.core.context_processors.tz",
+     "django.contrib.messages.context_processors.messages",
+     'djangoflash.context_processors.flash',)
 
 ROOT_URLCONF = 'bucksell.urls'
 
@@ -125,35 +126,39 @@ ROOT_URLCONF = 'bucksell.urls'
 WSGI_APPLICATION = 'bucksell.wsgi.application'
 
 TEMPLATE_DIRS = (
-	os.path.join(PROJECT_DIR,'templates'),
-	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-	# Always use forward slashes, even on Windows.
-	# Don't forget to use absolute paths, not relative paths.
-	)
+    os.path.join(PROJECT_DIR,'templates'),
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
 
 INSTALLED_APPS = (
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.sites',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'ads',
-	'registration',
-	'categories',
-	'feedbacks',
-	'communications',
-	'payments',
-	'user_profiles',
-	'payments',
-	'items',
-	'universities',
-	'south',
-	'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'ads',
+    'registration',
+    'feedbacks',
+    'communications',
+    'payments',
+    'user_profiles',
+    'payments',
+    'items',
+    'categories',
+    'universities',
+    'south',
+    'transactions',
+#    'paypal.standard.ipn'
 
-	# Uncomment the next line to enable admin documentation:
-	# 'django.contrib.admindocs',
-	)
+
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -161,38 +166,39 @@ INSTALLED_APPS = (
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
-	'version': 1,
-	'disable_existing_loggers': False,
-	'filters': {
-		'require_debug_false': {
-			'()': 'django.utils.log.RequireDebugFalse'
-		}
-	},
-	'handlers': {
-		'mail_admins': {
-			'level': 'ERROR',
-			'filters': ['require_debug_false'],
-			'class': 'django.utils.log.AdminEmailHandler'
-		}
-	},
-	'loggers': {
-		'django.request': {
-			'handlers': ['mail_admins'],
-			'level': 'ERROR',
-			'propagate': True,
-			},
-		}
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
 }
+
+conditions = {1: 'Mint', 2: 'Like New', 3:'Fair'}
 
 ACCOUNT_ACTIVATION_DAYS = 30
 REGISTRATION_OPEN = True
-DEFAULT_FROM_EMAIL = "noReply@pranavan.com"
-EMAIL_HOST = 'smtp.gmail.com'
+DEFAULT_FROM_EMAIL = "noReply@bucksell.com"
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = 'sagar.s@pranavan.com'
-EMAIL_HOST_PASSWORD = 'omkaraomkara1'
+EMAIL_HOST_USER = 'bucksell'
+EMAIL_HOST_PASSWORD = 'bucksell'
 EMAIL_USE_TLS = True
-
 
 #flash messages
 FLASH_IGNORE_MEDIA = True
@@ -208,3 +214,4 @@ IMAGE_SUPPORTED_TYPES = ['image']
 
 PROFILE_IMG_SIZE = (150,180)
 PROFILE_THUMBNAILS_SIZE = (30,30)
+

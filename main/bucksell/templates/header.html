@@ -209,7 +209,7 @@
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
                     <button class="dropdown btn" data-toggle="dropdown">
-                        {%if user.auth_user.all.0.thumbnail.url%}
+                        {%if user.auth_user.all.0.thumbnail%}
                         <img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>
                         {% else%}
                         <span class="icon-user">

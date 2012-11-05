@@ -297,14 +297,14 @@
 
             </ul>
 
-            <ul class="nav pull-right">
+            <ul class="nav pull-right" style="width: 320px">
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li></li>-->
                 <li class=""><a href="{%url item_index%}">Buy</a></li>
                 <li><a href="{%url my_listing%}">Sell</a></li>
-                <li class="dropdown my_dropdown">
+                <li class="dropdown my_dropdown" >
                     <a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">
                         {%if user.auth_user.all.0.thumbnail%}
                         <img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>
@@ -346,7 +346,7 @@
                         <div class="control-group">
                             <div class="controls">
                                 <label class="checkbox">
-                                    <input type="checkbox" id="checkbox"> <font style="color: #fff">Remember me</font>
+                                    <input type="checkbox" id="checkbox" style="background: #FFF"> <font style="color: #fff">Remember me</font>
                                 </label>
                                 <button type="submit" class="btn btn-primary" id="login">Sign in</button>
                             </div>

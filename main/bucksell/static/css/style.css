@@ -40,7 +40,6 @@ body {
 
 .buy {
     float: left;
-    background: url(../images/buybg.gif) no-repeat top left;
     padding: 0 0 0 78px;
     width: 79px;
     height: 45px;
@@ -49,13 +48,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 17px;
-    color: #fff;
+    color: #333;
     margin-right: 21px;
 }
 
 .sell {
     float: left;
-    background: url(../images/sell.gif) no-repeat top left;
     padding: 0 0 0 75px;
     width: 82px;
     height: 45px;
@@ -64,20 +62,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 17px;
-    color: #fff;
+    color: #333;
     margin-right: 21px;
 }
 
 .login {
     float: left;
     margin: 6px 0 0 0;
-    background: url(../images/loginbg.gif) no-repeat top left;
     padding: 0 0 0 35px;
     width: 53px;
     height: 32px;
     line-height: 32px;
     text-decoration: none;
-    color: #fff !important;
+    color: #333 !important;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     font-weight: bold;
@@ -98,14 +95,13 @@ body {
 }
 
 .signup {
-    float: left;
-    background: url(../images/signup.gif) no-repeat top left;
+    float: right;
     padding: 0 0 0 29px;
     width: 59px;
     height: 32px;
     line-height: 32px;
     text-decoration: none;
-    color: #fff;
+    color: #333;
     font-size: 13px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -115,9 +111,7 @@ body {
 .bannerbg {
     float: left;
     width: 100%;
-    background: url(../images/bannerbg.gif) #4092cc repeat-x top left;
-    background: url(../images/bannerbg.gif) #4092CC repeat-x top left;
-    background: #175683;
+    background: #0E6FB4;
     padding: 15px 0px;
 }
 
@@ -169,7 +163,7 @@ body {
     font-weight: bold;
     color: #000;
 }
-.accept {
+v.accept {
     margin: 25px 0 0 0;
     float: left;
     width: 304px;

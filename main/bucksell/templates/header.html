@@ -289,8 +289,9 @@
             {% if user.is_authenticated %}
             <ul class="nav">
                 <li>
+
                     <form class="navbar-search pull-left" method="GET" action="{% url search%}">
-                        <input type="text" class="search-query" placeholder="Search">
+                        <input type="text" name ="q" class="search-query" placeholder="Search">
                     </form>
                 </li>
 
@@ -301,7 +302,7 @@
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li></li>-->
-                <li class=""><a href="/">Buy</a></li>
+                <li class=""><a href="{%url item_index%}">Buy</a></li>
                 <li><a href="{%url my_listing%}">Sell</a></li>
                 <li class="dropdown my_dropdown">
                     <a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">

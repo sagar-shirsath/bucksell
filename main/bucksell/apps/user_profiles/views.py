@@ -24,6 +24,7 @@ from registration.backends import get_backend
 from registration.forms import LoginForm
 from user_profiles.forms import ProfileForm , ImageUploadForm
 from user_profiles.models import Profile
+from items.models import Item
 
 def get_user_profile(id):
     user = User.objects.get(id=id)
@@ -37,7 +38,8 @@ def get_user_profile(id):
 def home(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse("item_index"))
-    return render_to_response("user_profiles/home.html", {}, context_instance=RequestContext(request))
+    items = Item.objects.filter().order_by('-publishing_date')[0:50]
+    return render_to_response("user_profiles/home.html", {'items':items}, context_instance=RequestContext(request))
 
 @login_required
 def edit_profile(request):

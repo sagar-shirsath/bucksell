@@ -215,7 +215,7 @@ def search(request):
             {'query_string': query_string, 'categories': categories, 'items': found_entries},
         context_instance=RequestContext(request))
 
-
+@login_required
 def publish(request):
     if request.method == "POST":
         is_published = request.POST.get('is_published_check', 0)

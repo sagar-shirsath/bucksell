@@ -16,6 +16,7 @@ from communications.models import Message
 
 def add(request):
     if request.method == "POST":
+        print request.POST
         body = request.POST.get('body')
         to_user = request.POST.get('to_user')
         item_slug = request.POST.get('item_slug')
@@ -23,7 +24,6 @@ def add(request):
         message = Message.objects.create(body=body,to_user_id=to_user,from_user=from_user)
         message.save()
         request.flash['message'] = "Message has been sent"
-        request.flash['message'] = "Its your item!!!"
     return HttpResponseRedirect(reverse('item_view',args=(item_slug,)))
 
 def index(request):
@@ -37,7 +37,6 @@ def delete(request,id):
     return HttpResponseRedirect(reverse('message_index'))
 
 def reply(request):
-    print "Hiiii"
     if request.method == "POST":
         body = request.POST.get('body')
         to_user = request.POST.get('from_user')

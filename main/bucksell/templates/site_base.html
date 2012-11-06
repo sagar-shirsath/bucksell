@@ -68,15 +68,17 @@
         }
         .info-windows{
             background-color: #d5d5d5;
-            width: 50px;
-            height:100px;
+            width: 70px;
+            height:120px;
             color: #000000;
             font: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
             max-width: none;
             padding:5px 10px 10px 10px;
             margin-bottom: 30px;
-            border: #4092CC solid thin;
-            background: url({{STATIC_URL}}images/headerbg.gif) rgb(188, 255, 216) repeat-x top left;
+            border: #4092CC solid 2px;
+            /*background: url({{STATIC_URL}}images/headerbg.gif) rgb(188, 255, 216) repeat-x top left;*/
+            background-color: #a9f0ac;
+            border-radius: 5px;
         }
         .info-windows img{
             padding:0px;
@@ -101,6 +103,10 @@
             padding:6px 2px 2px 4px;
         }
         #map_canvas  img  {max-width: none;}
+
+        .controls ul > li {
+            list-style: none;
+        }
     </style>
 <body>
 <!--<div class="container main">-->

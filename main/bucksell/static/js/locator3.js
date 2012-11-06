@@ -181,7 +181,13 @@ function display_map(position) {
                 infowindow.open(map, marker);
             }
         })(marker, i));
-
+        google.maps.event.addListener(marker, 'onmouseout', (function (marker, i) {
+            return function () {
+//                infowindow.setContent(myHtml);
+                infowindow.close();
+            }
+        })(marker, i));
+        onmouseout
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
 //                infowindow.setContent(myHtml);
@@ -190,20 +196,20 @@ function display_map(position) {
 
                 var item_id = $(infowindow.getContent()).attr('id');
 
-                $.ajax({
-                    url:"/items/view_item_ajax/" + item_id,
-                    success:function (responce) {
-
-                        console.log(responce);
-
-                        $('#item_img').attr('src', responce.item_photo_url);
-                        $('#seller_img').attr('src', responce.seller_photo);
-                        $('#item_name').text(responce.name);
-
-                        $('#item_description').text(responce.description);
-
-                    }
-                });
+//                $.ajax({
+//                    url:"/items/view_item_ajax/" + item_id,
+//                    success:function (responce) {
+//
+//                        console.log(responce);
+//
+//                        $('#item_img').attr('src', responce.item_photo_url);
+//                        $('#seller_img').attr('src', responce.seller_photo);
+//                        $('#item_name').text(responce.name);
+//
+//                        $('#item_description').text(responce.description);
+//
+//                    }
+//                });
                 infowindow.open(map, marker);
             }
         })(marker, i));

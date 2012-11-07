@@ -16,7 +16,6 @@ from communications.models import Message
 
 def add(request):
     if request.method == "POST":
-        print request.POST
         body = request.POST.get('body')
         to_user = request.POST.get('to_user')
         item_slug = request.POST.get('item_slug')

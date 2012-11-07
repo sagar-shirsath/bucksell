@@ -203,8 +203,8 @@
         <!--<img src="{{STATIC_URL}}images/banner.jpg"/>-->
         <!--</div>-->
 
-        <div class="tradestuff">
-            <h2>make a quick buck  , sell your stuff</h2>
+        <div class="">
+            <!--<h2>make a quick buck  , sell your stuff</h2>-->
             <!--<input type="text" value="Username"/>-->
             <!--<input type="text" value=".edu address"/>-->
             <!--<input type="text" value="Password"/>-->
@@ -214,21 +214,38 @@
             <!--<label>I accept the Bucksell Terms of Service </label>-->
             <!--</div>-->
             <!--<div class="join"><input name="" value="join" type="button"/></div>-->
-            <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
-                <input type="text" class="input-medium register-form" placeholder="Username" name='username'
-                       id="username">
-                <input type="text" class="input-medium register-form" placeholder=".edu address" name='email'
-                       id="email">
-                <input type="password" class="input-medium register-form" placeholder="password" name="password1"
-                       id='password1' onkeyup="copy_passwords();">
-                <input type="hidden" class="input-medium register-form" placeholder="password2" name="password2"
-                       id="password2">
+            <!--<form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}-->
+                <!--<input type="text" class="input-medium register-form" placeholder="Username" name='username'-->
+                       <!--id="username">-->
+                <!--<input type="text" class="input-medium register-form" placeholder=".edu address" name='email'-->
+                       <!--id="email">-->
+                <!--<input type="password" class="input-medium register-form" placeholder="password" name="password1"-->
+                       <!--id='password1' onkeyup="copy_passwords();">-->
+                <!--<input type="hidden" class="input-medium register-form" placeholder="password2" name="password2"-->
+                       <!--id="password2">-->
 
-                <p><label class="checkbox" style="margin-top: 20px;">
-                    <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
-                </label></p>
-                <button type="submit" class="btn btn-primary">Join</button>
-            </form>
+                <!--<p><label class="checkbox" style="margin-top: 20px;">-->
+                    <!--<span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>-->
+                <!--</label></p>-->
+                <!--<button type="submit" class="btn btn-primary">Join</button>-->
+            <!--</form>-->
+            <div class="container-fluid">
+                <div style="text-align: center; width: 100%">
+                    <h2 style="color: #B7E2E6">Make a quick buck  , Sell your stuff</h2>
+                </div>
+                <div style="text-align: center; width: 100%">
+                    <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
+                        <input type="text" class="input-large register-form" placeholder="Username" name='username' id="username">
+                        <input type="text" class="input-large register-form" placeholder=".edu address" name='email' id="email">
+                        <input type="password" class="input-large register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
+                        <input type="hidden" class="input-large register-form" placeholder="password2" name="password2" id="password2">
+                        <button type="submit" class="btn btn-success btn-large" style="margin-top: 35px;">Join</button>
+                        <p><label class="checkbox" style="margin-top: 20px;">
+                            <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
+                        </label></p>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="googlemap">
             <!--<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"-->

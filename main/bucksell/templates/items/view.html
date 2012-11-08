@@ -124,9 +124,10 @@
             </table>
         </div>
         <div class="span4 offset1">
+            {% if item.itemphoto_set.all.0.photo1 %}
             <img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid" id="img1"
                  style="height: 202;width: 202;">
-
+            {% endif %}
             <div class="container" style="margin-top: 10px;">
                 <div class="row">
                     <div class="span1">

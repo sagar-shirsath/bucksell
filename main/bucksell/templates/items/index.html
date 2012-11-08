@@ -279,7 +279,7 @@
 
                                     <div class="productimage" style="text-align: center">
                                         {% if item.itemphoto_set.all.0.photo1%}
-                                        <img src={{item.itemphoto_set.all.0.photo1.url}} height="150px" width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px"/>
+                                        <a href="{% url item_view item.slug%}"><img src={{item.itemphoto_set.all.0.photo1.url}} height="150px" width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px"/></a>
                                         {% endif %}
                                     </div>
                                     <h3>{{item.name}}</h3>

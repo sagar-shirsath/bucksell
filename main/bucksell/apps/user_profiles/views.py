@@ -105,6 +105,8 @@ def handle_uploaded_image(image,size=(100,100)):
     # resize image
     imagefile  = StringIO.StringIO(image.read())
     imageImage = Image.open(imagefile)
+    if imageImage.mode != "RGB":
+        imageImage = imageImage.convert("RGB")
     size = imageImage.size
     if size[0] >= width or size[1] >= height :
         resizedImage = imageImage.resize((width,height),Image.ANTIALIAS)

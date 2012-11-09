@@ -6,7 +6,7 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(display_map, onErrorLocation, {timeout:30000});
     }
     else {
-        alert('Error detecting your location');
+//        alert('Error detecting your location');
     }
 }
 
@@ -219,7 +219,7 @@ function display_map(position) {
         animation:google.maps.Animation.DROP,
         map:map,
         title:"Your location",
-        icon:'http://'+location.hostname + ':8000/static/images/home.png'
+        icon:'http://'+location.hostname + '/static/images/home.png'
     });
 //    console.log('http://'+location.hostname + ':8000/static/images/home.png');
     google.maps.event.addListener(marker, 'mouseover', function () {

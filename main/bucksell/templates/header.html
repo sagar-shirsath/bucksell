@@ -242,18 +242,23 @@
 <!--</div>-->
 <style type="text/css">
     .my_nav {
-		background: #383838; /* Old browsers */
-		background: -moz-linear-gradient(top,  #383838 0%, #2e2e2e 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#383838), color-stop(100%,#2e2e2e)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  #383838 0%,#2e2e2e 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  #383838 0%,#2e2e2e 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  #383838 0%,#2e2e2e 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  #383838 0%,#2e2e2e 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#2e2e2e',GradientType=0 ); /* IE6-9 */
+        background: #383838; /* Old browsers */
+        background: -moz-linear-gradient(top, #383838 0%, #2e2e2e 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #383838), color-stop(100%, #2e2e2e)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #383838 0%, #2e2e2e 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #383838 0%, #2e2e2e 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #383838 0%, #2e2e2e 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #383838 0%, #2e2e2e 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#383838', endColorstr = '#2e2e2e', GradientType = 0); /* IE6-9 */
     }
+
     form > input {
         margin: 0px 15px;
         height: 30px !important;
+    }
+    .navbar-search .search-query{
+        width: 220px;
+        margin-left: 360px;
     }
 </style>
 
@@ -262,23 +267,24 @@
         <div class="container">
             <a class="brand" href="/"><img src="{{STATIC_URL}}images/buck.png" style="height: 50px; width: 200px;"></a>
             {% if user.is_authenticated %}
-            
+
 
             <ul class="nav pull-right" style="width: 320px">
-            
+
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li></li>-->
 
-                <li class="dropdown my_dropdown" >
-                    <a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">
+                <li class="">
+                    <button class="dropdown btn dropdown-toggle my_dropdown" data-toggle="dropdown">
+                    <!--<a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">-->
                         {%if user.auth_user.all.0.thumbnail%}
                         <img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>
                         {% else%}
                         <span class="icon-user"></span>
                         {% endif %}
-                        {{user.username}} <b class="caret"></b></a>
+                        {{user.username}} <b class="caret"></b></button>
                     <ul class="dropdown-menu">
                         <li><a href="{%url edit_profile%}" style="text-decoration: none">Profile Edit</a></li>
                         <li><a href="{%url my_listing %}" style="text-decoration: none">Your Posts</a></li>
@@ -286,19 +292,19 @@
                         <li><a href="{%url auth_logout%}" style="text-decoration: none">Logout</a></li>
                     </ul>
                 </li>
-                </ul>
-<!--                <li class="buy"><a href="{%url item_index%}">Buy</a></li>
-                <li class="sell"><a href="{%url my_listing%}">Sell</a></li>-->
-				<div id="buysell">
-				    <a href="/" class="buy">Buy</a>
-				    <a href="{%url my_listing%}" class="sell">Sell</a>
-				</div>            
+            </ul>
+            <!--                <li class="buy"><a href="{%url item_index%}">Buy</a></li>
+                            <li class="sell"><a href="{%url my_listing%}">Sell</a></li>-->
+            <div id="buysell">
+                <a href="/" class="buy">Buy</a>
+                <a href="{%url my_listing%}" class="sell">Sell</a>
+            </div>
             {% else%}
 
             <div>
                 <div id="buysell">
-	                <a href="/" class="buy">Buy</a>
-	                <a href="{%url my_listing%}" class="sell">Sell</a>
+                    <a href="/" class="buy">Buy</a>
+                    <a href="{%url my_listing%}" class="sell">Sell</a>
                 </div>
                 <a href="#" class="login" id="loginButton">Login</a>
 
@@ -337,10 +343,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="nav"> 
-                        <form class="navbar-search pull-left" method="GET" action="{% url search%}">
-                            <input type="text" name ="q" class="search-query" placeholder="Search">
-                        </form>
+    <div class="nav">
+        <form class="navbar-search" method="GET" action="{% url search%}" style="">
+            <input type="text" name="q" class="search-query" placeholder="Search">
+        </form>
     </div>
 </div>
 

@@ -1,1 +1,1 @@
-Your are registered with {{site}}
+Your are now registered on {{site}}

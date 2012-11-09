@@ -229,27 +229,30 @@
                 <!--</label></p>-->
                 <!--<button type="submit" class="btn btn-primary">Join</button>-->
             <!--</form>-->
-            <div class="container-fluid">
-                <div style="text-align: center; width: 100%">
-                    <h2 style="color: #B7E2E6">Make a quick buck  , Sell your stuff</h2>
-                </div>
-                <div style="text-align: center; width: 100%">
-                    <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
-                        <input type="text" class="input-large register-form" placeholder="Username" name='username' id="username">
-                        <input type="text" class="input-large register-form" placeholder=".edu address" name='email' id="email">
-                        <input type="password" class="input-large register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
-                        <input type="hidden" class="input-large register-form" placeholder="password2" name="password2" id="password2">
-                        <button type="submit" class="btn btn-success btn-large" style="margin-top: 35px;">Join</button>
-                        <p><label class="checkbox" style="margin-top: 20px;">
-                            <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
-                        </label></p>
-                    </form>
-                </div>
-            </div>
+            
         </div>
         <div class="googlemap">
             <!--<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"-->
             <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
+            <div id="overlay">
+            	<div class="container-fluid">
+            	    <div style="text-align: center; width: 100%">
+            	        <h2 style="color: #FFF">Make a quick buck,<br> Sell your stuff!</h2>
+            	    </div>
+            	    <div style="text-align: center; width: 100%">
+            	        <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
+            	            <input type="text" class="input-large register-form" placeholder="Username" name='username' id="username">
+            	            <input type="text" class="input-large register-form" placeholder=".edu address" name='email' id="email">
+            	            <input type="password" class="input-large register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
+            	            <input type="hidden" class="input-large register-form" placeholder="password2" name="password2" id="password2">
+            	            <button type="submit" class="btn btn-success btn-large" style="margin-top: -7px;">Join</button>
+            	            <p><label class="checkbox">
+            	                <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
+            	            </label></p>
+            	        </form>
+            	    </div>
+            	</div>
+            </div>
             <div id="map_canvas"></div>
         </div>
     </div>
@@ -307,11 +310,19 @@
         <!--</ul>-->
         <!--</div>-->
         <div class="whatwedo">
-            <h2>Who We Are</h2>
-
-            <p>
-
-            <div class="whatwedo" align="center">
+        <h1>How It Works</h1>
+            <div id="about-description">
+            <h2>Buy</h2>
+            <p>Are you looking for a textbook, someone to tutor you in
+            math, or anything else local? Use BuckSell.com to search for
+            local listings from other trusted users.</p>
+            <h2 style="margin-top: 20px;">Sell</h2>
+            <p>Use BuckSell.com as your place to post local goods and
+            services ranging from offering a ride home to another student
+            for break to a bed for your senior year downtown house. You
+            can list almost anything allowed by law for your peers to find.</p>
+            </div>
+            <div id="video">
                 <iframe width="560" height="315" src="http://www.youtube.com/embed/sxkV0w9qNTM" frameborder="0"
                         allowfullscreen></iframe>
             </div>

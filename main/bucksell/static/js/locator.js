@@ -163,8 +163,8 @@ function display_map(position) {
         var view_url = '/items/view/' + $(this).attr('item-slug');
         var price = $(this).attr('item-price');
 
-        var myHtml = '<div style="text-align: center; text-overflow: ellipsis;overflow-x: hidden" id=' + item_id + '><a style="text-decoration: none" href=' + view_url + '><img src=' + img_src + ' height=70px width=70px/>' +
-            '' + item_name + '<br>'+price+'</a></div>';
+        var myHtml = '<div style="text-align: center; text-overflow: ellipsis;overflow-x: hidden" id=' + item_id + '><a style="text-decoration: none" href=' + view_url + '><img src=' + img_src + ' height=90px width=90px/>' +
+            '<span style="font-size: 18px;margin-top: 10px;margin-bottom: 10px">' + item_name + '<br><span style="font-size: 13px">Price : $'+price+'</span></a></div>';
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {

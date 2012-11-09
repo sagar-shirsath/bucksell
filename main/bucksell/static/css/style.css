@@ -33,8 +33,6 @@ body {
 }
 
 .navigation {
-    float: left;
-    margin: 28px 0 0 0;
     width: 630px;
 }
 .buy, .sell {

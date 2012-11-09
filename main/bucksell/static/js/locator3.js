@@ -3,10 +3,11 @@ var marker = null;
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(display_map, onErrorLocation, {timeout:30000});
+        navigator.geolocation.getCurrentPosition(display_my_map, onErrorLocation, {timeout:30000});
     }
     else {
 //        alert('Error detecting your location');
+        display_map(geoip_latitude(),geoip_longitude());
     }
 }
 
@@ -15,7 +16,8 @@ function onErrorLocation(error) {
         alert('We are unable to detect your location!! Please change your browser location permission to allow for this site.');
     }
     else {
-        alert('Unable to detect your location');
+//        alert('Unable to detect your location');
+        display_map(geoip_latitude(),geoip_longitude());
     }
 }
 var infowindow = new google.maps.InfoWindow({
@@ -39,14 +41,17 @@ function createMarker(latlng, name, html, map) {
     return marker;
 }
 //
+function display_my_map(position){
+    display_map(position.coords.latitude,position.coords.longitude)
+}
 //
-function display_map(position) {
+function display_map(lat,long) {
 
     geocoder = new google.maps.Geocoder();
-    $('#id_latitude').val(position.coords.latitude);
-    $('#id_longitude').val(position.coords.longitude);
+    $('#id_latitude').val(lat);
+    $('#id_longitude').val(long);
 
-    var ilat = position.coords.latitude, ilong = position.coords.longitude;
+    var ilat = lat, ilong = long;
     var locations = [
         ['Item 1', 18.520163803962166, 73.8522221772156, 2],
         ['Item 2', 18.519349945198922, 73.8575007645569, 1],
@@ -65,10 +70,10 @@ function display_map(position) {
     ];
 
 
-    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var latlng = new google.maps.LatLng(lat, long);
     var mapsOptions = {
         zoom:8,
-        center:new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        center:new google.maps.LatLng(lat, long),
         mapTypeControl:true,
         mapTypeControlOptions:{style:google.maps.MapTypeControlStyle.DROPDOWN_MENU},
         navigationControl:true,

@@ -105,7 +105,7 @@ def add(request):
                 name=data['name'],
                 description=data['description'],
                 condition=data['condition'],
-                price=data['price'],
+                price=round(data['price'],2),
                 longitude=data['longitude'] or 0,
                 latitude=data['latitude'] or 0,
                 seller=request.user,
@@ -135,7 +135,7 @@ def edit(request, slug=""):
 
     form = ItemForm(initial={
         'name': item.name,
-        'price': item.price,
+        'price': round(item.price,2),
         'description': item.description,
         'condition': item.condition,
         'price': item.price,

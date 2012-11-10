@@ -104,8 +104,7 @@ function display_map(lat,long) {
         position:latlng,
         animation:google.maps.Animation.DROP,
         map:map,
-        title:"Your location",
-        icon:'http://'+location.hostname + '/static/images/home.png'
+        title:"Your location"
     });
 
 

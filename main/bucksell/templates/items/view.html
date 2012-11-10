@@ -1,5 +1,6 @@
 {% extends "site_base.html" %}
 {%block javascripts%}
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-modal.js"></script>
 <script type="text/javascript">
 
     $(document).on('click', '#img2', function () {
@@ -50,7 +51,9 @@
     <div class="container">
         <h2 class="innerhead"></h2>
 
-        <div class="innerbanner"><img src="{{STATIC_URL}}images/banner.jpg"/></div>
+        <div class="innerbanner">
+            <!--<img src="{{STATIC_URL}}images/banner.jpg"/>-->
+        </div>
     </div>
 </div>
 <div class="container">
@@ -178,7 +181,8 @@
                 <li><a href=".">{{item.name}}</a> <span class="divider"> > </span></li>
 
             </ul>
-            <div style="float:none; margin:0px auto; width:130px;">
+            <div style="margin-top: 0px;padding-right: 0px;float: left">
+            <div style="float:none; margin:0px auto; width:0px;">
                 <FORM ACTION="https://www.sandbox.paypal.com/cgi-bin/webscr" METHOD="POST">
                     <INPUT TYPE="hidden" NAME="cmd" VALUE="_xclick">
                     <INPUT TYPE="hidden" NAME="business" VALUE="{{item.seller.email}}">
@@ -207,10 +211,22 @@
                     <!--<INPUT TYPE="image" NAME="submit" BORDER="0" SRC="http://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" ALT="PayPal - The safer, easier way to pay online">-->
                     <!--<img alt="" border="" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">-->
                     <!--</FORM>-->
-                    <button type="submit" class="btn btn-info" style="margin-right: 20px; margin-top:0px;">Buy Now</button>
+                    <div class="container">
+                    <div class="row" >
+                        <div class="span2">
+                            <button type="submit" class="btn btn-info" style="margin-right: 20px; margin-top:0px;">Buy Now</button>
+                        </div>
+                        {%if not user == item.seller %}
+                        <div class="span2">
+                            <button type="button" class="btn btn-info negotiate"><i class="icon-comment"></i> Negotiate</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    </div>
                     <!--<input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">-->
                 </form>
                 <!--<button type="submit" class="btn btn-info" style="margin-right: 20px; margin-top:30px;">Buy Now</button>-->
+            </div>
             </div>
             <div style="float:left; width:50%; margin-top:35px;">
                 <table class="table table-hover table-bordered">
@@ -220,7 +236,7 @@
                         {%if user == item.seller %}
                         <td width="62%">{{item.seller.first_name}}&nbsp;&nbsp;{{item.seller.last_name}}</td>
                         {% else %}
-                        <td width="62%"> <a href="Javascript: show_message('message');">{{item.seller.first_name}}&nbsp;&nbsp;{{item.seller.last_name}}</a></td>
+                        <td width="62%"> <a href="#" class="negotiate">{{item.seller.first_name}}&nbsp;&nbsp;{{item.seller.last_name}}</a></td>
                         {% endif %}
                     </tr>
                     <tr>
@@ -316,20 +332,43 @@
             </div>
         </div>
     </div>
-    {%if not user == item.seller %}
-    <div class="offset1">
-        <button onclick="show_message('message');" > Send Message / Negotiate</button>
-        <br>
-        <div id="message" style="display: none;padding: 20px">
+    <!--{%if not user == item.seller %}-->
+    <!--<div class="offset1">-->
+        <!--<button onclick="show_message('message');" > Send Message / Negotiate</button>-->
+        <!--<br>-->
+        <!--<div id="message" style="display: none;padding: 20px">-->
+        <!--<form action="{%url message_add%}" method="POST">{% csrf_token%}-->
+            <!--<input type="hidden" name="to_user" value="{{item.seller.id}}"/>-->
+            <!--<input type="hidden" name="item_slug" value="{{item.slug}}"/>-->
+            <!--<textarea class="span9" rows="12" name="body"></textarea>-->
+            <!--<input type="submit" value="Submit Quesion">-->
+        <!--</form>-->
+         <!--</div>-->
+    <!--</div>-->
+    <!--{% endif %}-->
+</div>
+<div id="message_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Send Message to Seller</h3>
+    </div>
+    <div class="modal-body">
         <form action="{%url message_add%}" method="POST">{% csrf_token%}
             <input type="hidden" name="to_user" value="{{item.seller.id}}"/>
             <input type="hidden" name="item_slug" value="{{item.slug}}"/>
-            <textarea class="span9" rows="12" name="body"></textarea>
-            <input type="submit" value="Submit Quesion">
-        </form>
-         </div>
+        <textarea rows="5" style="width: 520px" name="body"></textarea>
     </div>
-    {% endif %}
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <!--<button type="button" data-dismiss="modal" class="btn btn-primary">Send</button>-->
+        <input type="submit" class="btn btn-primary" value="Send">
+        </form>
+    </div>
 </div>
+        <script type="text/javascript">
+            $(document).on('click','.negotiate',function(){
+                $('#message_modal').modal(options)
+            });
 
+        </script>
 {% endblock %}

@@ -110,7 +110,7 @@
             position:"right"
         });
         jQuery("#id_price").validate({
-            expression:"if (VAL.match(/^[0-9.]*$/) && VAL) return true; else return false;",
+            expression:"if (!isNaN(VAL) && VAL) && VAL) return true; else return false;",
             message:"Please enter valid price",
             position:"right"
         });

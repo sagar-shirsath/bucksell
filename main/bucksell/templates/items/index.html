@@ -180,7 +180,9 @@
     <div class="container">
         <h2 class="innerhead"></h2>
 
-        <div class="innerbanner"><img src="{{STATIC_URL}}images/banner.jpg"/></div>
+        <div class="innerbanner">
+            <!--<img src="{{STATIC_URL}}images/banner.jpg"/>-->
+        </div>
     </div>
 </div>
 <div class="innerbody">
@@ -212,13 +214,13 @@
                             <!--<input type="checkbox"> Movie-->
                             <!--</label>-->
                             <!--</form>-->
-                            <form method='GET' action="{%url search%}">
-                                <label>Refine Location</label>
-                                <input name="q" type="text" placeholder="City or university" class="span3">
-                                <label>Categories</label>
+                            <form method='GET' action="{%url search%}" class="hero-unit">
+                                <!--<label>Refine Location</label>-->
+                                <!--<input name="q" type="text" placeholder="City or university" class="span3">-->
+                                <!--<label>Categories</label>-->
                                 {% for category in categories%}
                                 <label>
-                                    <a href="{% url search%}?category={{category}}"> {{category}}</a>
+                                    <a href="{% url search%}?category={{category}}"><i class="icon-search"></i> {{category}}</a>
                                 </label>
                                 {% endfor %}
                                 <label class="checkbox">

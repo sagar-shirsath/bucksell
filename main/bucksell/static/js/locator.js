@@ -12,13 +12,9 @@ function getLocation() {
 }
 
 function onErrorLocation(error) {
-    if (error.code == 1) {
-        alert('We are unable to detect your location!! Please change your browser location permission to allow for this site.');
-    }
-    else {
+
 //        alert('Unable to detect your location');
         display_map(geoip_latitude(),geoip_longitude());
-    }
 }
 var infowindow = new google.maps.InfoWindow({
     size:new google.maps.Size(150, 50)
@@ -223,8 +219,7 @@ function display_map(lat,long) {
         position:latlng,
         animation:google.maps.Animation.DROP,
         map:map,
-        title:"Your location",
-        icon:'http://'+location.hostname + '/static/images/home.png'
+        title:"Your location"
     });
 //    console.log('http://'+location.hostname + ':8000/static/images/home.png');
     google.maps.event.addListener(marker, 'mouseover', function () {

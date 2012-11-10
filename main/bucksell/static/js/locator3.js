@@ -12,13 +12,9 @@ function getLocation() {
 }
 
 function onErrorLocation(error) {
-    if (error.code == 1) {
-        alert('We are unable to detect your location!! Please change your browser location permission to allow for this site.');
-    }
-    else {
+
 //        alert('Unable to detect your location');
         display_map(geoip_latitude(),geoip_longitude());
-    }
 }
 var infowindow = new google.maps.InfoWindow({
     size:new google.maps.Size(150, 50)

@@ -244,7 +244,7 @@ def view_item_ajax(request,id=None):
     else:
         seller_photo = ""
     response_dict.update(
-            {'name': item.name, 'price': item.price, 'item_photo_url': item_photo_url, 'description': item.description,
+            {'name': item.name, 'price': round(item.price,2), 'item_photo_url': item_photo_url, 'description': item.description,
              'seller_first_name': item.seller.first_name, 'seller_last_name': item.seller.last_name,
              'seller_photo': seller_photo, 'item_thumbnail_url': item_thumbnail_url
         })

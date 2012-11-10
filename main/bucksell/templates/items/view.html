@@ -17,6 +17,10 @@
         $('#img1').attr('src', src);
     });
 
+     function show_message(id){
+        $("#"+id).show("slow");
+    };
+
 </script>
 {% endblock %}
 {% block content%}
@@ -310,14 +314,16 @@
     </div>
     {%if not user == item.seller %}
     <div class="offset1">
-        Q & A:<br>
-
+        <button onclick="show_message('message');" > Send Message / Negotiate</button>
+        <br>
+        <div id="message" style="display: none;padding: 20px">
         <form action="{%url message_add%}" method="POST">{% csrf_token%}
             <input type="hidden" name="to_user" value="{{item.seller.id}}"/>
             <input type="hidden" name="item_slug" value="{{item.slug}}"/>
             <textarea class="span9" rows="12" name="body"></textarea>
             <input type="submit" value="Submit Quesion">
         </form>
+         </div>
     </div>
     {% endif %}
 </div>

@@ -183,7 +183,7 @@ def view(request, slug=""):
     return render_to_response("items/view.html", {'item': item, 'condition': condition, 'current_site': current_site},
         context_instance=RequestContext(request))
 
-
+@login_required
 def search(request):
     query_string = ''
     found_entries = None

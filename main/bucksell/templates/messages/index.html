@@ -1,5 +1,11 @@
 {% extends "site_base.html" %}
 {%block javascripts%}
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+     function show_message(id){
+             $("#"+id).show("slow");
+     };
+
+ </script>
 {%endblock%}
 {% block content %}
 <style type="text/css">
@@ -163,31 +169,40 @@
                             <div class="pane">
                                 <div class="inboxpic">
                                 {%if message.from_user.auth_user.all.0.photo %}
-                                <img src="{{message.from_user.auth_user.all.0.photo.url}}" alt="No image">
+                                <img src="{{message.from_user.auth_user.all.0.thumbnail.url}}" >
+                                {% else %}
+                                    <img src="{{STATIC_URL}}images/no-img-small.jpg">
                                 {% endif %}
+                               <input type="image" onclick="show_message('message{{message.id}}');" src="{{STATIC_URL}}images/reply.jpeg" ></button>
                                 </div>
+                                <a href="{% url message_delete message.id %}" alt="delete" class="delete"/>
+                                <img src="{{STATIC_URL}}images/delete.jpeg" alt="delete" class="delete"/></a>
                                 <h3>{{message.to_user.first_name}}&nbsp;{{message.to_user.last_name}}</h3>
                                 <h4>{{message.subject}}</h4>
 
                                 <p>{{message.body}}</p>
+                                <div id="message{{message.id}}" style="display: none;">
                                 <form action="{%url message_reply%}" method ="POST">{% csrf_token%}
                                     <input type="hidden" name="from_user" value="{{message.from_user.id}}"/>
                                     <textarea class="span1" rows="12" style="width: 253px; height: 74px;" name="body"></textarea>
                                     <input type="submit" value="Reply">
                                 </form>
-                                <img src="{% url message_delete message.id %}" alt="delete" class="delete"/>
-                            </div>
+
+                                </div>
+                                </div>
+
                             {% endfor %}
                             {% else %}
                             <h3>No message</h3>
                             {% endif %}
-
+                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     {%endblock%}
 

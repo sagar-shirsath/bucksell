@@ -73,7 +73,7 @@ def edit_profile(request):
 
             profile.about_me = form.cleaned_data.get('about_me')
             profile.gender = form.cleaned_data.get('gender') or 0
-            profile.degree_pursuing = form.cleaned_data.get('degree_pursuing')
+            profile.degree_pursuing = ""
             profile.year_of_class = form.cleaned_data.get('year_of_class') or 0
             profile.university = form.cleaned_data.get('university')
             profile.phone_number = form.cleaned_data.get('phone_number')

@@ -45,51 +45,51 @@
         getLocation();
     });
 
-    //    function onErrorLocation(error) {
-    //        alert('Error detecting your location');
-    //    }
-    //    function display_current_location(position) {
-    //
-    //        display_map(position.coords.latitude, position.coords.longitude);
-    //    }
-    //
-    //    function display_map(latitude, longitude) {
-    //
-    //        $('#map_div').css('height', '400');
-    //        $('#map_div').css('width', '934');
-    //
-    //        var latlng = new google.maps.LatLng(latitude, longitude);
-    //        var myOptions = {
-    //            zoom:8,
-    //            center:latlng,
-    //            mapTypeId:google.maps.MapTypeId.ROADMAP
-    //        };
-    //        var map = new google.maps.Map(document.getElementById("map_div"), myOptions);
-    //
-    //        var marker = new google.maps.Marker({
-    //            position:latlng,
-    //            map:map,
-    //            title:"My Location"
-    //        });
-    //
-    //    }
-    //
-    //    function loadMap() {
-    //        var latlng = new google.maps.LatLng(18.5236, 73.8478);
-    //        var myOptions = {
-    //            zoom:8,
-    //            center:latlng,
-    //            mapTypeId:google.maps.MapTypeId.ROADMAP
-    //        };
-    //        var map = new google.maps.Map(document.getElementById("map_div"), myOptions);
-    //
-    //        var marker = new google.maps.Marker({
-    //            position:latlng,
-    //            map:map,
-    //            title:"Its Me."
-    //        });
-    //
-    //    }
+//    function onErrorLocation(error) {
+//        alert('Error detecting your location');
+//    }
+//    function display_current_location(position) {
+//
+//        display_map(position.coords.latitude, position.coords.longitude);
+//    }
+//
+//    function display_map(latitude, longitude) {
+//
+//        $('#map_div').css('height', '400');
+//        $('#map_div').css('width', '934');
+//
+//        var latlng = new google.maps.LatLng(latitude, longitude);
+//        var myOptions = {
+//            zoom:8,
+//            center:latlng,
+//            mapTypeId:google.maps.MapTypeId.ROADMAP
+//        };
+//        var map = new google.maps.Map(document.getElementById("map_div"), myOptions);
+//
+//        var marker = new google.maps.Marker({
+//            position:latlng,
+//            map:map,
+//            title:"My Location"
+//        });
+//
+//    }
+//
+//    function loadMap() {
+//        var latlng = new google.maps.LatLng(18.5236, 73.8478);
+//        var myOptions = {
+//            zoom:8,
+//            center:latlng,
+//            mapTypeId:google.maps.MapTypeId.ROADMAP
+//        };
+//        var map = new google.maps.Map(document.getElementById("map_div"), myOptions);
+//
+//        var marker = new google.maps.Marker({
+//            position:latlng,
+//            map:map,
+//            title:"Its Me."
+//        });
+//
+//    }
 
 </script>
 
@@ -204,59 +204,36 @@
         <!--</div>-->
 
         <div class="">
-            <!--<h2>make a quick buck  , sell your stuff</h2>-->
-            <!--<input type="text" value="Username"/>-->
-            <!--<input type="text" value=".edu address"/>-->
-            <!--<input type="text" value="Password"/>-->
-
-            <!--<div class="accept">-->
-            <!--<input name="" type="checkbox" value=""/>-->
-            <!--<label>I accept the Bucksell Terms of Service </label>-->
-            <!--</div>-->
-            <!--<div class="join"><input name="" value="join" type="button"/></div>-->
-            <!--<form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}-->
-            <!--<input type="text" class="input-medium register-form" placeholder="Username" name='username'-->
-            <!--id="username">-->
-            <!--<input type="text" class="input-medium register-form" placeholder=".edu address" name='email'-->
-            <!--id="email">-->
-            <!--<input type="password" class="input-medium register-form" placeholder="password" name="password1"-->
-            <!--id='password1' onkeyup="copy_passwords();">-->
-            <!--<input type="hidden" class="input-medium register-form" placeholder="password2" name="password2"-->
-            <!--id="password2">-->
-
-            <!--<p><label class="checkbox" style="margin-top: 20px;">-->
-            <!--<span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>-->
-            <!--</label></p>-->
-            <!--<button type="submit" class="btn btn-primary">Join</button>-->
-            <!--</form>-->
-
+        	<div class="container-fluid">
+        	    <div style="text-align: center; width: 100%">
+        	        <h2 style="color: #FFF">Make a quick buck, Sell your stuff!</h2>
+        	    </div>
+        	    <div style="text-align: center; width: 100%">
+        	        <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
+        	            <input type="text" class="input-large register-form" placeholder="Username" name='username' id="username">
+        	            <input type="text" class="input-large register-form" placeholder=".edu address" name='email' id="email">
+        	            <input type="password" class="input-large register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
+        	            <input type="hidden" class="input-large register-form" placeholder="password2" name="password2" id="password2">
+        	            <button type="submit" class="btn btn-success btn-large" style="margin-top: -7px;">Join</button>
+        	            <p><label class="checkbox">
+        	                <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
+        	            </label></p>
+        	        </form>
+        	    </div>
+        </div>    
         </div>
-        <div class="googlemap">
-            <!--<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"-->
-            <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
-            <div id="overlay">
-            	<div class="container-fluid">
-            	    <div style="text-align: center; width: 100%">
-            	        <h2 style="color: #FFF">Make a quick buck,<br> Sell your stuff!</h2>
-            	    </div>
-            	    <div style="text-align: center; width: 100%">
-            	        <form class="form-inline" action="{% url registration_register %}" method="POST">{% csrf_token %}
-            	            <input type="text" class="input-large register-form" placeholder="Username" name='username' id="username">
-            	            <input type="text" class="input-large register-form" placeholder=".edu address" name='email' id="email">
-            	            <input type="password" class="input-large register-form" placeholder="password" name="password1" id='password1' onkeyup="copy_passwords();">
-            	            <input type="hidden" class="input-large register-form" placeholder="password2" name="password2" id="password2">
-            	            <button type="submit" class="btn btn-success btn-large" style="margin-top: -7px;">Join</button>
-            	            <p><label class="checkbox">
-            	                <span id="accept_terms"><input type="checkbox"> I accept all Bucksell Terms of Service</span>
-            	            </label></p>
-            	        </form>
-            	    </div>
-            	</div>
-            </div>
-            <div id="map_canvas"></div>
-        </div>
+
     </div>
 </div>
+<div class="map-background">
+	<div class="container">
+		<div class="googlemap">
+		    <!--<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"-->
+		    <!--src="http://maps.google.com/maps?t=m&amp;hl=en-US&amp;ie=UTF8&amp;ll=18.536909,73.965454&amp;spn=1.041622,1.645203&amp;z=9&amp;output=embed"></iframe>-->
+		    <div id="map_canvas"></div>
+		</div>
+	</div>
+</div>	
 <div class="bodycontent">
     <div class="container">
         <!--<div class="rightbanner">-->
@@ -310,21 +287,17 @@
         <!--</ul>-->
         <!--</div>-->
         <div class="whatwedo">
-            <h1>How It Works</h1>
-
+        <h1>How It Works</h1>
             <div id="about-description">
-                <h2>Buy</h2>
-
-                <p>Are you looking for a textbook, someone to tutor you in
-                    math, or anything else local? Use BuckSell.com to search for
-                    local listings from other trusted users.</p>
-
-                <h2 style="margin-top: 20px;">Sell</h2>
-
-                <p>Use BuckSell.com as your place to post local goods and
-                    services ranging from offering a ride home to another student
-                    for break to a bed for your senior year downtown house. You
-                    can list almost anything allowed by law for your peers to find.</p>
+            <h2>Buy</h2>
+            <p>Are you looking for a textbook, someone to tutor you in
+            math, or anything else local? Use BuckSell.com to search for
+            local listings from other trusted users.</p>
+            <h2 style="margin-top: 20px;">Sell</h2>
+            <p>Use BuckSell.com as your place to post local goods and
+            services ranging from offering a ride home to another student
+            for break to a bed for your senior year downtown house. You
+            can list almost anything allowed by law for your peers to find.</p>
             </div>
             <div id="video">
                 <iframe width="560" height="315" src="http://www.youtube.com/embed/sxkV0w9qNTM" frameborder="0"
@@ -334,14 +307,14 @@
         </div>
 
         <!--<div id="social-icons">-->
-        <!--<a href="https://twitter.com/YOUR_USER_NAME"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
-        <!--alt="Twitter"/></a>-->
-        <!--<a href="http://feeds.feedburner.com/YOUR_FEED_URL"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
-        <!--alt="RSS"/></a>-->
-        <!--<a href="http://www.linkedin.com    /in/YOUR_DISPLAY_NAME"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
-        <!--alt="LinkedIn"/></a>-->
-        <!--<a href="http://www.facebook.com/YOUR_FB_IDENTIFIER"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
-        <!--alt="Facebook"/></a>-->
+            <!--<a href="https://twitter.com/YOUR_USER_NAME"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
+                                                              <!--alt="Twitter"/></a>-->
+            <!--<a href="http://feeds.feedburner.com/YOUR_FEED_URL"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
+                                                                     <!--alt="RSS"/></a>-->
+            <!--<a href="http://www.linkedin.com    /in/YOUR_DISPLAY_NAME"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
+                                                                        <!--alt="LinkedIn"/></a>-->
+            <!--<a href="http://www.facebook.com/YOUR_FB_IDENTIFIER"><img src="YOUR_IMAGE_URL" width="48" height="48"-->
+                                                                      <!--alt="Facebook"/></a>-->
         <!--</div>-->
         <div class="interested">
             <div class="interstblank">

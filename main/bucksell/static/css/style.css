@@ -89,9 +89,12 @@ body {
 }
 
 .googlemap {
-    float: left;
     width: 935px;
-    border: 3px solid #fff;
+    border-radius: 3px;
+    padding: 20px 0;
+}
+.map-background {
+	background: #EEE;
 }
 
 .tradestuff {
@@ -175,7 +178,7 @@ v.accept {
     width: 100%;
     position: relative;
 	box-shadow: 0px -15px 35px rgba(0, 0, 0, 0.15);
-	border-top: 1px solid #333;
+	border-top: 1px solid #B1B1B1;
     
 }
 
@@ -408,7 +411,6 @@ v.accept {
 .footer {
     float: left;
     width: 100%;
-    padding: 30px 0px;
     border-top: 1px solid #000;
 	box-shadow: 0px -1px 6px rgba(0, 0, 0, 0.65);
     /*gradient*/
@@ -757,13 +759,12 @@ form > input {
 }
 #accept_terms {
 	margin-top: 7px;
-	color: #FFF;
+	color: #CCC;
 }
 .navbar .brand {
 	padding: 0;
 	margin-left: 0;
-	float: none;
-	text-align: center;
+	float: left;
 }
 #buysell {
 	width: 222px;

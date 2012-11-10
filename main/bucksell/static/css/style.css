@@ -59,7 +59,7 @@ body {
 	float: right;
 	text-decoration: none;
 	color: #FFF;
-	font-size: 13px;
+	font-size: 20px;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	margin-left: 15px;
@@ -86,15 +86,22 @@ body {
     background: #0071bc url('../images/bg.jpg') no-repeat left top;
     background-size: 100%;
 	border-top: 1px solid #5E7BC5;
+	border-bottom: 2px solid #FFF;
 }
 
 .googlemap {
     width: 935px;
     border-radius: 3px;
-    padding: 20px 0;
+    padding: 40px 0;
 }
 .map-background {
 	background: #EEE;
+}
+.map-background {
+		text-align: center;
+		color: #0071BC;
+		padding-bottom: 20px;
+		text-shadow: 1px 1px 0px #FFF;
 }
 
 .tradestuff {
@@ -481,88 +488,6 @@ v.accept {
     line-height: 20px
 }
 
-.socialmedia {
-    float: right;
-    width: 120px;
-}
-
-.socialmedia h4 {
-    float: left;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #FFF;
-}
-
-.socialmedia ul {
-    float: left;
-    margin: 20px 0 0 0;
-    padding: 0px;
-    display: block;
-    width: 100%;
-}
-
-.socialmedia ul li {
-    float: left;
-    margin: 10px 0 0 0;
-    padding: 0px;
-    display: block;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    color: #fff
-}
-
-.socialmedia ul li a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.socialmedia ul li a:hover {
-    text-decoration: none;
-    color: #8CC63F;
-}
-
-.socialmedia ul li.facebook {
-    float: left;
-    background: url(../images/facebook.png) no-repeat top left;
-    height: 27px;
-    line-height: 27px;
-    padding: 0 0 0 33px;
-    width: 86px;
-}
-
-.socialmedia ul li.twitter {
-    float: left;
-    background: url(../images/twitter.png) no-repeat top left;
-    height: 27px;
-    line-height: 27px;
-    padding: 0 0 0 33px;
-    width: 86px;
-}
-
-.socialmedia ul li.googleplus {
-    float: left;
-    background: url(../images/googleplus.png) no-repeat top left;
-    height: 27px;
-    line-height: 27px;
-    padding: 0 0 0 33px;
-    width: 86px;
-}
-
-.socialmedia ul li.linkedin {
-    float: left;
-    background: url(../images/linkedin.png) no-repeat top left;
-    height: 27px;
-    line-height: 27px;
-    padding: 0 0 0 33px;
-    width: 86px;
-}
-
 h2.innerhead {
     float: left;
     margin: 25px 0 0 0;
@@ -696,6 +621,10 @@ h2.innerhead {
     top: 40%;
     right: 0px;
 }
+.socialmedia {
+	margin: 0 auto;
+	width: 200px;
+}
 #overlay {
 	position: absolute; 
 	margin-left: 520px;
@@ -759,7 +688,7 @@ form > input {
 }
 #accept_terms {
 	margin-top: 7px;
-	color: #CCC;
+	color: #000;
 }
 .navbar .brand {
 	padding: 0;
@@ -768,7 +697,7 @@ form > input {
 }
 #buysell {
 	width: 222px;
-	margin: 0 auto;
+	margin: 15px auto 0;
 }
 #loginForm{
         padding-top: 20px;
@@ -790,4 +719,12 @@ form > input {
         border-radius: 5px;
         margin-left: 670px;
         border: 1px solid #EEE;
+}
+#motto {
+	color: #FFF;
+	font-size: 46px;
+	padding: 20px;
+}
+.navbar-search .search-query {
+	font-size: 19px;
 }

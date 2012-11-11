@@ -116,12 +116,13 @@
 </script>
 {%endblock%}
 {% block content%}
+{% load item_template_tags %}
 {% for item in items %}
 
 {% if item.itemphoto_set.all.0.thumbnail1%}
 <input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}
        id="{{item.itemphoto_set.all.0.thumbnail1.url}}" item-id="{{item.id}}" item-slug="{{item.slug}}"
-       item-price="{{item.price}}">
+       item-price="{{ item.price|two_decimal:1 }}">
 
 
 {% endif %}

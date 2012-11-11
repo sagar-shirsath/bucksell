@@ -255,17 +255,33 @@
         margin: 0px 15px;
         height: 30px !important;
     }
+    .my_nav_1{
+        min-height: 40px;
+        background-color: #fafafa;
+        background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+        background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+        background-repeat: repeat-x;
+        border-bottom: 1px solid #d4d4d4;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+        *zoom: 1;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    }
 </style>
 
-<div class="navbar navbar-static-top">
+<div class="navbar navbar-fixed-top my_nav_1">
     <div class="navbar-inner my_nav">
         <div class="container">
             <a class="brand" href="/"><img src="{{STATIC_URL}}images/logo.png" style="height: 50px; width: 200px;"></a>
             {% if user.is_authenticated %}
-            
+
 
             <ul class="nav pull-right" style="width: 320px; margin-top: 15px;">
-            
+
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
                 <!--<li><a href="#">Link</a></li>-->
@@ -290,10 +306,10 @@
 				<div id="buysell">
 				    <a href="/" class="buy">Buy</a>
 				    <a href="{%url my_listing%}" class="sell">Sell</a>
-				</div>            
+				</div>
             {% else%}
 
-            <div =>
+            <div >
                 <div id="buysell">
 	                <a href="/" class="buy">Buy</a>
 	                <a href="{%url my_listing%}" class="sell">Sell</a>
@@ -335,14 +351,13 @@
             {% endif %}
         </div>
     </div>
-    <div class="nav"> 
+    <div class="nav">
                         <form class="navbar-search pull-left" method="GET" action="{% url search%}">
                             <input type="text" name ="q" class="search-query" placeholder="Search">
                         </form>
     </div>
 </div>
 
-</div>
 {% if flash.message %}
 <div class="alert alert-info offset6 span4"
      style="text-align: center; margin-top: 10px;z-index: 99999;position: absolute;margin-top: 130px" id="flashMessage">

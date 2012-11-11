@@ -1,10 +1,27 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "site_base.html" %}
+{%block javascripts%}
+        {% endblock%}
+{% block content%}
 
-</body>
-</html>
+	<div class="bodycontent">
+    	<div class="container">    		
+    		<h3>If you have any questions, please submit them to support@bucksell.com</h3>
+    		
+    		<form action="MAILTO:support@bucksell.com" method="post" enctype="text/plain">
+    		Name:<br>
+    		<input type="text" name="name" value="your name"><br>
+    		E-mail:<br>
+    		<input type="text" name="mail" value="your email"><br>
+    		Comment:<br>
+    		<input type="text" name="comment" value="your comment" size="500" style="height: 300px;"><br><br>
+    		<input type="submit" value="Send">
+    		<input type="reset" value="Reset">
+    		</form>
+    		
+    		</body>
+    		</html>
+    		
+    		
+    	</div>
+    </div>
+        {% endblock %}

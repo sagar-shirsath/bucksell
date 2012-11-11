@@ -178,6 +178,7 @@ def view(request, slug=""):
     current_site = Site.objects.get_current()
     conditions = {1: 'Mint', 2: 'Like New', 3: 'Fair'}
     item = get_object_or_404(Item, slug=slug)
+    item.price = "%.02f" %item.price
     condition = conditions[item.condition]
     return render_to_response("items/view.html", {'item': item, 'condition': condition, 'current_site': current_site},
         context_instance=RequestContext(request))

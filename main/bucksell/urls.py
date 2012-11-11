@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^jobs$','cms.views.jobs',{},name = "jobs"),
     url(r'^blogs4','cms.views.blogs',{},name = "blogs"),
     url(r'^timeline','cms.views.timeline',{},name = "timeline"),
+    url(r'^market_rules','cms.views.market_rules',{},name = "market_rules"),
     url(r'^user/',include('user_profiles.urls'),{},name = "user"),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

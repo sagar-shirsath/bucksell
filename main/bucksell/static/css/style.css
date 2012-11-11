@@ -77,20 +77,7 @@ body {
     color: #0c79c2;
 }
 
-.bannerbg {
-	display: none;
-}
-.bannerbg-home {
-    float: left;
-    width: 100%;
-    padding: 15px 0px;
-    box-shadow: 0px -9px 29px rgba(0, 0, 0, 0.15);
-    background: #0071bc url('../images/bg.jpg') no-repeat left top;
-    background-size: 100%;
-	border-top: 1px solid #5E7BC5;
-	border-bottom: 2px solid #FFF;
-	height: 476px;
-}
+
 
 .googlemap {
     width: 935px;
@@ -623,6 +610,7 @@ h2.innerhead {
     position: fixed;
     top: 40%;
     right: 0px;
+
 }
 .socialmedia {
 	margin: 0 auto;
@@ -728,6 +716,114 @@ form > input {
 	font-size: 46px;
 	padding: 20px;
 	margin-top: 190px;
+}
+.navbar-search .search-query {
+	font-size: 19px;
+=======
+}
+.socialmedia {
+	margin: 0 auto;
+	width: 200px;
+}
+#overlay {
+	position: absolute; 
+	margin-left: 520px;
+	margin-top: 115px;
+	background: rgba(0, 0, 0, .75); 
+	height: 250px; 
+	width: 400px; 
+	z-index: 1; 
+	border-radius: 7px;
+	border: 1px solid #222;
+}
+
+/* Elijah's Additional */
+.navbar .nav > li {
+	float: right;
+}
+.navbar .nav > li > a {
+	text-shadow: none;
+	color: #FFF;
+	padding: 0;
+	text-decoration: none !important;
+}
+.nav > li > a {
+	border: none;
+}
+
+.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+	color: #8CC63F;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	background-color: transparent;
+}
+.navbar-inner {
+	border: none;
+}
+.nav {
+	border: none;
+	width: auto;
+}
+.navbar-search {
+	clear: both;
+}
+form > input {
+	margin: 0px 15px 0px;
+}
+.navbar .nav {
+	float: none;
+	margin: 0 auto;
+	width: 940px;
+}
+.navbar-search .search-query {
+	margin-bottom: 4px;
+	width: 540px;
+	margin-left: 35%;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	color: #FFF;
+}
+.form-inline input {
+	margin-bottom: 8px;
+}
+#accept_terms {
+	margin-top: 7px;
+	color: #000;
+}
+.navbar .brand {
+	padding: 0;
+	margin-left: 0;
+	float: left;
+}
+#buysell {
+	width: 222px;
+	margin: 15px auto 0;
+}
+#loginForm{
+        padding-top: 20px;
+        /*border: #000000 solid 1px;*/
+        margin-top: 1px;
+        padding: 20px 20px 20px 20px;
+        width: 230px;
+        /*border-radius: 5px;*/
+
+        border-radius: 3px 0 3px 3px;
+    }
+#loginBox{
+        width: 276px;
+		background: #FFF;
+        margin-top: 24px;
+        height: 250px;
+        z-index: 3;
+        position: absolute;
+        border-radius: 5px;
+        margin-left: 670px;
+        border: 1px solid #EEE;
+}
+#motto {
+	color: #FFF;
+	font-size: 46px;
+	padding: 20px;
 }
 .navbar-search .search-query {
 	font-size: 19px;

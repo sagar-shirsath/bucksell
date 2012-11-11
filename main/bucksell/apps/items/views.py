@@ -138,7 +138,6 @@ def edit(request, slug=""):
         'price': round(float(item.price),2),
         'description': item.description,
         'condition': item.condition,
-        'price': item.price,
         'longitude': item.longitude,
         'latitude': item.latitude,
         'category': item.category
@@ -157,7 +156,7 @@ def edit(request, slug=""):
             item.name = data['name']
             item.description = data['description']
             item.condition = data['condition']
-            item.price = data['price']
+            item.price = round(float(data['price']),2)
             item.longitude = data['longitude'] or 0
             item.latitude = data['latitude'] or 0
             item.seller = request.user

@@ -24,3 +24,6 @@ def blogs(request):
 
 def timeline(request):
     return render_to_response("cms/timeline.html", context_instance=RequestContext(request))
+
+def market_rules(request):
+    return render_to_response("cms/market_rules.html", context_instance=RequestContext(request))

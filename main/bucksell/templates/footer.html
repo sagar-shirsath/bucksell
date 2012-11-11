@@ -62,12 +62,12 @@
 		<nav class="navigation">
 			<ol>
 				<li><a href="/">Home</a></li>
-				<li><a href="/templates/cms/about.html">About</a></li>
-				<li><a href="/pricing">Pricing</a></li>
-				<li><a href="http://help.shoplocket.com">Help</a></li>
-				<li><a href="/terms">Terms</a></li>
-				<li><a href="/privacy">Privacy</a></li>
-				<li><a href="/jobs">Jobs</a></li>
+				<li><a href="{% url about%}">About</a></li>
+				<li><a href="{% url pricing%}">Pricing</a></li>
+				<li><a href="http://help.shoplocket.com/">Help</a></li>
+				<li><a href="{% url terms%}">Terms</a></li>
+				<li><a href="{% url privacy%}">Privacy</a></li>
+				<li><a href="{% url jobs%}">Jobs</a></li>
 				<li><a href="http://blog.shoplocket.com/">Blog</a></li>
 				<li><a href="http://timeline.shoplocket.com">Timeline</a></li>
 			</ol>

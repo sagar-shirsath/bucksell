@@ -131,6 +131,8 @@
 
 <!--</div>-->
 <!--</div>-->
+
+{% load item_template_tags %}
 <div class="bannerbg">
     <div class="container">
         <h2 class="innerhead"></h2>
@@ -183,7 +185,7 @@
 
                                     <p style="font-weight: lighter"><h3>Name : {{item.name}}</h3></p>
 
-                                    <p style="font-weight: lighter;font-size: 15px">Price : {{item.price}}</p>
+                                    <p style="font-weight: lighter;font-size: 15px">Price :{{ item.price|two_decimal:1 }}</p>
                                     <a class="btn btn-primary msg_margin" href="{%url item_edit item.slug%}"
                                        style="margin-left: 0px;margin-top: 5px;text-decoration: none">Edit</a>
 

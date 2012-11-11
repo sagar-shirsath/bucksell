@@ -33,7 +33,7 @@ body {
 }
 
 .navigation {
-    width: 630px;
+    width: 440px;
 }
 .buy, .sell {
 	color: #FFF;
@@ -77,8 +77,10 @@ body {
     color: #0c79c2;
 }
 
-
 .bannerbg {
+	display: none;
+}
+.bannerbg-home {
     float: left;
     width: 100%;
     padding: 15px 0px;
@@ -87,6 +89,7 @@ body {
     background-size: 100%;
 	border-top: 1px solid #5E7BC5;
 	border-bottom: 2px solid #FFF;
+	height: 476px;
 }
 
 .googlemap {

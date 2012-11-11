@@ -105,7 +105,7 @@ def add(request):
                 name=data['name'],
                 description=data['description'],
                 condition=data['condition'],
-                price=round(data['price'],2),
+                price=round(float(data['price']),2),
                 longitude=data['longitude'] or 0,
                 latitude=data['latitude'] or 0,
                 seller=request.user,
@@ -135,7 +135,7 @@ def edit(request, slug=""):
 
     form = ItemForm(initial={
         'name': item.name,
-        'price': round(item.price,2),
+        'price': round(float(item.price),2),
         'description': item.description,
         'condition': item.condition,
         'price': item.price,
@@ -244,7 +244,7 @@ def view_item_ajax(request,id=None):
     else:
         seller_photo = ""
     response_dict.update(
-            {'name': item.name, 'price': round(item.price,2), 'item_photo_url': item_photo_url, 'description': item.description,
+            {'name': item.name, 'price': round(float(item.price),2), 'item_photo_url': item_photo_url, 'description': item.description,
              'seller_first_name': item.seller.first_name, 'seller_last_name': item.seller.last_name,
              'seller_photo': seller_photo, 'item_thumbnail_url': item_thumbnail_url
         })

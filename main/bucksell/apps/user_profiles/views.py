@@ -78,11 +78,10 @@ def edit_profile(request):
             profile.university = form.cleaned_data.get('university')
             profile.phone_number = form.cleaned_data.get('phone_number')
             profile.address = form.cleaned_data.get('address')
-            profile.paypal_url = form.cleaned_data.get('paypal_url')
+#            profile.paypal_url = form.cleaned_data.get('paypal_url')
             profile.zip_code = form.cleaned_data.get('zip_code')
 
             profile.visibility = int(form.cleaned_data.get('visibility') or 0)
-
             if form.cleaned_data.get('current_password'):
                 password_check = user.check_password(form.cleaned_data.get('current_password'))
                 if (password_check) and (form.cleaned_data.get('new_password')==form.cleaned_data.get('confirm_password')):

@@ -287,7 +287,7 @@
                                     </div>
                                     <h3>{{item.name}}</h3>
 
-                                    <p>${{item.price}}</p>
+                                    <p>${{item.price|two_decimal:1 }}</p>
                                     <a href="{% url item_view item.slug%}" style="text-decoration: none;margin-left: 65px" class="btn btn-primary">view</a>
 
                                 </li>

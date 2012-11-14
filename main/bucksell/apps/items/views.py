@@ -18,13 +18,24 @@ from django.contrib.sites.models import Site
 import json as simplejson
 from django.core import serializers
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @login_required
 def index(request):
     categories = Category.objects.all()
-    items = Item.objects.filter(is_published=True,is_sold=False)
-    return render_to_response("items/index.html", {'categories': categories, 'items': items},
+    items_list = Item.objects.filter(is_published=True,is_sold=False)
+    paginator = Paginator(items_list, 25)
+    page = request.GET.get('page')
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        items = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        items = paginator.page(paginator.num_pages)
+    return render_to_response("items/index.html", {'categories': categories, 'items': items,'items_list':items_list},
         context_instance=RequestContext(request))
 
 

@@ -81,7 +81,7 @@
 
 {% block content %}
 {% load item_template_tags %}
-{% for item in items %}
+{% for item in items_list %}
 
 {% if item.itemphoto_set.all.0.thumbnail1%}
 <input type="hidden" value={{item.name}} name="item_name" rel={{item.latitude}} rev={{item.longitude}}
@@ -327,6 +327,26 @@
                         </form>
                     </div>
                 </div>
+
+
+                <div class="pagination">
+                <span class="step-links">
+                    {% if items.has_previous %}
+                        <a href="?page={{ items.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ items.number }} of {{ items.paginator.num_pages }}.
+                    </span>
+
+                    {% if items.has_next %}
+                        <a href="?page={{ items.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+                </div>
+
+
+
             </div>
         </div>
     </div>

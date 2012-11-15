@@ -311,12 +311,12 @@
 
             <div >
                 <div id="buysell">
-	                <a href="/" class="buy">Buy</a>
+	                <a href="{%url registration_register%}" class="buy">Buy</a>
 	                <a href="{%url my_listing%}" class="sell">Sell</a>
                 </div>
                 <a href="#" class="login" id="loginButton">Login</a>
 
-                <a href="{%url registration_register%}" class="signup">Sigin up</a>
+                <a href="{%url registration_register%}" class="signup">Sign Up</a>
 
                 <div id="loginBox" class="offset10 login_active">
                     <form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}

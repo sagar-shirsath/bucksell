@@ -23,9 +23,14 @@ body {
 .container {
     float: none;
     margin: 0px auto;
-    width: 940px;
+/*    width: 940px;*/
+	width: 1100px;
 }
-
+.map-container {
+    float: none;
+    margin: 0px auto;
+    width: 1100px;
+}
 .logo {
     float: left;
     margin: 25px 0 0 0;
@@ -187,9 +192,9 @@ v.accept {
 
 .twocolums {
     float: left;
-    width: 939px;
-    background: url(../images/separater.png) #fff repeat-y top left;
-    border-right: 1px solid #e6e6e6
+    width: 1100px;
+/*    background: url(../images/separater.png) #fff repeat-y top left;
+    border-right: 1px solid #e6e6e6*/
 }
 
 .mostpopular {
@@ -670,6 +675,9 @@ form > input {
 	margin-bottom: 4px;
 	width: 540px;
 	margin-left: 35%;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
 }
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
 	color: #FFF;
@@ -713,9 +721,11 @@ form > input {
 }
 #motto {
 	color: #FFF;
-	font-size: 46px;
+	font-size: 76px;
 	padding: 20px;
-	margin-top: 190px;
+	margin-top: 40px;
+	margin-bottom: 70px;
+	line-height: 76px;
 }
 .navbar-search .search-query {
 	font-size: 19px;
@@ -775,11 +785,6 @@ form > input {
 	margin: 0 auto;
 	width: 940px;
 }
-.navbar-search .search-query {
-	margin-bottom: 4px;
-	width: 540px;
-	margin-left: 35%;
-}
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
 	color: #FFF;
 }
@@ -819,12 +824,4 @@ form > input {
         border-radius: 5px;
         margin-left: 670px;
         border: 1px solid #EEE;
-}
-#motto {
-	color: #FFF;
-	font-size: 46px;
-	padding: 20px;
-}
-.navbar-search .search-query {
-	font-size: 19px;
 }

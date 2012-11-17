@@ -189,17 +189,17 @@
                                     <a class="btn btn-primary msg_margin" href="{%url item_edit item.slug%}"
                                        style="margin-left: 0px;margin-top: 5px;text-decoration: none">Edit</a>
 
-                                    <form action="{%url item_publish%}" method="POST" name="publish_form">{%csrf_token%}
-                                        {% ifequal item.is_published 1%}
-                                        <input type="hidden" value="1" name="is_published">
-                                        <input type="checkbox" name="is_published_check" checked="checked"
-                                               onclick="this.form.submit()"/>Public<br/>
-                                        {% else %}
-                                        <input type="hidden" value="0" name="is_published">
-                                        <input type="checkbox" name="is_published_check" onclick="this.form.submit()"/>Public<br/>
-                                        {% endifequal %}
-                                        <input type="hidden" value="{{item.id}}" name="id">
-                                    </form>
+                                    <!--<form action="{%url item_publish%}" method="POST" name="publish_form">{%csrf_token%}-->
+                                        <!--{% ifequal item.is_published 1%}-->
+                                        <!--<input type="hidden" value="1" name="is_published">-->
+                                        <!--<input type="checkbox" name="is_published_check" checked="checked"-->
+                                               <!--onclick="this.form.submit()"/>Public<br/>-->
+                                        <!--{% else %}-->
+                                        <!--<input type="hidden" value="0" name="is_published">-->
+                                        <!--<input type="checkbox" name="is_published_check" onclick="this.form.submit()"/>Public<br/>-->
+                                        <!--{% endifequal %}-->
+                                        <!--<input type="hidden" value="{{item.id}}" name="id">-->
+                                    <!--</form>-->
                                 </li>
                                 {% endfor%}
                             </ul>

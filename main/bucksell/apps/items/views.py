@@ -121,7 +121,8 @@ def add(request):
                 latitude=data['latitude'] or 0,
                 seller=request.user,
                 category=data['category'],
-                location=data['location']
+                location=data['location'],
+                is_published = True
             )
 
             item_obj = item.save()

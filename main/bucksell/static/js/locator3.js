@@ -68,7 +68,7 @@ function display_map(lat,long) {
 
     var latlng = new google.maps.LatLng(lat, long);
     var mapsOptions = {
-        zoom:8,
+        zoom:12,
         center:new google.maps.LatLng(lat, long),
         mapTypeControl:true,
         mapTypeControlOptions:{style:google.maps.MapTypeControlStyle.DROPDOWN_MENU},

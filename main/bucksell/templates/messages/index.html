@@ -178,7 +178,13 @@
                                 {% endif %}
 
                                <input type="image" onclick="show_message('message{{message.id}}');" src="{{STATIC_URL}}images/reply.jpeg" ></button>
-                                    <h3>{{message.to_user.first_name}}&nbsp;{{message.to_user.last_name}}</h3>
+                                    <h3>
+                                        {%if message.to_user.first_name and message.to_user.last_name%}
+                                        {{message.to_user.first_name}}&nbsp;{{message.to_user.last_name}}
+                                       {% else %}
+                                        {{message.to_user.username}}
+                                       {% endif %}
+                                    </h3>
                                 </div>
                                 <a href="{% url message_delete message.id %}" alt="delete" class="delete"/>
                                 <!--<img src="{{STATIC_URL}}images/delete.jpeg" alt="delete" class="delete"/>-->

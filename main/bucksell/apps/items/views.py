@@ -196,6 +196,14 @@ def view(request, slug=""):
         context_instance=RequestContext(request))
 
 @login_required
+def delete(request, slug=""):
+    item = get_object_or_404(Item, slug=slug)
+    item.delete()
+    request.flash['message'] = "Item has been deleted successfully"
+    return HttpResponseRedirect(reverse('my_listing'))
+
+
+@login_required
 def search(request):
     query_string = ''
     found_entries = None

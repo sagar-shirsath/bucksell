@@ -166,6 +166,10 @@
                                style="margin-right: 20px;text-decoration: none">Add item</a>
                             <ul>{% for item in items%}
                                 <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden;text-align: center;padding-bottom: 0px !important;">
+                                    <a href="{% url item_delete item.slug %}" alt="delete" class="delete"/>
+                                    <i class="icon-remove"></i>
+                                    </a>
+
                                     <a href="/items/view/{{item.slug}}">
 
                                         <div class="productimage">

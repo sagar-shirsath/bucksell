@@ -185,7 +185,9 @@ function display_map(lat,long) {
         google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
             return function () {
 //                infowindow.setContent(myHtml);
-                infowindow.close();
+                setTimeout(function(){
+                    infowindow.close();
+                },2000);
             }
         })(marker, i));
         onmouseout

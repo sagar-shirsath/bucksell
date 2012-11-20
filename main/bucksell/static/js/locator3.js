@@ -182,7 +182,7 @@ function display_map(lat,long) {
                 infowindow.open(map, marker);
             }
         })(marker, i));
-        google.maps.event.addListener(marker, 'onmouseout', (function (marker, i) {
+        google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
             return function () {
 //                infowindow.setContent(myHtml);
                 infowindow.close();

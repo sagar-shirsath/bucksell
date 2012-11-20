@@ -24,6 +24,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @login_required
 def index(request):
     categories = Category.objects.all()
+    message_count = request.user.to_user.filter(read = False).count()
+    request.session['message_count'] = message_count
     items_list = Item.objects.filter(is_published=True,is_sold=False)
     paginator = Paginator(items_list, 25)
     page = request.GET.get('page')
@@ -35,7 +37,7 @@ def index(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         items = paginator.page(paginator.num_pages)
-    return render_to_response("items/index.html", {'categories': categories, 'items': items,'items_list':items_list},
+    return render_to_response("items/index.html", {'categories': categories, 'items': items,'items_list':items_list,'message_count':message_count},
         context_instance=RequestContext(request))
 
 

@@ -26,6 +26,11 @@ def add(request):
     return HttpResponseRedirect(reverse('item_view',args=(item_slug,)))
 
 def index(request):
+    unread_messages = request.user.to_user.filter(read = False).update(read= True)
+    try:
+        del request.session['message_count']
+    except KeyError:
+        pass
     messages = Message.objects.filter(to_user=request.user)
     return render_to_response("messages/index.html", {'messages':messages}, context_instance=RequestContext(request))
 

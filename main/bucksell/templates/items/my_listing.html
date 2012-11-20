@@ -166,7 +166,7 @@
                                style="margin-right: 20px;text-decoration: none">Add item</a>
                             <ul>{% for item in items%}
                                 <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden;text-align: center;padding-bottom: 0px !important;">
-                                    <a href="{% url item_delete item.slug %}" alt="delete" class="delete"/>
+                                    <a href="{% url item_delete item.slug %}" style="margin-left: 150px;" alt="delete" class="delete"/>
                                     <i class="icon-remove"></i>
                                     </a>
 
@@ -189,9 +189,9 @@
 
                                     <p style="font-weight: lighter"><h3>Name : {{item.name}}</h3></p>
 
-                                    <p style="font-weight: lighter;font-size: 15px">Price :{{ item.price|two_decimal:1 }}</p>
+                                    <p style="font-weight: lighter;font-size: 15px">Price : ${{ item.price|two_decimal:1 }}<br>
                                     <a class="btn btn-primary msg_margin" href="{%url item_edit item.slug%}"
-                                       style="margin-left: 0px;margin-top: 5px;text-decoration: none">Edit</a>
+                                       style="margin-left: 0px;margin-bottom: 10px;margin-top: 5px; text-decoration: none">Edit</a></p>
 
                                     <!--<form action="{%url item_publish%}" method="POST" name="publish_form">{%csrf_token%}-->
                                         <!--{% ifequal item.is_published 1%}-->

@@ -6,7 +6,7 @@ body {
 #wraper {
     float: left;
     width: 100%;
-    min-height: 700px;
+    min-height: 400px;
 }
 
 .header {

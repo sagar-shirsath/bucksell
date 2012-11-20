@@ -224,7 +224,7 @@
                                     <a href="{% url search%}?category={{category}}"><i class="icon-search"></i> {{category}}</a>
                                 </label>
                                 {% endfor %}
-                                <label class="checkbox">
+                                <label class="checkbox"></label>
 
                             </form>
                         </div>
@@ -285,7 +285,7 @@
                                         <a href="{% url item_view item.slug%}"><img src={{item.itemphoto_set.all.0.photo1.url}} height="150px" width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px"/></a>
                                         {% endif %}
                                     </div>
-                                    <h3>{{item.name}}</h3>
+                                    <h3><div style="white-space: nowrap;margin: 5px 5px 5px 5px">{{item.name}}</div></h3>
 
                                     <p>${{item.price|two_decimal:1 }}</p>
                                     <a href="{% url item_view item.slug%}" style="text-decoration: none;margin-left: 65px" class="btn btn-primary">view</a>

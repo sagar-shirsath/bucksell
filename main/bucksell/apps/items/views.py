@@ -170,16 +170,20 @@ def edit(request, slug=""):
                 return HttpResponseRedirect(reverse('add_item'))
             item.name = data['name']
             item.description = data['description']
-            if data['is_service']:
-                item.condition = 0
-            else:
+            if data['condition']:
                 item.condition = data['condition']
+            else:
+                item.condition = 0
             item.price = round(float(data['price']),2)
             item.longitude = data['longitude'] or 0
             item.latitude = data['latitude'] or 0
             item.seller = request.user
             item.category = data['category']
-            item.is_service = data['is_service']
+            if data['is_service']:
+                item.is_service = data['is_service']
+            else:
+                item.is_service = False
+
             item.save()
             upload_item_images(image1, image2, image3, item)
             request.flash['message'] = "Item saved successfully"

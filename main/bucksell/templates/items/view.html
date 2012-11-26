@@ -102,7 +102,11 @@
                         {%if user == item.seller %}
                         <td width="62%">{{item.seller.first_name}}&nbsp;&nbsp;{{item.seller.last_name}}</td>
                         {% else %}
+                        {% if item.seller.first_name and item.seller.last_name%}
                         <td width="62%"> <a href="#" class="negotiate">{{item.seller.first_name}}&nbsp;&nbsp;{{item.seller.last_name}}</a></td>
+                        {% else %}
+                        <td width="62%"> <a href="#" class="negotiate">{{item.seller.username}}</a></td>
+                        {% endif  %}
                         {% endif %}
                     </tr>
                     <tr>

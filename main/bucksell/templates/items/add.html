@@ -110,150 +110,6 @@
 <div class="alert alert-info offset6 span5" style="display: none;text-align: center;z-index: 99999;position: absolute;margin-top: 10px;" id="img_message">
     <div class="">Please upload at least 1 image.</div>
 </div>
-<!--<div class="offset1">-->
-<!--<div class="container-fluid ">-->
-<!--<ul id="myTab" class="nav nav-tabs span10">-->
-<!--<li class="active offset1" id="info_tab"><a href="#">1. Basic Info</a></li>-->
-<!--<li id="p_tab"><a href="#">2. Pics</a></li>-->
-<!--<li id="location"><a href="#">3. Location</a></li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<div id="myTabContent" class="tab-content">-->
-
-<!--<div class="tab-pane fade in active" id="home">-->
-<!--<form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">-->
-<!--{%csrf_token %}-->
-
-<!--<div class="control-group">-->
-<!--<label class="control-label">Item Name <span style="color: red;">*</span></label>-->
-
-<!--<div class="controls">-->
-<!--<input type="text" id="item_name">-->
-<!--{{form.name.errors}}-->
-<!--{{form.name}}-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="control-group">-->
-<!--<label class="control-label">Category <span style="color: red;">*</span></label>-->
-
-<!--<div class="controls">-->
-<!--{{form.category.errors}}-->
-<!--{{form.category}}-->
-<!--<select>-->
-<!--<option>Books</option>-->
-<!--<option>Music</option>-->
-<!--<option>Services</option>-->
-
-<!--</select>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<label class="control-label">Condition <span style="color: red;">*</span></label>-->
-
-<!--<div class="controls">-->
-<!--{{form.condition.errors}}-->
-<!--{{form.condition}}-->
-
-<!--<label class="radio">-->
-<!--<input type="radio" name="item_condition" id="mint" value="mint" checked>-->
-<!--Mint-->
-<!--</label>-->
-<!--<label class="radio">-->
-<!--<input type="radio" name="item_condition" id="like_new" value="like_new" checked>-->
-<!--Like New-->
-<!--</label>-->
-<!--<label class="radio">-->
-<!--<input type="radio" name="item_condition" id="fair" value="fair" checked>-->
-<!--Fair-->
-<!--</label>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<label class="control-label">Price <span style="color: red;">*</span></label>-->
-
-<!--<div class="controls">-->
-<!--<input type="text" id="item_price">-->
-<!--{{form.price.errors}}-->
-<!--{{form.price}}-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="control-group">-->
-<!--<label class="control-label">Description <span style="color: red;">*</span></label>-->
-
-<!--<div class="controls">-->
-<!--<textarea rows="3" id="item_description"></textarea>-->
-<!--{{form.description.errors}}-->
-<!--{{form.description}}-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>-->
-<!--{{form.latitude}}-->
-<!--{{form.longitude}}-->
-<!--{{form.location}}-->
-
-<!--</div>-->
-<!--<div class="tab-pane fade" id="profile">-->
-<!--<div class="container-fluid">-->
-<!--<div>-->
-<!--<h4>Choose Files :</h4>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="span3">-->
-<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
-<!--<label class="radio" style="margin-left: 100px;">-->
-<!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
-<!--Default Pic-->
-<!--</label>-->
-<!--{{form.image1}}-->
-<!--</div>-->
-<!--<div class="span3">-->
-<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
-<!--<label class="radio" style="margin-left: 100px;">-->
-<!--<input type="radio" name="default_pic" id="d2" value="2">-->
-<!--Default Pic-->
-<!--</label>-->
-<!--{{form.image2}}-->
-<!--</div>-->
-<!--<div class="span3">-->
-<!--<img src="{{STATIC_URL}}img/item_pics.jpg" class="img-polaroid item-img">-->
-<!--<label class="radio" style="margin-left: 100px;">-->
-<!--<input type="radio" name="default_pic" id="d3" value="3">-->
-<!--Default Pic-->
-<!--</label>-->
-<!--{{form.image3}}-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<button type="button" class="btn btn-primary" id="inf_tab">Previous</button>-->
-<!--<button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>-->
-<!--</div>-->
-
-<!--<div class="tab-pane fade" id="review_tab">-->
-<!--<div class="container-fluid">-->
-
-<!--<div class="item-listing" style="text-align: center; width: 100%">-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="" id="location_tab">-->
-<!--<div class="container-fluid">-->
-<!--<div class="offset3">-->
-<!--<h4>Pin point your item on the map</h4>-->
-<!--</div>-->
-<!--<div class="offset2">-->
-
-<!--</div>-->
-<!--<button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>-->
-<!--<button type="submit" class="btn btn-warning offset6">Submit Item</button>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
 <div class="bannerbg">
     <div class="container">
         <h2 class="innerhead"></h2>
@@ -267,24 +123,15 @@
     <div class="container">
         <div class="twocolums">
             <div class="tabbable tabs-left">
-                <!--<ul id="myTab" class="nav nav-tabs span10">-->
-                <!--<li class="active offset1" id="info_tab"><a href="#">1. Basic Info</a></li>-->
-                <!--<li id="p_tab"><a href="#">2. Pics</a></li>-->
-                <!--<li id="location"><a href="#">3. Location</a></li>-->
-                <!--</ul>-->
                 <ul id="myTab" class="nav nav-tabs span10">
                     <li class="active" id="info_tab"><a href="#">1. Basic Info</a></li>
                     <li class="" id="p_tab"><a href="#">2. Pics</a></li>
                     <li class="" id="location"><a href="#">3. Location</a></li>
                     <li style="float:left; width:100%; text-align:center; margin-top:20px;">
-                        <!--<img src="{{STATIC_URL}}images/rightbanner.jpg"/>-->
                     </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="home">
-                        <!--<div class="tab-content">-->
-                        <!--<div class="tab-pane active" id="lA">-->
-                        <!--<form class="form-horizontal">-->
                         <form class="form-horizontal" id="item_form" method="POST" action="." enctype="multipart/form-data">
                             {%csrf_token %}
 
@@ -303,34 +150,25 @@
                                 <div class="controls">
                                     {{form.category.errors}}
                                     {{form.category}}
-                                    <!--<select name="select">-->
-                                        <!--<option>Books</option>-->
-                                        <!--<option>2</option>-->
-                                        <!--<option>3</option>-->
-                                        <!--<option>4</option>-->
-                                        <!--<option>5</option>-->
-                                    <!--</select>-->
                                 </div>
                             </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Item<br />{{form.is_service.errors}}</label>
+                                <label class="control-label">Service<bt />{{form.is_service}}</label>
+
+
+
+
+
+                            </div>
+
                             <div class="control-group">
                                 <label class="control-label">Condition</label>
 
                                 <div class="controls">
                                     {{form.condition.errors}}
                                     {{form.condition}}
-                                    <!--<label class="radio">-->
-                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"-->
-                                               <!--checked>-->
-                                        <!--Mint-->
-                                    <!--</label>-->
-                                    <!--<label class="radio">-->
-                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
-                                        <!--Like New-->
-                                    <!--</label>-->
-                                    <!--<label class="radio">-->
-                                        <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
-                                        <!--Fair-->
-                                    <!--</label>-->
                                 </div>
                             </div>
 
@@ -358,6 +196,7 @@
                                     {{form.latitude}}
                                     {{form.longitude}}
                                     {{form.location}}
+                                    {{form.pincode}}
 
                                 </div>
                             </div>

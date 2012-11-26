@@ -25,6 +25,8 @@ class Item(models.Model):
     is_published = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     slug = models.CharField(max_length=60)
+    is_service = models.BooleanField(default=False)
+    pincode = models.CharField(max_length=60,null=True)
 
     def save(self, *args, **kwargs):
         string = "%s-%s" % (random.randrange(0, 101, 2), self.name)

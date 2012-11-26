@@ -1,143 +1,3 @@
-<!--<style type="text/css">-->
-<!--.login_active{-->
-<!--display: none;-->
-<!--}-->
-<!--#loginForm{-->
-<!--padding-top: 20px;-->
-<!--/*border: #000000 solid 1px;*/-->
-<!--margin-top: 1px;-->
-<!--padding: 20px 20px 20px 20px;-->
-<!--width: 220px;-->
-<!--/*border-radius: 5px;*/-->
-<!--border: 1px solid #a4a4a4;-->
-<!--border-radius: 3px 0 3px 3px;-->
-<!--}-->
-<!--#loginBox{-->
-<!--position:absolute;-->
-<!--top:41px;-->
-<!--right:5px;-->
-<!--/*display:none;*/-->
-<!--z-index:29;-->
-<!--background-color: #EEE;-->
-<!--height: 215px;-->
-<!--}-->
-<!--</style>-->
-<!--<script type="text/javascript">-->
-<!--$(document).on('click','#loginButton',function(){-->
-<!--$('#loginBox').toggleClass('login_active');-->
-<!--//            $('#loginBox').css('display','block');-->
-<!--});-->
-<!--$(document).ready(function(){-->
-
-
-<!--});-->
-<!--</script>-->
-<!--<div class="navbar navbar-inverse navbar-static-top">-->
-<!--{% if user.is_authenticated %}-->
-<!--<div class="navbar-inner">-->
-<!--<div class="container">-->
-<!--<a class="brand" href="/">Bucksell</a>-->
-<!--<ul class="nav">-->
-<!--<li><a href={%url item_index %}>Browse</a></li>-->
-<!--<li><a href={%url my_listing %}>Post</a></li>-->
-<!--</ul>-->
-<!--<ul class="nav pull-right">-->
-<!--<li>-->
-<!--<form class="navbar-search pull-left" method="GET" action="{% url search%}">-->
-<!--<input type="text" name="q" class="search-query" placeholder="search for..">-->
-<!--</form>-->
-<!--</li>-->
-<!--<li class="divider-vertical"></li>-->
-<!--<li class="dropdown">-->
-<!--<button class="dropdown btn" data-toggle="dropdown">-->
-<!--{%if user.thumbnail%}-->
-<!--<img src="{{user.thumbnail.url}}" alt=""/>-->
-<!--{% else%}-->
-<!--<span class="icon-user">-->
-<!--{% endif %}-->
-<!--</span>-->
-<!--{{user.username}} <b class="caret"></b></button>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a href="{%url edit_profile%}">Profile Edit</a></li>-->
-<!--<li><a href="{%url my_listing %}">Your Posts</a></li>-->
-<!--<li class="divider"></li>-->
-<!--<li><a href="{%url auth_logout%}">Logout</a></li>-->
-<!--</ul>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->
-<!--{% else %}-->
-<!--<div class="navbar-inner">-->
-<!--<div class="container">-->
-<!--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">-->
-<!--<span class="icon-bar"></span>-->
-<!--<span class="icon-bar"></span>-->
-<!--<span class="icon-bar"></span>-->
-<!--</a>-->
-<!--<a class="brand" href="/">Bucksell</a>-->
-
-<!--<div class="nav-collapse">-->
-<!--</div>-->
-<!--<ul class="nav pull-right">-->
-<!--<li><a href="{%url registration_register%}">Join</a></li>-->
-<!--<li class="divider-vertical"></li>-->
-<!--<li>-->
-<!--<button id="loginButton" class="btn"><span>Login</span><em></em></button>-->
-<!--<div id="loginContainer">-->
-<!--<button id="loginButton" class="btn"><span>Login</span><em></em></button>-->
-<!--<div style="clear:both"></div>-->
-<!--<div id="loginBox" style="display: none; ">-->
-<!--<form id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}-->
-<!--<fieldset id="body">-->
-<!--<fieldset>-->
-<!--<label for="email">Email Address</label>-->
-<!--<input type="text" name="email" id="email">-->
-<!--</fieldset>-->
-<!--<fieldset>-->
-<!--<label for="password">Password</label>-->
-<!--<input type="password" name="password" id="password">-->
-<!--</fieldset>-->
-<!--<input type="submit" id="login" value="Sign in">-->
-<!--<label for="checkbox"><input type="checkbox" id="checkbox">Remember me</label>-->
-<!--</fieldset>-->
-<!--<span><a href="{% url password_reset %}">Forgot your password?</a></span>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div id="loginBox" class="offset10 login_active">-->
-<!--<form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}-->
-<!--<div class="control-group">-->
-<!--<label class="control-label" for="inputEmail">Email</label>-->
-<!--<div class="controls">-->
-<!--<input type="text" id="email" placeholder="Email" name="email">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<label class="control-label" for="inputPassword">Password</label>-->
-<!--<div class="controls">-->
-<!--<input type="password" id="password" placeholder="Password" name="password">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<div class="controls">-->
-<!--<button type="submit" class="btn btn-primary" id="login">Sign in</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<div class="controls">-->
-<!--<span><a href="{% url password_reset %}">Forgot your password?</a></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--{% endif %}-->
-<!--</div>-->
-<!--<div>-->
 <style type="text/css">
     .login_active {
         display: none;
@@ -156,90 +16,6 @@
 //        $('#loginBox').css('display', 'block');
     });
 </script>
-<!--<div class="headertop">-->
-<!--<div class="container">-->
-<!--<div class="logo"><a href="/"><img src="{{STATIC_URL}}images/logo.gif"/></a></div>-->
-<!--<div class="navigation">-->
-<!--<a href="/" class="buy">Buy</a>-->
-<!--<a href="{%url my_listing%}" class="sell">Sell</a>-->
-<!--{% if user.is_authenticated %}-->
-<!--<form class="navbar-search pull-left">-->
-<!--<input type="text" class="search-query" placeholder="search for..">-->
-<!--</form>-->
-<!--<ul class="nav pull-right" style="border-top:none; margin-top:10px;">-->
-<!--<li>-->
-
-<!--</li>-->
-<!--<li class="divider-vertical"></li>-->
-<!--<li class="dropdown" style="position: relative; top:-67px; right:-113px;">-->
-<!--<button class="dropdown btn" data-toggle="dropdown"><span class="icon-user"></span> Username <b-->
-<!--class="caret"></b></button>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a href="#" style="text-decoration:none">Profile Edit</a></li>-->
-<!--<li><a href="#" style="text-decoration:none">Your Posts</a></li>-->
-<!--<li class="divider"></li>-->
-<!--<li><a href="#" style="text-decoration:none">Logout</a></li>-->
-<!--</ul>-->
-<!--</li>-->
-<!--<li class="divider-vertical"></li>-->
-<!--<li class="dropdown">-->
-<!--<button class="dropdown btn" data-toggle="dropdown">-->
-<!--{%if user.auth_user.all.0.thumbnail%}-->
-<!--<img src="{{user.auth_user.all.0.thumbnail.url}}" alt=""/>-->
-<!--{% else%}-->
-<!--<span class="icon-user">-->
-<!--{% endif %}-->
-<!--</span>-->
-<!--{{user.username}} <b class="caret"></b></button>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a href="{%url edit_profile%}">Profile Edit</a></li>-->
-<!--<li><a href="{%url my_listing %}">Your Posts</a></li>-->
-<!--<li class="divider"></li>-->
-<!--<li><a href="{%url auth_logout%}">Logout</a></li>-->
-<!--</ul>-->
-<!--</li>-->
-<!--</ul>-->
-<!--{% else%}-->
-<!--</div>-->
-<!--</div>-->
-<!--&lt;!&ndash;</ul>&ndash;&gt;-->
-
-<!--<a href="#" class="login" id="loginButton">Login</a>-->
-<!--<span class="newuser">New user?</span>-->
-<!--<a href="{%url registration_register%}" class="signup">Sigin up</a>-->
-
-<!--<div id="loginBox" class="offset10 login_active">-->
-<!--<form class="form" id="loginForm" action="{%url auth_login%}" method="post">{% csrf_token %}-->
-<!--<div class="control-group">-->
-<!--&lt;!&ndash;<label class="control-label" for="inputEmail">Email</label>&ndash;&gt;-->
-<!--<div class="controls">-->
-<!--<input type="text" id="email" placeholder="Email" name="email">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--&lt;!&ndash;<label class="control-label" for="inputPassword">Password</label>&ndash;&gt;-->
-<!--<div class="controls">-->
-<!--<input type="password" id="password" placeholder="Password" name="password">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<div class="controls">-->
-<!--<label class="checkbox">-->
-<!--<input type="checkbox" id="checkbox"> <font style="color: #fff">Remember me</font>-->
-<!--</label>-->
-<!--<button type="submit" class="btn btn-primary" id="login">Sign in</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="control-group">-->
-<!--<div class="controls">-->
-<!--<span><a href="{% url password_reset %}">Forgot your password?</a></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--{% endif %}-->
-<!--</div>-->
-<!--</div>-->
 <style type="text/css">
     .my_nav {
 		background: #383838; /* Old browsers */
@@ -282,10 +58,6 @@
 
             <ul class="nav pull-right" style="width: 320px; margin-top: 15px;">
 
-                <!--<li class="active"><a href="#">Home</a></li>-->
-                <!--<li><a href="#">Link</a></li>-->
-                <!--<li><a href="#">Link</a></li>-->
-                <!--<li></li>-->
 
                 <li class="dropdown my_dropdown" >
                     <a href="#" class="dropdown-toggle my_dropdown" data-toggle="dropdown">
@@ -355,7 +127,7 @@
     <div class="nav">
         {% if user.is_authenticated %}
                         <form class="navbar-search pull-left" method="GET" action="{% url search%}">
-                            <input type="text" name ="q" class="search-query" placeholder="Search">
+                            <input type="text" name ="q" class="search-query" placeholder="Search : item name , location etc">
                         </form>
         {% endif %}
     </div>

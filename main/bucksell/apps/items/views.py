@@ -190,7 +190,7 @@ def edit(request, slug=""):
 @login_required
 def view(request, slug=""):
     current_site = Site.objects.get_current()
-    conditions = {1: 'Mint', 2: 'Like New', 3: 'Fair'}
+    conditions = {1: 'New', 2: 'Pretty Good', 3: 'Gets the Job Done',4:'Looks that only a Mother could Love'}
     item = get_object_or_404(Item, slug=slug)
     item.price = "%.02f" %item.price
     condition = conditions[item.condition]

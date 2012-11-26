@@ -2,7 +2,7 @@ from items.models import Item
 from django import forms
 from categories.models import Category
 
-CONDITION_CHOICES = ((1, 'Mint'), (2, 'Like New'), (3, 'Fair'))
+CONDITION_CHOICES = ((1, 'New'), (2, 'Pretty Good'), (3, 'Gets the Job Done'),(4,'Looks that only a Mother could Love'))
 
 class ItemForm(forms.Form):
     name = forms.CharField(max_length=30)
@@ -12,7 +12,7 @@ class ItemForm(forms.Form):
     longitude = forms.CharField(widget=forms.HiddenInput,required=False)
     latitude = forms.CharField(widget=forms.HiddenInput,required=False)
     location = forms.CharField(widget=forms.HiddenInput,required=False)
-    category = forms.ModelChoiceField(queryset=Category.objects.filter())
+    category = forms.ModelChoiceField(queryset=Category.objects.filter().order_by('id'))
     image1 = forms.ImageField(required=False)
     image2 = forms.ImageField(required=False)
     image3 = forms.ImageField(required=False)

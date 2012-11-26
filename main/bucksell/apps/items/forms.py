@@ -9,7 +9,7 @@ class ItemForm(forms.Form):
     name = forms.CharField(max_length=30)
     description = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 20}))
     condition = forms.ChoiceField(widget=forms.RadioSelect, choices=CONDITION_CHOICES,required=False)
-    is_service = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class':'is_service'}), choices=IS_SERVICE_CHOICES,required=False)
+    is_service = forms.ChoiceField(required=False,widget=forms.RadioSelect(attrs={'class':'is_service'}), choices=IS_SERVICE_CHOICES)
     price = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'In $'}))
     longitude = forms.CharField(widget=forms.HiddenInput,required=False)
     latitude = forms.CharField(widget=forms.HiddenInput,required=False)

@@ -124,7 +124,8 @@ def add(request):
                 seller=request.user,
                 category=data['category'],
                 location=data['location'],
-                is_published = True
+                is_published = True,
+                is_service = data['is_service']
             )
 
             item_obj = item.save()
@@ -178,6 +179,7 @@ def edit(request, slug=""):
             item.latitude = data['latitude'] or 0
             item.seller = request.user
             item.category = data['category']
+            item.is_service = data['is_service']
             item.save()
             upload_item_images(image1, image2, image3, item)
             request.flash['message'] = "Item saved successfully"

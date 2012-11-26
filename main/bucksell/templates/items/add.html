@@ -5,7 +5,18 @@
 </script>
 <script type="text/javascript" src="{{STATIC_URL}}js/locator2.js"></script>
 <script type="text/javascript">
+
+
+
     $(document).ready(function () {
+        $(".is_service").click(function() {
+           if($(".is_service:checked").val()==1)
+           {
+                $('#conditions').hide('slow');
+           }else{
+               $('#conditions').show('slow');
+           }
+        });
         $('#location_tab').hide();
         $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();
@@ -154,16 +165,12 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label">Item<br />{{form.is_service.errors}}</label>
-                                <label class="control-label">Service<bt />{{form.is_service}}</label>
-
-
-
-
+                                <label class="control-label">{{form.is_service.0}}</label>
+                                <label class="control-label">{{form.is_service.1}}</label>
 
                             </div>
 
-                            <div class="control-group">
+                            <div class="control-group" id="conditions">
                                 <label class="control-label">Condition</label>
 
                                 <div class="controls">

@@ -6,6 +6,14 @@
 <script type="text/javascript" src="{{STATIC_URL}}js/locator2.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".is_service").click(function() {
+            if($(".is_service:checked").val()==1)
+            {
+                $('#conditions').hide('slow');
+            }else{
+                $('#conditions').show('slow');
+            }
+        });
         $('#location_tab').hide();
         $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();
@@ -124,163 +132,6 @@
 <div class="alert alert-error offset3 span5" style="display: none;" id="img_message">
     <div class="offset1">Please upload all 3 images.</div>
 </div>
-<!--<div class="offset1">-->
-    <!--<div class="container-fluid ">-->
-        <!--<ul id="myTab" class="nav nav-tabs span10">-->
-            <!--<li class="active offset1" id="info_tab"><a href="#">1. Basic Info</a></li>-->
-            <!--<li id="p_tab"><a href="#">2. Pics</a></li>-->
-            <!--<li id="location"><a href="#">3. Location</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--<div id="myTabContent" class="tab-content">-->
-
-        <!--<div class="tab-pane fade in active" id="home">-->
-            <!--<form class="form-horizontal" id="item_form" method="POST" action="{%url item_edit item.slug %}" enctype="multipart/form-data">{% csrf_token %}-->
-
-                <!--<div class="control-group">-->
-                    <!--<label class="control-label">Item Name <span style="color: red;">*</span></label>-->
-
-                    <!--<div class="controls">-->
-                        <!--<input type="text" id="item_name">-->
-                        <!--{{form.name.errors}}-->
-                        <!--{{form.name}}-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="control-group">-->
-                    <!--<label class="control-label">Category <span style="color: red;">*</span></label>-->
-
-                    <!--<div class="controls">-->
-                        <!--{{form.category.errors}}-->
-                        <!--{{form.category}}-->
-                        <!--<select>-->
-                        <!--<option>Books</option>-->
-                        <!--<option>Music</option>-->
-                        <!--<option>Services</option>-->
-<!---->
-                        <!--</select>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="control-group">-->
-                    <!--<label class="control-label">Condition <span style="color: red;">*</span></label>-->
-
-                    <!--<div class="controls">-->
-                        <!--{{form.condition.errors}}-->
-                        <!--{{form.condition}}-->
-
-                        <!--<label class="radio">-->
-                        <!--<input type="radio" name="item_condition" id="mint" value="mint" checked>-->
-                        <!--Mint-->
-                        <!--</label>-->
-                        <!--<label class="radio">-->
-                        <!--<input type="radio" name="item_condition" id="like_new" value="like_new" checked>-->
-                        <!--Like New-->
-                        <!--</label>-->
-                        <!--<label class="radio">-->
-                        <!--<input type="radio" name="item_condition" id="fair" value="fair" checked>-->
-                        <!--Fair-->
-                        <!--</label>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="control-group">-->
-                    <!--<label class="control-label">Price <span style="color: red;">*</span></label>-->
-
-                    <!--<div class="controls">-->
-                        <!--<input type="text" id="item_price">-->
-                        <!--{{form.price.errors}}-->
-                        <!--{{form.price}}-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="control-group">-->
-                    <!--<label class="control-label">Description <span style="color: red;">*</span></label>-->
-
-                    <!--<div class="controls">-->
-                        <!--<textarea rows="3" id="item_description"></textarea>-->
-                        <!--{{form.description.errors}}-->
-                        <!--{{form.description}}-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<button type="button" class="btn btn-primary offset5" id="pics_tab">Next</button>-->
-                <!--{{form.latitude}}-->
-                <!--{{form.longitude}}-->
-
-        <!--</div>-->
-        <!--<div class="tab-pane fade" id="profile">-->
-            <!--<div class="container-fluid">-->
-                <!--<div>-->
-                    <!--<h4>Choose Files :</h4>-->
-                <!--</div>-->
-                <!--<div class="row">-->
-                    <!--<div class="span3">-->
-                        <!--{% if item.itemphoto_set.all.0.photo1%}-->
-                        <!--<img src={{item.itemphoto_set.all.0.photo1.url}} class="img-polaroid item-img"/>-->
-                        <!--{% else %}-->
-                        <!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
-                        <!--{% endif %}-->
-
-                        <!--<label class="radio" style="margin-left: 100px;">-->
-
-                            <!--Default Pic-->
-                        <!--</label>-->
-                        <!--{{form.image1}}-->
-                    <!--</div>-->
-                    <!--<div class="span3">-->
-                        <!--{% if item.itemphoto_set.all.0.photo2%}-->
-                        <!--<img src={{item.itemphoto_set.all.0.photo2.url}} class="img-polaroid item-img"/>-->
-                        <!--{% else %}-->
-                        <!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
-                        <!--{% endif %}-->
-
-                        <!--<label class="radio" style="margin-left: 100px;">-->
-                            <!--<input type="radio" name="default_pic" id="d2" value="2">-->
-                            <!--Default Pic-->
-                        <!--</label>-->
-                        <!--{{form.image2}}-->
-                    <!--</div>-->
-                    <!--<div class="span3">-->
-                        <!--{% if item.itemphoto_set.all.0.photo3%}-->
-                        <!--<img src={{item.itemphoto_set.all.0.photo3.url}} class="img-polaroid item-img"/>-->
-                        <!--{% else %}-->
-                        <!--<input type="radio" name="default_pic" id="d1" value="1" checked="true">-->
-                        <!--{% endif %}-->
-                        <!--<label class="radio" style="margin-left: 100px;">-->
-                            <!--<input type="radio" name="default_pic" id="d3" value="3">-->
-                            <!--Default Pic-->
-                        <!--</label>-->
-                        <!--{{form.image3}}-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<button type="button" class="btn btn-primary" id="inf_tab">Previous</button>-->
-            <!--<button type="button" class="btn btn-primary offset5" id="loc_tab">Next</button>-->
-        <!--</div>-->
-
-        <!--<div class="tab-pane fade" id="review_tab">-->
-            <!--<div class="container-fluid">-->
-
-                <!--<div class="item-listing" style="text-align: center; width: 100%">-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<div class="" id="location_tab">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="offset3">-->
-            <!--<h4>Pin point your item on the map</h4>-->
-        <!--</div>-->
-        <!--<div class="offset2">-->
-
-        <!--</div>-->
-        <!--<button type="button" class="btn btn-primary" id="back_pics_tab">Previous</button>-->
-        <!--<button type="submit" class="btn btn-warning offset6">Submit Item</button>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<div id="map_canvas" class="big_map offset2" style="opacity: 0;"></div>-->
 <div class="bannerbg">
     <div class="container">
         <h2 class="innerhead"></h2>
@@ -339,25 +190,19 @@
                                     <!--</select>-->
                                 </div>
                             </div>
+
                             <div class="control-group">
-                                <label class="control-label">Gender</label>
+                                <label class="control-label">{{form.is_service.0}}</label>
+                                <label class="control-label">{{form.is_service.1}}</label>
+
+                            </div>
+
+                            <div class="control-group" id="conditions">
+                                <label class="control-label">Condition</label>
 
                                 <div class="controls">
                                     {{form.condition.errors}}
                                     {{form.condition}}
-                                    <!--<label class="radio">-->
-                                    <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"-->
-                                    <!--checked>-->
-                                    <!--Mint-->
-                                    <!--</label>-->
-                                    <!--<label class="radio">-->
-                                    <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
-                                    <!--Like New-->
-                                    <!--</label>-->
-                                    <!--<label class="radio">-->
-                                    <!--<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">-->
-                                    <!--Fair-->
-                                    <!--</label>-->
                                 </div>
                             </div>
 
@@ -385,6 +230,7 @@
                                     {{form.latitude}}
                                     {{form.longitude}}
                                     {{form.location}}
+                                    {{form.pincode}}
 
                                 </div>
                             </div>

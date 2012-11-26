@@ -117,7 +117,7 @@ def add(request):
             item = Item(
                 name=data['name'],
                 description=data['description'],
-                condition=data['condition'],
+                condition=data['condition']or 0,
                 price=round(float(data['price']),2),
                 longitude=data['longitude'] or 0,
                 latitude=data['latitude'] or 0,
@@ -169,7 +169,10 @@ def edit(request, slug=""):
                 return HttpResponseRedirect(reverse('add_item'))
             item.name = data['name']
             item.description = data['description']
-            item.condition = data['condition']
+            if data['is_service']:
+                item.condition = 0
+            else:
+                item.condition = data['condition']
             item.price = round(float(data['price']),2)
             item.longitude = data['longitude'] or 0
             item.latitude = data['latitude'] or 0
@@ -193,7 +196,10 @@ def view(request, slug=""):
     conditions = {1: 'New', 2: 'Pretty Good', 3: 'Gets the Job Done',4:'Looks that only a Mother could Love'}
     item = get_object_or_404(Item, slug=slug)
     item.price = "%.02f" %item.price
-    condition = conditions[item.condition]
+    if item.condition:
+        condition = conditions[item.condition]
+    else:
+        condition=0
     return render_to_response("items/view.html", {'item': item, 'condition': condition, 'current_site': current_site},
         context_instance=RequestContext(request))
 
@@ -234,7 +240,7 @@ def search(request):
         found_entries = Item.objects.filter()
 
     return render_to_response('items/index.html',
-            {'query_string': query_string, 'categories': categories, 'items': found_entries},
+            {'query_string': query_string, 'categories': categories, 'items': found_entries,'query':request.GET['q']},
         context_instance=RequestContext(request))
 
 @login_required

@@ -166,7 +166,7 @@
                                style="margin-right: 20px;text-decoration: none">Add item</a>
                             <ul>{% for item in items%}
                                 <li class="img-polaroid" style="text-overflow: ellipsis;overflow-x: hidden;text-align: center;padding-bottom: 0px !important;">
-                                    <a href="{% url item_delete item.slug %}" style="margin-left: 150px;" alt="delete" class="delete"/>
+                                    <a href="{% url item_delete item.slug %}" style="margin-left: 150px;" alt="delete" class="delete" onclick="return confirm('Are you sure you want to  delete?');"/>
                                     <i class="icon-remove"></i>
                                     </a>
 
@@ -179,10 +179,10 @@
                                             <img src={{item.itemphoto_set.all.0.photo1.url}} height="150px"
                                                  width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px"/>
                                             {% else %}
-                                            No Image
+                                            <img src="{{STATIC_URL}}images/logo pic.jpg" class="img-polaroid item-img" height="150px" width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px">
                                             {% endif %}
                                             {%else%}
-                                            No Image
+                                            <img src="{{STATIC_URL}}images/logo pic.jpg" class="img-polaroid item-img" height="150px" width="150px" style="margin-right: 20px;border: #bbbbbb solid 2px">
                                             {% endif %}
                                         </div>
                                     </a>

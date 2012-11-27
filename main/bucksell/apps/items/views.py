@@ -246,7 +246,7 @@ def search(request):
         found_entries = Item.objects.filter()
 
     return render_to_response('items/index.html',
-            {'query_string': query_string, 'categories': categories, 'items': found_entries,'query':request.GET['q']},
+            {'query_string': query_string, 'categories': categories, 'items': found_entries},
         context_instance=RequestContext(request))
 
 @login_required

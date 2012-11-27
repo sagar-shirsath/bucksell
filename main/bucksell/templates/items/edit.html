@@ -14,6 +14,29 @@
                 $('#conditions').show('slow');
             }
         });
+
+
+        $('#id_image1').change(function(){
+            var ext = $('#id_image1').val().split('.').pop().toLowerCase();
+            if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+                alert('invalid image');
+            }
+        });
+
+        $('#id_image2').change(function(){
+            var ext = $('#id_image2').val().split('.').pop().toLowerCase();
+            if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+                alert('invalid image');
+            }
+        });
+
+        $('#id_image3').change(function(){
+            var ext = $('#id_image3').val().split('.').pop().toLowerCase();
+            if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+                alert('invalid image');
+            }
+        });
+
         $('#location_tab').hide();
         $('#map_canvas').css('width', window.innerWidth - 900).css('height', window.innerHeight - 350);
         getLocation();

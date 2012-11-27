@@ -44,7 +44,7 @@
             <ul class="breadcrumb span9 offset1" style="background-color: white;">
                 <li><a href="{% url search%}?category={{item.category.name}}">{{item.category.name}}</a> <span
                         class="divider"> > </span></li>
-                <li><a href=".">{{item.name}}</a> <span class="divider"> > </span></li>
+                <li><a href="{{item.slug}}">{{item.name}}</a> <span class="divider"></span></li>
 
             </ul>
             <div style="margin-top: 0px;padding-right: 0px;float: left">

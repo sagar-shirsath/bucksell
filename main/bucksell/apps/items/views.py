@@ -26,7 +26,7 @@ def index(request):
     categories = Category.objects.all()
     message_count = request.user.to_user.filter(read = False).count()
     request.session['message_count'] = message_count
-    items_list = Item.objects.filter(is_published=True,is_sold=False)
+    items_list = Item.objects.filter(is_sold=False)
     paginator = Paginator(items_list, 25)
     page = request.GET.get('page')
     try:

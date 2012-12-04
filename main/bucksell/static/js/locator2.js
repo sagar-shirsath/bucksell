@@ -93,7 +93,7 @@ function display_map(lat,long) {
                 }
             }
             else {
-                alert("Geocoder failed due to: " + status);
+//                alert("Geocoder failed due to: " + status);
             }
         });
 

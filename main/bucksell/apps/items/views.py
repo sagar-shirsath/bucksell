@@ -112,7 +112,7 @@ def add(request):
             image2 = data['image2']
             image3 = data['image3']
             if not (is_image(image1) and is_image(image2) and is_image(image3)):
-                request.flash['message'] = "Sorry can't Upload the Images"
+                request.flash['message'] = "Sorry please upload a picture in an acceptable format"
                 return HttpResponseRedirect(reverse('add_item'))
             item = Item(
                 name=data['name'],
@@ -166,7 +166,7 @@ def edit(request, slug=""):
             image2 = data['image2']
             image3 = data['image3']
             if not ((is_image(image1) and is_image(image2) and is_image(image3))):
-                request.flash['message'] = "Sorry can't Upload the Images"
+                request.flash['message'] = "Sorry please upload a picture in an acceptable format"
                 return HttpResponseRedirect(reverse('add_item'))
             item.name = data['name']
             item.description = data['description']

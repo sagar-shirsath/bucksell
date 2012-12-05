@@ -80,7 +80,19 @@
 {% endblock %}
 
 {% block content %}
+
+
 {% load item_template_tags %}
+
+{% if is_search %}
+{% if first_item %}
+<input type="hidden" value={{first_item.name}} name="item_name" rel={{first_item.latitude}} rev={{first_item.longitude}}
+       id="{{first_item.itemphoto_set.all.0.thumbnail1.url}}" item-id="{{first_item.id}}" item-slug="{{first_item.slug}}"
+       item-price="{{ first_item.price|two_decimal:1 }}" first_item="yes">
+{% endif %}
+{% endif %}
+
+
 {% for item in items_list %}
 
 {% if item.itemphoto_set.all.0.thumbnail1%}

@@ -223,6 +223,8 @@ def search(request):
     found_entries = None
     item_obj = Item()
     categories = Category.objects.all()
+    is_search = 1
+    first_item = []
     if ('category' in request.GET) and request.GET['category'].strip():
         category = request.GET['category'].strip().lower()
         category_inst = Category.objects.filter(name__icontains=category)
@@ -244,9 +246,10 @@ def search(request):
         found_entries = Item.objects.filter(entry_query).order_by('name')
     else:
         found_entries = Item.objects.filter()
-
+    if found_entries:
+        first_item = found_entries[0]
     return render_to_response('items/index.html',
-            {'query_string': query_string, 'categories': categories, 'items': found_entries},
+            {'query_string': query_string, 'categories': categories, 'items': found_entries,'is_search':is_search,'first_item':first_item},
         context_instance=RequestContext(request))
 
 @login_required
